@@ -1,0 +1,11 @@
+\section{Wstęp}
+\subsection{Sztuczna inteligencja.}
+\subsubsection{Rys historyczny.}
+\input{wstep/historia.tex}
+\subsubsection{Sztuczna inteligencja dziś.}
+\input{wstep/dzis.tex}
+\subsubsection{Podstawy algorytmów stosowanych w grach.}
+\input{wstep/podstawy.tex}
+\subsubsection{Podstawy algorytmów ewolucyjnych.}
+\input{wstep/ewolucyjne.tex}
+

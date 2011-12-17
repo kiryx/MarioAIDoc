@@ -1,0 +1,31 @@
+\begin{par}
+Jednym z prostszych przykładów zastosowania sztucznej inteligencji w grach komputerowych są gry logiczne. 
+Podstawowym algorytmem stosowanym w projektowaniu sztucznej inteligencji jest algorytm minmax. Dotyczy on gier o sumie stałej -- proporcja zysku jednego z graczy do straty drugiego jest stała. 
+Najprostszym przykładem jest gra ``Kółko i krzyżyk'' gdzie budowane jest rekurencyjne drzewo wywołań kolejno generujące wszystkie możliwe stany gry. 
+W dowolnym momencie gry możemy przeanalizować wszystkie możliwe posunięcia graczy. Gra może zakończyć się remisem, zwycięstwem gracza A, bądź zwycięstwem gracza B.
+Optymalizując decyzję gracza A, musimy kolejno sprawdzać możliwe posunięcia na planszy. Dla każdego z nich możemy wówczas przeanalizować optymalną strategię dla gracza B (ponieważ zakładamy że do takiej będzie on dążył) i starać się znaleźć najlepszą ścieżkę która prowadzi do zwycięstwa gracza A.
+Zatem dla pustej planszy planszy przy podjęciu pierwszej decyzji musimy przeanalizować 9*8*7*..*1 = 9! ruchów.
+Łatwo zauważyć iż algorytm taki ma ogromną złożoność i jedynie dla małych gier takich jak kółko i krzyżyk daje wynik w realnym czasie.
+Bez optymalizacji, obraz brania pod uwagę symetrii planszy, daje to drzewo wywołań składające się 9! węzłów (łącznie z liśćmi). 
+Oczywiście algorytm można zoptymalizować chociażby poprzez programowanie dynamiczne, lecz nawet jego mało optymalna wersja może działać dość szybko na współczesnych komputerach z racji na mały rozmiar danych.
+\end{par}
+\begin{par}
+Przez lata szachy były jedną z gier niemożliwych do rozwiązania za pomocą powyższego podejścia.
+Nawet dziś najlepsze programy szachowe nie są w stanie przeanalizować wszystkich możliwych ruchów a jedynie kilkadziesiąt ruchów w przód.
+Przy zastosowaniu odpowiednich strategii, optymalizacji oraz bazy danych zawierającej wiele strategii szachowych, współczesne programy szachowe wygrywają z najlepszymi graczami.
+Nieco inna sytuacja jest w grze GO, gdzie plansza rozmiaru 19x19 stanowi nielada wyzwanie nawet dla współczesnych superkomputerów. 
+Do dziś nie stworzono programu który wygrałby z profesjonalnymi zawodnikami GO.
+\end{par}
+\begin{par}
+Sztuczna inteligencja w grach może dotyczyć różnych aspektów gry. W grach logicznych głównym, i jedynym problemem jest podjęcie najlepszej decyzji dla aktualnego stanu gry, prowadzącej do zwycięstwa. 
+W grach akcji występuje nieco inny rodzaj sztucznej inteligencji, skupiający się na symulowaniu gry żywego przeciwnika. 
+Większość obliczeń składa się wówczas nie tyle na rozwiązaniu gry, co na zbliżeniu jej do poziomu ludzkich graczy. 
+W wielu przypadkach, szczególnie grach wymagających od gracza dobrego refleksu, możliwe jest zrealizowanie algorytmu który bez problemu wygrywałby z każdym człowiekiem.
+Mamy wówczas mamy do czynienia z operującymi w gre odbywającej się w czasie rzeczywistym. 
+Niejednokrotnie w dzisiejszych grach informacje o aktualnym stanie gry są niemożliwe do przeanalizowania ze względu na ich ogrom, oraz ograniczony czas -- decyzja musi zostać podjęta np. 30 razy w ciągu sekundy. Klasyczne podejście minmax zawodzi lub jest wręcz nie do zrealizowania dla większości współczesnych gier platformowych lub akcji.
+\end{par}
+\begin{par}
+Innym rodzajem sztucznej inteligencji są algorytmy ewolucyjne.
+Opierają się one na prawach ewolucji odkrytych przez Charlesa Darwina, i wzorują się na faktycznych rozwiązaniach doboru naturalnego występującego w przyrodzie. 
+
+\end{par}
