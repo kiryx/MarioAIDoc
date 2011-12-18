@@ -1,0 +1,26 @@
+\begin{par}
+	Tematem pracy jest zaprojektowanie i implementacja systemu podejmującego decyzje w prostej grze platformowej czasu rzeczywistego.
+	Celem gry jest przejście dwuwymiarowej mapy. Wynik końcowy może zależeć od wielu parametrów - mapa może zawierać elementy dające punkty, jak i elementy prowadzące do natychmiastowego zakończenia gry (z wynikiem pozytywnym bądź negatywnym).
+	Samo określenie jakości przejścia można traktować jako funkcję od czasu przejścia gry, ilości zebranych punktów oraz wyniku końcowego.
+	Efektem pracy powinien być system pozwalający na rozwiązanie tego typu problemu bazujący na algorytmie genetycznym.
+	\newline
+	Ogólne wymogi dotyczące systemu:
+	\begin{itemize}
+		\item
+			System powinien składać się z bazowego silnika gry, wzorowanego na rozwiązaniach w klasycznych grach platformowych.
+			System powinien pozwalać zarówno na poruszanie się po mapie przez gracza, jak i przejście w tryb treningu populacji, który na podstawie zadanych parametrów symuluje ruchy gracza. Początkowo są to losowe ruchy, które z czasem są optymalizowane przez algorytm genetyczny.
+		\item
+			Do wyniku końcowego mogą być brane pod uwagę również inne zdarzenia takie jak ilość zebranych obiektów na planszy, bądź 
+			pokonani przeciwnicy.
+			Funkcja przystosowania zależeć będzie od rożnych czynników, a ustawienie odpowiednich wag może nakierować algorytm na określoną ścieżkę rozwoju.
+		\item
+			Dodatkowo, moduł pozwalający na łatwą wizualizację postępów posłuży jako dobra warstwa prezentacyjna postępu algorytmu w czasie.
+	\end{itemize}
+\end{par}
+
+\begin{par}
+	Sam pomysł stworzenia sztucznej inteligencji do gry platformowej w czasie rzeczywistym został już wcześniej wielokrotnie powoływany do życia, m.in. jako projekt MarioAI,
+	który w chwili obecnej funkcjonuje jako turniej dla programistów. Uczestnicy mogą implementować własne rozwiazania i porównywać wyniki z innymi uczestnikami.
+	Samo zgłoszenie składa się z implementacji własnej klasy odpowiedzialnej za podejmowanie decyzji.
+	Strona domowa projektu znajduje się pod adresem www.marioai.org.
+\end{par}

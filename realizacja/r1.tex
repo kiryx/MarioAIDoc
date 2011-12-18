@@ -1,0 +1,22 @@
+\subsection{Struktura danych chromosomu}
+\begin{par}
+	Jeśli chodzi o typ struktury danych przyjęto pierwszy schemat (rys.\ref{fig:sterowanie}), wraz z krzyżowaniem statystycznym. 
+	O ile ukierunkowanie systemu na gry jednego typu może lepiej się sprawdzić jeśli zależy nam
+	jedynie na szybkim i optymalnym wyniku, to generalizacja systemu i elastyczna implementacja całego algorytmu da nam lepsze narzędzie nie tylko dydaktyczne, ale też badawcze.
+	Przykładem może być popularna gra Galaxian. Sama definicja klawiszy w Galaxian i Super Mario Brothers jest podobna (klawisze kierunkowe + klawisze specjalne),
+	jednak schemat poruszania się jest już inny: O ile gry typu Mario Brothers pasują do powyższych założeń o kierunkowości ruchu, to w grze Galaxian już tak nie jest.
+	Korzystniej zatem jest traktowanie projektu jako systemu rozwiązującego gry platformowe czasu rzeczywistego na podstawie przyciśnięć klawiszy w czasie.
+\end{par}
+\begin{par}
+	
+	Sam chromosom przechowuje następujące dane:
+	\begin{itemize}
+		\item Tablicę dotyczącą akcji ruchu przechowującą wartości typu wyliczeniowego: UP,DOWN,LEFT,RIGHT.
+		\item Tablicę dotyczącą akcji specjalnych: A,B,C,D
+		\item Instancję obiektu ResultData przechowującego dane dotyczące wyniku funkcji przystosowania, oraz wartości ustalane po przetestowaniu danego chromosomu takie jak czas który upłynął, rodzaj wyniku, ilość zebranych punktów.
+	\end{itemize}
+	Oprócz tego każdy Chromosom uzupełnia interfejs Comparable, dzięki obiekty mogą być porównywane ze sobą. Porównanie składa się jedynie z porównania wyniku wartości funkcji przystosowania. Dzięki temu możemy łatwo posortować całe populacje.
+	Obiekt ten przechowuje dane na temat wyniku danego chromosomu i danych pomocniczych, które sa uzupełniane po przetestowaniu chromosomu. Oprócz tego chromosom posiada metody pozwalające na mutację zarówno tablicy ruchu jak i tablicy akcji specjalnych.
+\end{par}
+
+
