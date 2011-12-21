@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.17)  18 DEC 2011 23:25
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.17)  21 DEC 2011 22:28
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -14,8 +14,8 @@ orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
 rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size10.clo
-File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/usr/share/texmf-texlive/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -299,6 +299,31 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 \Gin@req@height=\dimen108
 \Gin@req@width=\dimen109
 )
+(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+\lst@mode=\count89
+\lst@gtempboxa=\box26
+\lst@token=\toks17
+\lst@length=\count90
+\lst@currlwidth=\dimen110
+\lst@column=\count91
+\lst@pos=\count92
+\lst@lostspace=\dimen111
+\lst@width=\dimen112
+\lst@newlines=\count93
+\lst@lineno=\count94
+\lst@maxwidth=\dimen113
+
+(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count95
+\lst@skipnumbers=\count96
+\lst@framebox=\box27
+)
+(/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
 (/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 
@@ -310,126 +335,151 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
-)
-
-LaTeX Warning: Unused global option(s):
-    [14pt].
-
-(./main.aux)
+) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
- (/usr/share/texmf/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+
+(/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count89
-\scratchdimen=\dimen110
-\scratchbox=\box26
-\nofMPsegments=\count90
-\nofMParguments=\count91
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count92
-\MPscratchDim=\dimen111
-\MPnumerator=\count93
-\everyMPtoPDFconversion=\toks18
+\scratchcounter=\count97
+\scratchdimen=\dimen114
+\scratchbox=\box28
+\nofMPsegments=\count98
+\nofMParguments=\count99
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count100
+\MPscratchDim=\dimen115
+\MPnumerator=\count101
+\everyMPtoPDFconversion=\toks19
 )
+\c@lstlisting=\count102
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 15.
+(Font)              <14.4> on input line 16.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 15.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 15.
+(Font)              <7> on input line 16.
  (./main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 3.
+(Font)              <12> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 3.
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
 )
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
- (./wstep.tex (./wstep/historia.tex [1
+ (./wstep.tex [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./wstep/dzis.tex) (./wst
-ep/podstawy.tex [2])
-(./wstep/ewolucyjne.tex [3] [4] [5])) (./analiza.tex (./analiza/opis.tex
-[6]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 60.
  (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
-)
-(./analiza/zalozenia.tex [7]
-<obrazki/sterowanie.jpg, id=36, 643.3601pt x 168.10631pt>
-File: obrazki/sterowanie.jpg Graphic file (type jpg)
-
-<use obrazki/sterowanie.jpg> [8 <./obrazki/sterowanie.jpg>]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 60.
+ [4] [5]
+[6] [7] [8]) (./analiza.tex [9] [10] [11]
+<obrazki/sterowanie.jpg, id=48, 643.3601pt x 168.10631pt>
 File: obrazki/sterowanie.jpg Graphic file (type jpg)
 
 <use obrazki/sterowanie.jpg>
-<obrazki/sterowanie2.jpg, id=40, 852.18375pt x 136.51pt>
-File: obrazki/sterowanie2.jpg Graphic file (type jpg)
-
-<use obrazki/sterowanie2.jpg>
-<obrazki/diagram_klas.png, id=41, 644.9312pt x 483.89478pt>
-File: obrazki/diagram_klas.png Graphic file (type png)
-
-<use obrazki/diagram_klas.png>) [9 <./obrazki/sterowanie2.jpg>])
-(./realizacja.tex (./realizacja/r1.tex [10 <./obrazki/diagram_klas.png (PNG cop
-y)>]
-Overfull \hbox (45.31934pt too wide) in paragraph at lines 15--16
-[]\T1/cmr/m/n/10 Tablic¦ do-ty-cz¡c¡ ak-cji ru-chu prze-cho-wu-j¡c¡ war-to-±ci 
-typu wy-li-cze-nio-wego: UP,DOWN,LEFT,RIGHT,NONE 
- []
-
-<obrazki/config1.png, id=48, 382.42876pt x 734.745pt>
-File: obrazki/config1.png Graphic file (type png)
-
-<use obrazki/config1.png>
+File: obrazki/sterowanie.jpg Graphic file (type jpg)
+ <use obrazki/sterowanie.jpg>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[11]) (./realizacja/sym.tex [12 <./obrazki/config1.png (PNG copy)>]
-<obrazki/objects.png, id=56, 644.4075pt x 265.99374pt>
+[12 <./obrazki/sterowanie.jpg>]
+<obrazki/sterowanie2.jpg, id=52, 852.18375pt x 136.51pt>
+File: obrazki/sterowanie2.jpg Graphic file (type jpg)
+
+<use obrazki/sterowanie2.jpg> [13 <./obrazki/sterowanie2.jpg>]
+<obrazki/diagram_przypadkow.png, id=57, 1252.68pt x 696.6025pt>
+File: obrazki/diagram_przypadkow.png Graphic file (type png)
+
+<use obrazki/diagram_przypadkow.png>
+<obrazki/diagram_klas.png, id=58, 644.9312pt x 483.89478pt>
+File: obrazki/diagram_klas.png Graphic file (type png)
+
+<use obrazki/diagram_klas.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (./realizacja.tex [14 <./obrazki/diagram_przypadkow.png (PNG copy)>] [15 <./o
+brazki/diagram_klas.png (PNG copy)>]
+<obrazki/config1.png, id=65, 382.42876pt x 734.745pt>
+File: obrazki/config1.png Graphic file (type png)
+
+<use obrazki/config1.png> [16]
+<obrazki/populacja.png, id=70, 501.875pt x 500.87125pt>
+File: obrazki/populacja.png Graphic file (type png)
+
+<use obrazki/populacja.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<obrazki/chromosom.png, id=71, 502.87875pt x 501.875pt>
+File: obrazki/chromosom.png Graphic file (type png)
+
+<use obrazki/chromosom.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17 <./obrazki/config1.png (PNG copy)>]
+
+LaTeX Warning: Text page 18 contains only floats.
+
+[18 <./obrazki/populacja.png (PNG copy)> <./obrazki/chromosom.png (PNG copy)>]
+<obrazki/objects.png, id=78, 644.4075pt x 265.99374pt>
 File: obrazki/objects.png Graphic file (type png)
 
-<use obrazki/objects.png>)) [13 <./obrazki/objects.png (PNG copy)>] (./main.aux
-) ) 
+<use obrazki/objects.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[19] [20 <./obrazki/objects.png (PNG copy)>] [21]
+<obrazki/map_editor.png, id=89, 947.54pt x 699.61375pt>
+File: obrazki/map_editor.png Graphic file (type png)
+
+<use obrazki/map_editor.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[22] [23 <./obrazki/map_editor.png (PNG copy)>]) [24] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 1913 strings out of 493848
- 22146 string characters out of 1152822
- 80775 words of memory out of 3000000
- 5139 multiletter control sequences out of 15000+50000
- 12452 words of font info for 31 fonts, out of 3000000 for 9000
+ 3507 strings out of 493848
+ 43278 string characters out of 1152822
+ 104857 words of memory out of 3000000
+ 6745 multiletter control sequences out of 15000+50000
+ 13373 words of font info for 34 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 25i,7n,24p,580b,358s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-bx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sft
-i1000.pfb>
-Output written on main.pdf (13 pages, 350878 bytes).
+ 26i,7n,32p,649b,991s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share
+/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on main.pdf (24 pages, 473652 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
+ 141 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
