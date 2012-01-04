@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.17)  22 DEC 2011 13:45
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.17)  4 JAN 2012 13:18
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -382,104 +382,124 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
  (./wstep.tex [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 60.
- (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] <obrazki/chess
+_tree.png, id=20, 702.625pt x 336.25626pt>
+File: obrazki/chess_tree.png Graphic file (type png)
+
+<use obrazki/chess_tree.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<obrazki/go_tree.png, id=21, 341.275pt x 338.26375pt>
+File: obrazki/go_tree.png Graphic file (type png)
+
+<use obrazki/go_tree.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 97.
+(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 60.
- [4] [5]
-[6] [7] [8]) (./analiza.tex [9] [10] [11]
-<obrazki/sterowanie.jpg, id=48, 643.3601pt x 168.10631pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 97.
+ [5] [6 <./obrazki/chess_tree.png (PNG copy)> <./obrazki/go_tree.png (PNG copy)
+>] [7] [8] [9] [10])
+(./analiza.tex [11] [12] [13] [14]
+<obrazki/sterowanie.jpg, id=60, 643.3601pt x 168.10631pt>
 File: obrazki/sterowanie.jpg Graphic file (type jpg)
 
 <use obrazki/sterowanie.jpg>
-File: obrazki/sterowanie.jpg Graphic file (type jpg)
- <use obrazki/sterowanie.jpg>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12 <./obrazki/sterowanie.jpg>]
-<obrazki/sterowanie2.jpg, id=52, 852.18375pt x 136.51pt>
+[15] <obrazki/stat_cross.png, id=64, 531.81293pt x 637.8613pt>
+File: obrazki/stat_cross.png Graphic file (type png)
+
+<use obrazki/stat_cross.png>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[16 <./obrazki/sterowanie.jpg>]
+<obrazki/sterowanie2.jpg, id=68, 852.18375pt x 136.51pt>
 File: obrazki/sterowanie2.jpg Graphic file (type jpg)
 
-<use obrazki/sterowanie2.jpg> [13 <./obrazki/sterowanie2.jpg>]
-<obrazki/diagram_przypadkow.png, id=57, 1252.68pt x 696.6025pt>
+<use obrazki/sterowanie2.jpg>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17 <./obrazki/stat_cross.png (PNG copy)>]
+<obrazki/diagram_przypadkow.png, id=72, 1252.68pt x 696.6025pt>
 File: obrazki/diagram_przypadkow.png Graphic file (type png)
 
 <use obrazki/diagram_przypadkow.png>
-<obrazki/diagram_klas.png, id=58, 644.9312pt x 483.89478pt>
+<obrazki/diagram_klas.png, id=73, 1286.8075pt x 628.3475pt>
 File: obrazki/diagram_klas.png Graphic file (type png)
 
-<use obrazki/diagram_klas.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) (./realizacja.tex [14 <./obrazki/diagram_przypadkow.png (PNG copy)>] [15 <./o
-brazki/diagram_klas.png (PNG copy)>]
-<obrazki/config1.png, id=65, 382.42876pt x 734.745pt>
+<use obrazki/diagram_klas.png> [18 <./obrazki/sterowanie2.jpg> <./obrazki/diagr
+am_przypadkow.png (PNG copy)>]) (./realizacja.tex [19 <./obrazki/diagram_klas.p
+ng (PNG copy)>] [20] <obrazki/config1.png, id=85, 382.42876pt x 734.745pt>
 File: obrazki/config1.png Graphic file (type png)
 
-<use obrazki/config1.png> [16]
-<obrazki/populacja.png, id=70, 501.875pt x 500.87125pt>
+<use obrazki/config1.png>
+<obrazki/populacja.png, id=86, 501.875pt x 500.87125pt>
 File: obrazki/populacja.png Graphic file (type png)
 
 <use obrazki/populacja.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<obrazki/chromosom.png, id=71, 502.87875pt x 501.875pt>
+<obrazki/chromosom.png, id=87, 502.87875pt x 501.875pt>
 File: obrazki/chromosom.png Graphic file (type png)
 
 <use obrazki/chromosom.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[17 <./obrazki/config1.png (PNG copy)>]
+[21 <./obrazki/config1.png (PNG copy)>]
 
-LaTeX Warning: Text page 18 contains only floats.
+LaTeX Warning: Text page 22 contains only floats.
 
-[18 <./obrazki/populacja.png (PNG copy)> <./obrazki/chromosom.png (PNG copy)>]
-<obrazki/objects.png, id=78, 644.4075pt x 265.99374pt>
+[22 <./obrazki/populacja.png (PNG copy)> <./obrazki/chromosom.png (PNG copy)>]
+[23] <obrazki/objects.png, id=97, 644.4075pt x 265.99374pt>
 File: obrazki/objects.png Graphic file (type png)
 
-<use obrazki/objects.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[19] [20 <./obrazki/objects.png (PNG copy)>] [21]
-<obrazki/map_editor.png, id=89, 947.54pt x 699.61375pt>
+<use obrazki/objects.png> [24 <./obrazki/objects.png (PNG copy)>] [25]
+<obrazki/map_editor.png, id=105, 947.54pt x 699.61375pt>
 File: obrazki/map_editor.png Graphic file (type png)
 
 <use obrazki/map_editor.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[22] [23 <./obrazki/map_editor.png (PNG copy)>]) [24] (./main.aux) ) 
+[26] [27 <./obrazki/map_editor.png (PNG copy)>]) [28] (./main.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3507 strings out of 493848
- 43278 string characters out of 1152822
- 104857 words of memory out of 3000000
- 6745 multiletter control sequences out of 15000+50000
+ 3534 strings out of 493848
+ 43785 string characters out of 1152822
+ 103875 words of memory out of 3000000
+ 6769 multiletter control sequences out of 15000+50000
  13373 words of font info for 34 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 26i,7n,32p,649b,991s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share
-/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pf
-b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/font
-s/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts
-/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on main.pdf (24 pages, 473652 bytes).
+ 26i,7n,32p,650b,991s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti
+1200.pfb>
+Output written on main.pdf (28 pages, 727137 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
+ 157 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

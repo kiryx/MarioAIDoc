@@ -24,7 +24,7 @@
 	Ograniczamy się do 4 klawiszy specjalnych, które wystarczają w zupełności do zrealizowania większości gier platformowych.
 
 	Oprócz tego każdy Chromosom uzupełnia interfejs Comparable, dzięki czemu obiekty mogą być porównywane ze sobą. Porównanie składa się jedynie z porównania wyniku wartości funkcji przystosowania. Dzięki temu możemy łatwo posortować całe populacje.
-	Obiekt ten przechowuje dane na temat wyniku danego chromosomu i danych pomocniczych, które sa uzupełniane po przetestowaniu chromosomu. 
+	Obiekt ten przechowuje dane na temat wyniku danego chromosomu i danych pomocniczych, które są uzupełniane po przetestowaniu chromosomu. 
 	Oprócz tego chromosom posiada metody pozwalające na mutację zarówno tablicy ruchu jak i tablicy akcji specjalnych.
 \end{par}
 \subsubsection{Dane konfiguracyjne}
@@ -107,7 +107,7 @@
 \end{par}
 
 \begin{par}
-	Podstawową logiką gry i detekcją kolizji pomiędzy obiektami zarządza obiekt klasy \textit{Logic}. Użytym w pracy schematem logiki jest schemat gry ``Super Mario Brothers''. Wobec czego domyślną logiką gry przy uruchomieniu programu jest instankcja klasy \textit{LogicMario}
+	Podstawową logiką gry i detekcją kolizji pomiędzy obiektami zarządza obiekt klasy \textit{Logic}. Użytym w pracy schematem logiki jest schemat gry ``Super Mario Brothers''. Wobec czego domyślną logiką gry przy uruchomieniu programu jest instancja klasy \textit{LogicMario}
 	Zakłada ona ruch w 2 kierunkach, skok oraz działanie grawitacji na obiekt aktora.
 	Ponieważ klasa \textit{LogicMario} dziedziczy po klasie \textit{Logic} możliwe jest napisanie własnej logiki i podmiana tej obowiązującej w systemie.
 	Ponieważ działanie algorytmu nie jest związane z fizyką ani zasadami obowiązującymi w grze, system może działać dla wielu różnych typów gier platformowych i zręcznościowych.
@@ -138,12 +138,12 @@ Powołując się znów na przykład gry ``Super Mario Brothers'', można zauważ
 \item 
 Logika gry może zakładać różną ilość kierunków w których można się poruszać, co w dużej mierze zależy od typu gry jaki reprezentuje.
 Niektóre wymagają 2 klawiszy kierunkowych do poruszania się po mapie, inne 3 lub 4. 
-Aby nie brać pod uwagę akcji które i tak nie będa interpretowane przez logikę, najlepiej jest ustalić prawdopodobieństwo wylosowania ruchów nieaktywnych na wartość $0$. 
+Aby nie brać pod uwagę akcji które i tak nie będą interpretowane przez logikę, najlepiej jest ustalić prawdopodobieństwo wylosowania ruchów nieaktywnych na wartość $0$. 
 Wówczas istnieje pewność iż w genotypie nie znajdują się niepotrzebne informacje.
 \end{itemize}
 
 Dobrze zaprojektowany edytor map może okazać się szczególnie przydatny dla bardziej zaawansowanych użytkowników którzy mogą korzystać z systemu w celach edukacyjnych, a logiki zaimplementowane w systemie nie spełniają ich wszystkich oczekiwań.
-Wówczas po napisaniu własnej klasy odpowiadajacej za logikę, dobrze jest skonstruować mapy odpowiadające typowi rozgrywki jakie logika przewiduje.
+Wówczas po napisaniu własnej klasy odpowiadającej za logikę, dobrze jest skonstruować mapy odpowiadające typowi rozgrywki jakie logika przewiduje.
 
 \begin{par}
 	Po otworzeniu edytora map domyślnie wczytywana jest bieżąca mapa, dzięki czemu można dokonać szybkich edycji jeśli koniecznie jest sprawdzenie działania algorytmu z pewnym wariantem, lub dodatkowym obiektem na mapie.
@@ -193,13 +193,13 @@ Wówczas po napisaniu własnej klasy odpowiadajacej za logikę, dobrze jest skon
 	Jedynym wymogiem uruchomienia aplikacji javowej na dowolnym systemie jest obecność wirtualnej maszyny javy (ang. JVM - Java Virtual Machine).
 	Dziś większość urządzeń mobilnych posiada maszynę wirtualną javy pozwalającą na uruchamianie aplikacji napisanych w tymże języku.
 	::BIBLIOGRAFIA TIJ-Bruce Eckel::
-	Jak pisze Bruce Eckel w swojej ksiażce poświęconej językowi Java: ``To, co wywarło na mnie największe wrażenie, kiedy poznawałem javę, to fakt, że wśród innych celów projektantów z firmy Sun znalazła się także redukcja złożoności dla programisty. 
+	Jak pisze Bruce Eckel w swojej książce poświęconej językowi Java: ``To, co wywarło na mnie największe wrażenie, kiedy poznawałem javę, to fakt, że wśród innych celów projektantów z firmy Sun znalazła się także redukcja złożoności dla programisty. 
 	To tak, jakby powiedzieć: ``Nie dbamy o nic poza zmniejszeniem czasu i trudności tworzenia porządnego kodu.''(...)''
 	Po kilku latach styczności z językiem, trudno jest się nie zgodzić z powyższym stwierdzeniem.
 	\subsection{Swing}
 	Pierwszą próbą stworzenia biblioteki pozwalającej na tworzenie graficznego interfejsu użytkownika była biblioteka AWT (ang. Abstract Window Toolkit).
 	Fala niezawodolenia wśród programistów sprawiła iż szybko ograniczone i mało efektowne elementy graficzne biblioteki AWT zostały zastąpione przez zbiór komponentów dziś znanych jako Swing.
-	W biblitece Swing znajdziemy większość podstawowych komponentów występujących we współczesnych systemach operacyjnych włącznie z obsługą okien, natomiast w bibliotece AWT znajdziemy obsługę zdarzeń, co w połączeniu daje nam wystarczające narzędzia do stworzenia graficznego systemu.
+	W bibliotece Swing znajdziemy większość podstawowych komponentów występujących we współczesnych systemach operacyjnych włącznie z obsługą okien, natomiast w bibliotece AWT znajdziemy obsługę zdarzeń, co w połączeniu daje nam wystarczające narzędzia do stworzenia graficznego systemu.
 	Warto zauważyć iż Swing nie korzysta z domyślnych ustawień systemu jeśli chodzi o wygląd komponentów, dzięki czemu ten sam program wygląda identycznie na każdym systemie operacyjnym.
 	Alternatywą dla biblioteki Swing może być biblioteka SWT związana z projektem Eclipse.
 	W odróżnieniu do Swing, komponenty korzystają z wyglądu komponentów systemu operacyjnego.

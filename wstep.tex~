@@ -4,7 +4,7 @@
 \begin{par}
 Na początku lat 40 matematycy i inżynierowie z ośrodków badawczych zaczęli zastanawiać się nad możliwością stworzenia sztucznego mózgu.
 Pierwsze formalne centrum badawcze pracujące nad zagadnieniem sztucznej inteligencji zostało powołane do życia w 1956 roku w Dartmouth College, 16 lat po wynalezieniu pierwszego programowalnego komputera.
-Początkowo nazywane przedswięwzięciem stworzenia pierwszego ``Elektronicznego mózgu'' zostało poważnie potraktowane przez ówczesnych naukowców, i tworzyło dobre perspektywy dla ekonomistów i bankierów.
+Początkowo nazywane przedsięwzięciem stworzenia pierwszego ``Elektronicznego mózgu'' zostało poważnie potraktowane przez ówczesnych naukowców, i tworzyło dobre perspektywy dla ekonomistów i bankierów.
 Wielu badaczy zapowiedziało stworzenie maszyn dorównujących inteligencją ludziom w niespełna kilka dekad.
 Specjalnie na ten cel rząd amerykański oraz brytyjski przeznaczyły budżet rzędu milionów dolarów.
 \end{par}
@@ -19,46 +19,82 @@ Zdefiniował test pozwalający to zmierzyć, nazywany potem Testem Turinga.
 \end{par}
 \begin{par}
 W końcu po wielu latach stało się oczywiste iż symulacja nawet najprostszych mechanizmów myślowych jest niezwykle trudna w realizacji, a nawet najszybsze ówczesne komputery nie były w stanie wygrać z człowiekiem w partii szachów. 
-Ostatecznie dziedzinie sztucznej inteligencji odebrano nieco wiarygodności, a wcześniej zapowiadane maszyny przerastające inteligencją ludzi, trafiły spowrotem na półki science-fiction. W roku 1973, znaczna część funduszy przeznaczonych na rozwój sztucznej inteligencji została wstrzymana przez amerykański i brytyjski rząd.
+Ostatecznie dziedzinie sztucznej inteligencji odebrano nieco wiarygodności, a wcześniej zapowiadane maszyny przerastające inteligencją ludzi, trafiły z powrotem na półki science-fiction. W roku 1973, znaczna część funduszy przeznaczonych na rozwój sztucznej inteligencji została wstrzymana przez amerykański i brytyjski rząd.
 Niemniej prace nad sztuczną inteligencją trwają do dziś, aczkolwiek są bardziej uszczegółowione w naturze problemów których dotyczą.
 \end{par}
 
 
 \subsection{Sztuczna w dzisiejszych zastosowaniach.}
 \begin{par}
-Oprócz realizacji zadań w dziedzinie kategoryzacji danych, oraz rozpoznawaniu mowy lub obrazu, spora część badań skupia się na realizacji systemów podejmujących dezycje w ściśle określonym środowisku gry.
+Oprócz realizacji zadań w dziedzinie kategoryzacji danych, oraz rozpoznawaniu mowy lub obrazu, spora część badań skupia się na realizacji systemów podejmujących decyzje w ściśle określonym środowisku gry.
 Pozornie służą one jedynie dostarczaniu rozrywki w szeroko popularnych grach komputerowych, szybko można się przekonać iż wiele takich projektów jest później podstawą do stworzenia bardziej praktycznych systemów. Zmieniając jedynie definicję środowiska okazuje się iż można te same strategie zastosować np. w grze na giełdzie.
-Pojedynek Garriego Kasparowa z programem szachowym Deep Blue przeszedł już na stałe do histori jako pierwsze starcie człowieka z maszyną w dziedzinie intelektu. 
+Pojedynek Garriego Kasparowa z programem szachowym Deep Blue przeszedł już na stałe do historii jako pierwsze starcie człowieka z maszyną w dziedzinie intelektu. 
 Innym, dość nowym przykładem może być klaster komputerów Watson, który przez kilka tygodni konkurował z czołówką graczy teleturnieju Jeopardy, popularnym w USA od 1964 roku.
 Obydwa projekty pokonały swoich ludzkich przeciwników, podnosząc tym samym nieco nadszarpnięty wizerunek sztucznej inteligencji.
+Wiele współczesnych zastosowań sztucznej inteligencji zyskało dużą popularność dzięki globalnej sieci internet.
+Prym wiedzie tutaj firma Google, początkowo znana jedynie jako twórca najpopularniejszej i najdokładniejszej wyszukiwarki, rozbudowuje bazę swoich aplikacji o translatory,
+aplikacje do nawigacji map, czy program graficzny Picasa, potrafiący np. zidentyfikować na zdjęciu ludzką twarz.
+Większość wyszukiwarek internetowych wykorzystuje różnego rodzaju systemu wspomagające w wyszukiwaniu informacji na temat konkretnej frazy.
+Aktywna lista podpowiedzi wyświetlająca się po wpisaniu początku popularnej frazy stała się wręcz standardem w projektowaniu wyszukiwarki.
+Wyszukiwarka coraz częściej poprawia błędy ortograficzne lub niepoprawnie przeliterowane wyrazy związane np. z bliskim sąsiedztwem liter na klawiaturze.
+Innym ciekawym zastosowaniem jest tłumaczenie tekstu z dowolnego języka na inny.
+Nie działa to na zasadzie bazy danych przechowującej odpowiedniki słów w każdym z języków, lecz wykorzystuje metodę "uczenia się" całych wyrażeń bądź zwrotów, 
+dzięki czemu zyskujemy dość precyzyjne tłumaczenie nawet jeśli chodzi o nazwy własne czy akronimy, np. Przy tłumaczeniu z angielskiego na polski frazy "United States of America" uzyskujemy "Stany Zjednoczone".
+Naiwna metoda nie ominęłaby słowa "America" oraz prawdopodobnie nie zachowałaby szyku słów. Wynikiem mogłoby być wówczas "Zjednoczone Stany Ameryki".
+Inne ciekawe zastosowaniem może być aplikacja Wolfram Alpha stworzona przez Stephena Wolframa.
+Podobnie jak wyszukiwarka Google, polega ona na frazach wpisywanych do wyszukiwarki, jednak jest ona skupiona głównie na przetwarzaniu danych matematycznych.
+Potrafi interpretować wzory wpisane przez użytkownika, narysować jego wykres w przestrzeni oraz dostarczyć wielu dodatkowych informacji np. znaleźć pierwiastki rzeczywiste.
+O ile sztuczna inteligencja w świetle dzisiejszego dostępu ogromu danych do przetwarzania stwarza duży potencjał na tworzenie skomplikowanych systemów przetwarzających wciąż spotykamy
+się z jej zastosowaniem w grach.
+Historia informatyki od jej wczesnych początków związana była z grami komputerowymi. 
+W roku 1952 Alexander Shafto Douglas opisał temat komunikacji człowiek-komputer w swojej pracy doktoranckiej, oraz stworzył program grający w popularne "Kółko i Krzyżyk".
+Do dziś uznawany jest on za pierwszą graficzną grę komputerową.
 \end{par}
-
-
 
 \subsection{Podstawy algorytmów w grach.}
 \begin{par}
 Jednym z podstawowych przykładów zastosowania sztucznej inteligencji w grach komputerowych są gry logiczne. 
-Podstawowym algorytmem stosowanym w projektowaniu sztucznej inteligencji jest algorytm minmax. Dotyczy on gier o sumie stałej -- proporcja zysku jednego z graczy do straty drugiego jest stała. 
-Najprostszym przykładem jest gra ``Kółko i krzyżyk'' gdzie przeszukiwane jest rekurencyjne drzewo wywołań kolejno sprawdzające wszystkie możliwe stany gry. 
-W dowolnym momencie gry możemy przeanalizować wszystkie możliwe posunięcia każdego z graczy. 
+Podstawowym algorytmem stosowanym w projektowaniu sztucznej inteligencji jest algorytm minmax.
+Najprostszym przykładem jest gra ``Kółko i krzyżyk'' gdzie przeszukiwane jest tzw. "drzewo gry" kolejno sprawdzające wszystkie możliwe stany gry. 
+W dowolnym momencie gry możemy przeanalizować wszystkie możliwe posunięcia każdego z graczy, i dążyć do sytuacji gdzie mamy gwarantowany sukces.
 Gra może zakończyć się remisem, zwycięstwem gracza A, bądź zwycięstwem gracza B.
 Optymalizując decyzję gracza A, musimy kolejno sprawdzać możliwe posunięcia na planszy i reakcje gracza B. 
-Dla każdego z nich możemy wówczas przeanalizować optymalną strategię dla gracza B (ponieważ zakładamy że do takiej będzie on dążył) i starać się znaleźć najlepszą ścieżkę która prowadzi do zwycięstwa gracza A, bądź remisu.
-Zatem na początku gry podjęciu pierwszej decyzji musimy przeanalizować $9*8*7*..*1 = 9!$ ruchów.
-Łatwo zauważyć iż algorytm taki ma ogromną złożoność i jedynie dla małych gier takich jak kółko i krzyżyk daje wynik w realnym czasie.
+Dla każdego z nich możemy wówczas przeanalizować optymalną strategię dla gracza B (ponieważ zakładamy że do takiej będzie on dążył) i starać się znaleźć 
+najlepszą ścieżkę która prowadzi do zwycięstwa gracza A, bądź remisu.
+Łatwo zauważyć iż algorytm taki ma ogromną złożoność dla rozbudowanych drzew wywołań. i jedynie dla małych gier takich jak kółko i krzyżyk daje wynik w realnym czasie.
 Bez optymalizacji, obraz brania pod uwagę symetrii planszy, daje to drzewo wywołań składające się 9! węzłów (łącznie z liśćmi). 
 Oczywiście algorytm można zoptymalizować chociażby poprzez programowanie dynamiczne, lecz dla gier bardziej złożonych nie będziemy w stanie przeanalizować wszystkich możliwych sytuacji w grze w realnym czasie.
 Przez lata szachy były jedną z gier niemożliwych do rozwiązania za pomocą powyższego podejścia.
 Nawet dziś najlepsze programy szachowe nie grają idealnie - nie analizują wszystkich możliwych ruchów a jedynie kilkadziesiąt ruchów w przód.
 Przy zastosowaniu optymalizacji oraz bazy danych zawierającej wiele strategii szachowych, współczesne programy szachowe wygrywają z najlepszymi graczami.
-Nieco inna sytuacja jest w grze GO, gdzie plansza rozmiaru 19x19 stanowi nielada wyzwanie nawet dla współczesnych superkomputerów. 
+Nieco inna sytuacja jest w grze GO, gdzie plansza rozmiaru 19x19 stanowi duże wyzwanie nawet dla współczesnych superkomputerów. 
 Do dziś nie stworzono programu który wygrywałby z profesjonalnymi zawodnikami GO.
+Jak widać na Rys. \ref{fig:xo_tree} pierwsze 2 poziomy drzewa gry Kółko i Krzyżyk nie są zbyt skomplikowane jeśli weźmiemy pod uwagę symetrię.
+Początkowo złożoność drzewa rośnie wykładniczo, jednak możliwości na planszy kończą się zanim zaczyna to być problemem.
+Inaczej wyglądałby przypadek drzewa gry GO, gdzie pierwszy poziom drzewa składałby się z 28 węzłów: Rys. \ref{fig:go_tree} przedstawia przykładowe pierwsze 28 węzłów biorąc pod uwagę symetrię planszy.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=5in]{obrazki/chess_tree.png}
+	\caption{Schemat drzewa gry Kółko i Krzyżyk.}
+	\label{fig:xo_tree}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=5in]{obrazki/go_tree.png}
+	\caption{Schemat pierwszych możliwych ruchów w grze GO.}
+	\label{fig:go_tree}
+\end{figure}
+
 \end{par}
 \begin{par}
-Większość gier daje się sklasyfikwać ze względu na czas:
+Większość gier daje się sklasyfikować ze względu na czas:
 \begin{itemize}
-	\item Gry turowe. Gracze naprzemiennie wykonują ruchy, przy czym czas na podjęcie decysji jest relatywnie duży - nawet do 10 sekund. Wiele nieskomplikowanych gier zostało już dawno rozwiązanych przez algorytmy typu minmax, do tego stopnia, że systemy grają w nie już niemal bezbłędnie. W wielu przypadkach przestrzeń rozwiązań jest jednak wciąż zbyt duża aby zrealizować to algorytmem dokładnym - wyżej wspomniana gra GO.
-	\item Gry czasu rzeczywistego. Gra toczy się w dynamicznym środowisku gry, często z wieloma obiektami/graczami na raz. Często czas na podjęcie optymalnej decyzji przez algorytm jest mocno ograniczony - często nalezy podejmować nawet do 30 razy w ciągu sekundy. Oprócz tego próba dyskretyzacji środowiska i znalezienia najlepszego rozwiązania z przestrzeni stanów gry jest w praktyce niewykonalne. Przykładem mogą być różnego rodzaju trójwymiarowe gry akcji które często posiadają złożone środowiska gry, oraz wiele dynamicznych obiektów oraz graczy uczestniczących w rozgrywce.
+	\item Gry turowe. Gracze naprzemiennie wykonują ruchy, przy czym czas na podjęcie decyzji jest relatywnie duży - nawet do 10 sekund. 
+Wiele nieskomplikowanych gier zostało już dawno rozwiązanych przez algorytmy typu minmax, do tego stopnia, że systemy grają w nie już niemal bezbłędnie. 
+W wielu przypadkach przestrzeń rozwiązań jest jednak wciąż zbyt duża aby zrealizować to algorytmem dokładnym - wyżej wspomniana gra GO.
+	\item Gry czasu rzeczywistego. Gra toczy się w dynamicznym środowisku gry, często z wieloma obiektami/graczami na raz. Często czas na podjęcie optymalnej decyzji przez algorytm jest mocno ograniczony - często należy podejmować nawet do 30 razy w ciągu sekundy. Oprócz tego próba dyskretyzacji środowiska i znalezienia najlepszego rozwiązania z przestrzeni stanów gry jest w praktyce niewykonalne. Przykładem mogą być różnego rodzaju trójwymiarowe gry akcji które często posiadają złożone środowiska gry, oraz wiele dynamicznych obiektów oraz graczy uczestniczących w rozgrywce.
 \end{itemize}
 Sztuczna inteligencja w grach może dotyczyć różnych aspektów gry. 
 W grach logicznych (turowych) głównym, i jedynym problemem jest podjęcie najlepszej decyzji dla aktualnego stanu gry, prowadzącej do zwycięstwa. 
@@ -67,7 +103,7 @@ Często jednak te same algorytmy mogą służyć do celów edukacyjnych bądź d
 W grach zręcznościowych oraz akcji (gry czasu rzeczywistego) występuje często inny rodzaj sztucznej inteligencji.
 Ponieważ przestrzeń rozwiązań jest bardzo duża, często podjęcie decyzji może być wspomagane przez algorytm niedeterministyczny, bądź oparty na algorytmach genetycznych.
 Algorytm minmax w większości przypadków zawodzi, bądź jego czas działania jest zbyt wolny do zastosowania w dynamicznym środowisku gry.
-Korzystając z algorytmów ``jedynie'' optymalizujących rozgrywkę tracimy możliwość zasymulowania idealnej partii gry, jednak często wystarcza to dla osiągnięcia celu końcowego.
+Korzystając z algorytmów ``jedynie'' optymalizujących rozgrywkę tracimy możliwość rozegrania idealnej partii gry, jednak często wystarcza to dla osiągnięcia celu końcowego.
 \end{par}
 
 
@@ -76,7 +112,7 @@ Korzystając z algorytmów ``jedynie'' optymalizujących rozgrywkę tracimy moż
 \begin{par}
 Często wykorzystywanym sposobem realizacji celu są algorytmy genetyczne.
 Opierają się one na prawach ewolucji odkrytych przez Charlesa Darwina, i wzorują się na faktycznych rozwiązaniach doboru naturalnego występujących w przyrodzie.
-Algorytm ewolucyjny opiera się na wprowadzeniu losowego czynnika do całej procedury, i tym też różni się od poprzedniego podejścia, iż jest niederministyczny. 
+Algorytm ewolucyjny opiera się na wprowadzeniu losowego czynnika do całej procedury, i tym też różni się od poprzedniego podejścia, iż jest niedeterministyczny. 
 Początkowy chaos z czasem jest zastępowana przez odpowiednio przystosowaną populację rozwiązań, o ile zasymulujemy jej ewolucję dostateczną ilość razy. 
 W większości algorytmów genetycznych można wydzielić kilka koniecznych do zaprojektowania klas bądź procedur.
 \begin{enumerate}
@@ -96,7 +132,7 @@ W większości algorytmów genetycznych można wydzielić kilka koniecznych do z
 		Ponieważ potomstwo dziedziczy geny po swoich rodzicach, ``zwycięskie'' cechy w kolejnym pokoleniu są bardziej powszechne.
 		Odpowiednikiem funkcji przystosowania jest właśnie wynikowa cech danego osobnika która określa prawdopodobieństwo przekazania jego genów w kolejnym pokoleniu.
 		Funkcja przystosowania jest dość prosta w realizacji, o ile dane dotyczące osobnika są łatwe do zmierzenia -- wówczas może być to jedynie kwestia policzenia wartości funkcji liniowej z odpowiednimi wagami, gdzie argumentami są wyniki osobnika podczas symulacji w środowisku.
-		Mimo to w większości algorytmów genetycznych dobranie odpowiednich wag w funkcj przystosowania jest kluczowym czynnikiem nad którym później można długo pracować przy optymalizacji algorytmu.
+		Mimo to w większości algorytmów genetycznych dobranie odpowiednich wag w funkcji przystosowania jest kluczowym czynnikiem nad którym później można długo pracować przy optymalizacji algorytmu.
 	\end{par}
 \item Krzyżowanie
 	\begin{par}
@@ -110,10 +146,10 @@ W większości algorytmów genetycznych można wydzielić kilka koniecznych do z
 	\begin{par}
 		O ile początkowa losowość algorytmu polegająca na wylosowaniu pierwszej populacji jest szybko zastępowana przez populację osiągającą lepsze wyniki, 
 		warto w trakcie całego procesu próbować modyfikować kilka osobników, nawet jeśli mogłoby to spowodować chwilowe pogorszenie populacji. 
-		W innym przypadku zbyt uporządkowana procedura selecji i krzyżowania osobników spowoduje stagnację populacji.
+		W innym przypadku zbyt uporządkowana procedura selekcji i krzyżowania osobników spowoduje stagnację populacji.
 		Często można to zauważyć gdy po kilku iteracjach większość, bądź cała populacja jest identyczna.
 		Najczęstszą realizacją mutacji jest zmiana jakiegoś parametru (bądź grupy parametrów)danego osobnika na wartość nieco inną lecz podobną, bądź zupełnie losową.
-		Ponieważ w dużej mierze zalezy to od budowy Chromosomu, nie ma uniwersalnej metody na zaimplementowanie mutacji.
+		Ponieważ w dużej mierze zależy to od budowy Chromosomu, nie ma uniwersalnej metody na zaimplementowanie mutacji.
 		Najczęściej mutacja występuje z niskim prawdopodobieństwem:
 		\begin{center}
 			$p_m < 0.1$
@@ -122,7 +158,7 @@ W większości algorytmów genetycznych można wydzielić kilka koniecznych do z
 	\end{par}
 \item Metoda Selekcji
 	\begin{par}
-		Sama metoda wyboru populacji rodzicielskiej również ma znaczenie, ponieważ jednak jest ona oparta na wartości fukcji przystosowania, to już sama metoda wyboru ma mniej krytyczne znaczenie.
+		Sama metoda wyboru populacji rodzicielskiej również ma znaczenie, ponieważ jednak jest ona oparta na wartości funkcji przystosowania, to już sama metoda wyboru ma mniej krytyczne znaczenie.
 		Najbardziej popularne metody selekcji to:
 		\begin{enumerate}
 			\item Metoda koła ruletki.

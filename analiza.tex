@@ -23,13 +23,28 @@
 \begin{par}
 	Sam pomysł stworzenia sztucznej inteligencji do gry platformowej w czasie rzeczywistym został już wcześniej powoływany do życia, m.in. jako projekt MarioAI. 
 	W chwili obecnej funkcjonuje on jako turniej dla programistów. 
-	Uczestnicy mogą implementować własne rozwiazania do gotowego silnika generującego losowe poziomy, oraz porównywać wyniki z innymi uczestnikami.
+	Uczestnicy mogą implementować własne rozwiązania do gotowego silnika generującego losowe poziomy, oraz porównywać wyniki z innymi uczestnikami.
 	Samo zgłoszenie składa się z implementacji własnej klasy odpowiedzialnej za podejmowanie decyzji.
 	Strona domowa projektu znajduje się pod adresem www.marioai.org.
 \end{par}
-
-
-
+\subsection{Wykorzystane narzędzia i języki programowania}
+\begin{par}
+	Głównym celem do zrealizowania w pracy jest problem algorytmiczny i teoretyczny.
+Praca w mniejszym stopniu opiera się na wykorzystaniu konkretnej technologii, czy języka programowania, wobec czego zostały wykorzystane popularne narzędzia i języki programowania.
+Językiem programowania wykorzystanym w aplikacji jest język java.
+Ponieważ część algorytmiczna aplikacji wymaga przeprowadzania częstych symulacji zachowania środowiska oraz przeprowadzania całego przebiegu gry, istotnym czynnikiem był czas działania krytycznych miejsc w aplikacji - głównie pętli gry, wyświetlania oraz generowania nowej populacji na podstawie poprzedniej.
+Java jako język polegający na maszynie wirtualnej posiada warstwę pośrednią która spowalnia cały proces jest wolniejsza od języka C lub C++,
+jednak prostota realizacji części wizualnej aplikacji, bardzo dobra przenośność języka java oraz relatywnie małe zyski czasowe przeważyły w wyborze języka.
+Kolejnym trafnym wyborem jeśli chodzi o język i narzędzia byłby prawdopodobnie C++ wraz z biblioteką Qt do generowania grafiki i tworzenia okienek oraz kontrolek.
+Tą samą aplikację można by zrealizować za pomocą języka Python i biblioteki PyGame do warstwy wizualizacyjnej,
+jednak wówczas koszt czasowy realizacji algorytmu genetycznego oraz logiki gry mógłby okazać się znacząco duży, ze względu na fakt iż Python jest językiem interpretowanym, i generalnie nie jest przeznaczony do dużych i częstych obliczeń.
+Przy konieczności realizacji prostej wersji demonstracyjnej programu opisywanego w pracy, język Python wraz z biblioteką PyGame może okazać się najszybszym do implemetacji ze względu na krótki kod, dynamiczne typy zmiennych oraz bogatą kolekcję struktur takich jak listy czy mapy incydencji konieczne do realizacji algorytmu.
+Sama aplikacja korzysta z kolekcji i podstawowych struktur danych występujących w języku Java.
+Warstwa graficzna korzysta z bilbioteki Swing do rysowania interfejsu użytkownika oraz AWT do reakcji na zdarzenia.
+Inną biblioteką wykorzystywaną do tworzenia graficznych interfejsów użytkownika jest SWT, która nie tylko jest równie przenośnia, lecz też imituje wygląd domyślnie używany w systemie operacyjnym - aplikacje napisane w całości w Swing wyglądają tak samo bez względu na system operacyjny.
+Aplikacja w całości została zrealizowana w programie Netbeans 6.9.1 wspierającym testowanie, kompilację budowanie aplikacji napisanych w języku Java.
+Innym popularnym narzędziem może byc Eclipse, jednak lepsze narzędzia testujące (ang. profiler) przeważyły o wyborze pierwszej aplikacji.
+\end{par}
 \subsection{Wstępna analiza problemu}
 \begin{par}
 	Aby dobrze zrealizować część odpowiedzialną za sterowanie postacią, należy użyć klasy pośredniej pomiędzy warstwą logiki silnika gry, a warstwą komunikacji z graczem. 
@@ -42,10 +57,10 @@
 	{\bf Czas który upłynął od rozpoczęcia danej instancji przejścia. }
 	\begin{par}
 
-		To rozwiązanie zakłada podejmowanie akcji w oparciu o aktualy czas w grze, a sama tablica akcji przechowuje akcje których wykonanie następowałoby po kolei z pewnym interwałem, np. 30 ms (co daje ok 33 akcje w ciągu sekundy).
+		To rozwiązanie zakłada podejmowanie akcji w oparciu o aktualny czas w grze, a sama tablica akcji przechowuje akcje których wykonanie następowałoby po kolei z pewnym interwałem, np. 30 ms (co daje ok 33 akcje w ciągu sekundy).
 		Warto zauważyć że dzięki temu iż przebieg symulacji nie zależy od pozycji gracza, mamy swobodę ruchu, a jeśli to korzystne możemy założyć iż dobrym rozwiązaniem w niektórych przypadkach będzie np. odczekanie określonego czasu, bądź powrót do miejsca w którym już byliśmy.
 		Istotną wadą tego rozwiązania była duża podatność algorytmu na zapętlanie się, lub wykonywanie dużej ilości mało przydatnych ruchów. 
-		Jeśli chcielibyśmy dobrze zaprojektować taki algorytm musielibyśmy brać pod uwagę fakt, iż średnio przy równym prawdopodobieństwie ruchu w lewo jak i prawo, postać będzie przesuwała się bardzo powoli, bądź na dłuższą metę stała w miejscu. Prostym rozwiązaniem tego problemu jest przypożądkowanie pewnego prawdopodobieństwa każdej akcji (dzięki czemu możemy założyć że preferowanym kierunkiem jest np. ruch postaci w prawo).
+		Jeśli chcielibyśmy dobrze zaprojektować taki algorytm musielibyśmy brać pod uwagę fakt, iż średnio przy równym prawdopodobieństwie ruchu w lewo jak i prawo, postać będzie przesuwała się bardzo powoli, bądź na dłuższą metę stała w miejscu. Prostym rozwiązaniem tego problemu jest przyporządkowanie pewnego prawdopodobieństwa każdej akcji (dzięki czemu możemy założyć że preferowanym kierunkiem jest np. ruch postaci w prawo).
 		Pewnym utrudnieniem może być krzyżowanie tego typu chromosomów. Ponieważ akcje postaci w większości przypadków mają sens w kontekście jej aktualnego położenia, o tyle klasyczne krzyżowanie poprzez ''cięcia'' chromosomu na dwie części jest kosztowne.
 		Po sklejeniu otrzymamy wówczas niespójny ciąg ruchów, które będą miały niewiele wspólnego z aktualną pozycją gracza na mapie.
 		Można temu zapobiec zapewniając łączenie się chromosomów jedynie w punktach w których postać w obu momentach znajduje się w tym samym lub zbliżonym miejscu. Wyznaczenie takich punktów może okazać się kosztowne
@@ -65,16 +80,23 @@
 		
 		Tablice c1, c2 oznaczają odpowiednio tablicę odpowiadającą za ruchy specjalne (np. skok), oraz tablicę odpowiadającą jedynie za ruch.
 
-		Lepszym rozwiązaniem jest realizacja krzyżowania nie poprzez klasyczne podejście, lecz modelowane statystycznie: Potomstwo nie otrzymuje bezpośrednich fragmentów chromosomu, lecz losuje za każdym razem nowe ruchy. Przy czym chromosomy populacji rodzicielskiej zwiększają prawdopodobieństwo wylosowania podobnych sobie ruchów. Schemat takiego rozwiązania zaprezentowany jest na rysunku \ref{fig:krzyżowanie}. Więcej szczegółów na ten temat zostanie opisanych w dalszej części pracy.
+		Lepszym rozwiązaniem jest realizacja krzyżowania nie poprzez klasyczne podejście, lecz modelowane statystycznie: Potomstwo nie otrzymuje bezpośrednich fragmentów chromosomu, lecz losuje za każdym razem nowe ruchy,
+		natomiast chromosomy populacji rodzicielskiej zwiększają prawdopodobieństwo wylosowania najczęściej występujących ruchów.
+		Schemat takiego rozwiązania zaprezentowany jest na rysunku \ref{fig:krzyżowanie}.
+		Do takiego rozwiązania możemy również włączyć stałą decydującą o wadze jakie ma krzyżowanie: Jeśli rodzic posiada pewną akcję A w pewnym miejscu swojego chromosomu,
+		wówczas potomkowi losowana jest nowa akcja, z tą różnicą iż akcja A ma teraz prawdopodobieństwo wylosowania $pA = pA + pA*k$. Jeśli populacja rodzicielska składa się z $n$ rodziców,
+		oraz $m$ z nich posiada w danym momencie taką samą akcję wówczas nowe prawdopodobieństwo wylosowania akcji (tylko dla tego rozpatrywanego miejsca) wynosi 
+		\begin{center}
+		$pA =  pA + {\displaystyle\sum\limits_{i=1}^m pA*k} = pA + (pA*k)*m$.
+		\end{center}
+		Dzięki takiemu podejściu zachowujemy ideę krzyżowania oraz znacznie upraszczamy cały proces.
 		
-		\begin{par}
 		\begin{figure}[!h]
 		\centering
-		\includegraphics[width=\textwidth]{obrazki/sterowanie.jpg}
+		\includegraphics[width=5in]{obrazki/stat_cross.png}
 		\caption{Krzyżowanie statystyczne.}
 		\label{fig:krzyżowanie}
 		\end{figure}
-		\end{par}
 
 	\end{par}
 	\item
@@ -94,9 +116,11 @@
 		\end{figure}
 		\end{par}
 
-		To podejście posiada jednak kilka poważnych wad i wymaga pewnych ograniczajacych założeń.
-		Plansza musi być ukierunkowana, i być rozwiązywalną przy ciągłym ruchu w określonym kierunku.
-		Przeniesienie systemu do zastosowania w grze platformowej o nieco innym schemacie ruchu może okazać się trudne i wymagajace zmian w założeniach początkowych.
+		To podejście posiada jednak kilka poważnych wad i wymaga pewnych ograniczających założeń.
+		Plansza musi być ukierunkowana, i być rozwiązywalna przy ciągłym ruchu w określonym kierunku.
+		Jest to rozwiązanie działające jedynie dla bardzo wąskiej grupy gier platformowych (np. wspomniane wcześniej Super Mario Brothers).
+		Przeniesienie systemu do zastosowania w grze platformowej o nieco innym schemacie ruchu (np. rozwiązywania labiryntu) może okazać się trudne i wymagające dużych zmian w samym algorytmie.
+		Jeśli chcemy tego uniknąć i traktować system bardziej ogólnie, lepiej jest skorzystać z pierwszego podejścia.
 	\end{par}
 	\end{enumerate}
 \end{par}
