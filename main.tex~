@@ -1,18 +1,25 @@
-\documentclass[a4paper,14pt,draft]{article}
+\documentclass[a4paper,12pt,final]{article}
 
+\usepackage{fullpage}
 \usepackage[utf8]{inputenc}
 \usepackage[polish]{babel}
 \usepackage[T1]{fontenc}
-\usepackage[dvips]{graphicx}
-
-\author{Krzysztof Nowak}
-%\title{Samouczący się automat sterujący postacią gracza w prostej grze zręcznościowej.}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{color}
 %\promotor{dr inż. Marek Tabędzki}
 
 \begin{document}
+\author{Krzysztof Nowak}
+\title{Samouczący się automat sterujący postacią gracza w prostej grze zręcznościowej.}
+\maketitle
+\tableofcontents
+
+\doublespacing
+\normalsize
 \input{wstep.tex}
-
-Zażółć gęślą jaźń.
-
+\input{analiza.tex}
+\input{realizacja.tex}
 
 \end{document}

@@ -38,16 +38,16 @@ Większość wyszukiwarek internetowych wykorzystuje różnego rodzaju systemu w
 Aktywna lista podpowiedzi wyświetlająca się po wpisaniu początku popularnej frazy stała się wręcz standardem w projektowaniu wyszukiwarki.
 Wyszukiwarka coraz częściej poprawia błędy ortograficzne lub niepoprawnie przeliterowane wyrazy związane np. z bliskim sąsiedztwem liter na klawiaturze.
 Innym ciekawym zastosowaniem jest tłumaczenie tekstu z dowolnego języka na inny.
-Nie działa to na zasadzie bazy danych przechowującej odpowiedniki słów w każdym z języków, lecz wykorzystuje metodę "uczenia się" całych wyrażeń bądź zwrotów, 
-dzięki czemu zyskujemy dość precyzyjne tłumaczenie nawet jeśli chodzi o nazwy własne czy akronimy, np. Przy tłumaczeniu z angielskiego na polski frazy "United States of America" uzyskujemy "Stany Zjednoczone".
-Naiwna metoda nie ominęłaby słowa "America" oraz prawdopodobnie nie zachowałaby szyku słów. Wynikiem mogłoby być wówczas "Zjednoczone Stany Ameryki".
+Nie działa to na zasadzie bazy danych przechowującej odpowiedniki słów w każdym z języków, lecz wykorzystuje metodę ``uczenia się'' całych wyrażeń bądź zwrotów które są równorzędne w obu językach, 
+dzięki czemu zyskujemy dość precyzyjne tłumaczenie nawet jeśli chodzi o nazwy własne, akronimy, odmianę oraz składnię, np.: Przy tłumaczeniu z angielskiego na polski frazy ``United States of America'' uzyskujemy ``Stany Zjednoczone'', natomiast ``in UK'' tłumaczone na język polski poprawnie daje zwrot ``w Wielkiej Brytanii''.
+W pierwszym przykładzie naiwna metoda nie ominęłaby słowa ``America'' oraz prawdopodobnie nie zachowałaby szyku słów. Wynikiem mogłoby być wówczas ``Zjednoczone Stany Ameryki''.
 Inne ciekawe zastosowaniem może być aplikacja Wolfram Alpha stworzona przez Stephena Wolframa.
-Podobnie jak wyszukiwarka Google, polega ona na frazach wpisywanych do wyszukiwarki, jednak jest ona skupiona głównie na przetwarzaniu danych matematycznych.
-Potrafi interpretować wzory wpisane przez użytkownika, narysować jego wykres w przestrzeni oraz dostarczyć wielu dodatkowych informacji np. znaleźć pierwiastki rzeczywiste.
+Podobnie jak wyszukiwarka Google, opiera ona swoje wyniki na frazach wpisywanych do okna wyszukiwarki przez użytkownika, jednak jest ona skupiona głównie na przetwarzaniu danych matematycznych.
+Potrafi interpretować wzory wpisane przez użytkownika, wyświetlić wykres w przestrzeni oraz dostarczyć wielu dodatkowych informacji np. znaleźć pierwiastki rzeczywiste.
 O ile sztuczna inteligencja w świetle dzisiejszego dostępu ogromu danych do przetwarzania stwarza duży potencjał na tworzenie skomplikowanych systemów przetwarzających wciąż spotykamy
-się z jej zastosowaniem w grach.
+się z jej rosnącym zastosowaniem w grach.
 Historia informatyki od jej wczesnych początków związana była z grami komputerowymi. 
-W roku 1952 Alexander Shafto Douglas opisał temat komunikacji człowiek-komputer w swojej pracy doktoranckiej, oraz stworzył program grający w popularne "Kółko i Krzyżyk".
+W roku 1952 Alexander Shafto Douglas opisał temat komunikacji człowiek-komputer w swojej pracy doktoranckiej, oraz stworzył program grający w popularne ``Kółko i Krzyżyk''.
 Do dziś uznawany jest on za pierwszą graficzną grę komputerową.
 \end{par}
 
@@ -55,23 +55,26 @@ Do dziś uznawany jest on za pierwszą graficzną grę komputerową.
 \begin{par}
 Jednym z podstawowych przykładów zastosowania sztucznej inteligencji w grach komputerowych są gry logiczne. 
 Podstawowym algorytmem stosowanym w projektowaniu sztucznej inteligencji jest algorytm minmax.
-Najprostszym przykładem jest gra ``Kółko i krzyżyk'' gdzie przeszukiwane jest tzw. "drzewo gry" kolejno sprawdzające wszystkie możliwe stany gry. 
+Najprostszym przykładem jest gra ``Kółko i krzyżyk'' gdzie przeszukiwane jest tzw. drzewo gry, kolejno sprawdzające wszystkie możliwe stany gry. 
 W dowolnym momencie gry możemy przeanalizować wszystkie możliwe posunięcia każdego z graczy, i dążyć do sytuacji gdzie mamy gwarantowany sukces.
 Gra może zakończyć się remisem, zwycięstwem gracza A, bądź zwycięstwem gracza B.
 Optymalizując decyzję gracza A, musimy kolejno sprawdzać możliwe posunięcia na planszy i reakcje gracza B. 
-Dla każdego z nich możemy wówczas przeanalizować optymalną strategię dla gracza B (ponieważ zakładamy że do takiej będzie on dążył) i starać się znaleźć 
+Dla każdego z możliwych ruchów nich możemy wówczas przeanalizować optymalną strategię dla gracza B (ponieważ zakładamy że do takiej będzie on dążył) i starać się znaleźć 
 najlepszą ścieżkę która prowadzi do zwycięstwa gracza A, bądź remisu.
-Łatwo zauważyć iż algorytm taki ma ogromną złożoność dla rozbudowanych drzew wywołań. i jedynie dla małych gier takich jak kółko i krzyżyk daje wynik w realnym czasie.
-Bez optymalizacji, obraz brania pod uwagę symetrii planszy, daje to drzewo wywołań składające się 9! węzłów (łącznie z liśćmi). 
+Łatwo zauważyć iż algorytm taki ma ogromną złożoność dla rozbudowanych drzew, i jedynie dla małych gier takich jak kółko i krzyżyk daje wynik w realnym czasie.
+Bez optymalizacji, oraz brania pod uwagę symetrii planszy, daje to drzewo wywołań składające się 9! węzłów (łącznie z liśćmi). 
 Oczywiście algorytm można zoptymalizować chociażby poprzez programowanie dynamiczne, lecz dla gier bardziej złożonych nie będziemy w stanie przeanalizować wszystkich możliwych sytuacji w grze w realnym czasie.
 Przez lata szachy były jedną z gier niemożliwych do rozwiązania za pomocą powyższego podejścia.
 Nawet dziś najlepsze programy szachowe nie grają idealnie - nie analizują wszystkich możliwych ruchów a jedynie kilkadziesiąt ruchów w przód.
 Przy zastosowaniu optymalizacji oraz bazy danych zawierającej wiele strategii szachowych, współczesne programy szachowe wygrywają z najlepszymi graczami.
 Nieco inna sytuacja jest w grze GO, gdzie plansza rozmiaru 19x19 stanowi duże wyzwanie nawet dla współczesnych superkomputerów. 
 Do dziś nie stworzono programu który wygrywałby z profesjonalnymi zawodnikami GO.
-Jak widać na Rys. \ref{fig:xo_tree} pierwsze 2 poziomy drzewa gry Kółko i Krzyżyk nie są zbyt skomplikowane jeśli weźmiemy pod uwagę symetrię.
+Jak widać na Rys. \ref{fig:xo_tree}, pierwsze 2 poziomy drzewa gry Kółko i Krzyżyk nie są zbyt skomplikowane jeśli weźmiemy pod uwagę symetrię.
 Początkowo złożoność drzewa rośnie wykładniczo, jednak możliwości na planszy kończą się zanim zaczyna to być problemem.
-Inaczej wyglądałby przypadek drzewa gry GO, gdzie pierwszy poziom drzewa składałby się z 28 węzłów: Rys. \ref{fig:go_tree} przedstawia przykładowe pierwsze 28 węzłów biorąc pod uwagę symetrię planszy.
+Inaczej wyglądałby przypadek drzewa gry GO (plansza rozmiaru 13x13), gdzie pierwszy ruch można wykonać na 28 unikalnych sposobów: Rys. \ref{fig:go_tree} przedstawia przykładowe pierwsze 28 węzłów drzewa gry GO (13x13) biorąc pod uwagę symetrię planszy.
+Sprawa komplikuje się gdy rozpatrujemy większe plansze.
+Dla plansz o wymiarach 19x19 - standardowym rozmiarze obowiązującym na wszystkich turniejach gry GO - pierwszy ruch można wykonać na 55 sposobów (analogicznie do Rys.\ref{fig:go_tree}). Plansza GO ma 4 osie symetrii, może się wówczas okazać że odpowiedź przeciwnika będzie na tyle ``niesymetryczna'', że już na drugim
+poziomie drzewa musimy rozpatrzyć wszystkie możliwe pola na planszy, czyli 359 (19x19 - 2).
 
 \begin{figure}[!h]
 	\centering
@@ -83,37 +86,47 @@ Inaczej wyglądałby przypadek drzewa gry GO, gdzie pierwszy poziom drzewa skła
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=5in]{obrazki/go_tree.png}
-	\caption{Schemat pierwszych możliwych ruchów w grze GO.}
+	\caption{Przykład pierwszych możliwych unikalnych ruchów w grze GO.}
 	\label{fig:go_tree}
 \end{figure}
 
 \end{par}
 \begin{par}
-Większość gier daje się sklasyfikować ze względu na czas:
+Jeśli chcemy wprowadzić podział gier przydatny przy projektowaniu systemu pierwszym czynnikiem będzie typ rozgrywki ze względu na czas.
+Większość gier można podzielić wówczas w następujący sposób:
 \begin{itemize}
-	\item Gry turowe. Gracze naprzemiennie wykonują ruchy, przy czym czas na podjęcie decyzji jest relatywnie duży - nawet do 10 sekund. 
-Wiele nieskomplikowanych gier zostało już dawno rozwiązanych przez algorytmy typu minmax, do tego stopnia, że systemy grają w nie już niemal bezbłędnie. 
-W wielu przypadkach przestrzeń rozwiązań jest jednak wciąż zbyt duża aby zrealizować to algorytmem dokładnym - wyżej wspomniana gra GO.
-	\item Gry czasu rzeczywistego. Gra toczy się w dynamicznym środowisku gry, często z wieloma obiektami/graczami na raz. Często czas na podjęcie optymalnej decyzji przez algorytm jest mocno ograniczony - często należy podejmować nawet do 30 razy w ciągu sekundy. Oprócz tego próba dyskretyzacji środowiska i znalezienia najlepszego rozwiązania z przestrzeni stanów gry jest w praktyce niewykonalne. Przykładem mogą być różnego rodzaju trójwymiarowe gry akcji które często posiadają złożone środowiska gry, oraz wiele dynamicznych obiektów oraz graczy uczestniczących w rozgrywce.
+	\item Gry turowe - Gracze naprzemiennie wykonują ruchy, przy czym czas na podjęcie decyzji jest relatywnie duży - od 1 sekundy nawet do 1-2 minut.
+Wiele nieskomplikowanych gier turowych zostało już dawno rozwiązanych przez algorytmy typu minmax, do tego stopnia, że systemy grają w nie już niemal bezbłędnie. 
+W wielu przypadkach przestrzeń rozwiązań jest jednak wciąż zbyt duża aby zrealizować to algorytmem dokładnym - przykładem może być wyżej wspomniana gra GO.
+	\item Gry czasu rzeczywistego - Gra toczy się w dynamicznym środowisku gry, często z wieloma obiektami i graczami na raz. Często czas na podjęcie optymalnej decyzji przez algorytm jest mocno ograniczony - często należy podejmować odpowiednie decyzje nawet do 30 razy w ciągu sekundy. Oprócz tego próba dyskretyzacji środowiska i znalezienia dokładnego rozwiązania z przestrzeni stanów gry jest w praktyce niewykonalne. Przykładem mogą być tutaj różnego rodzaju dwu lub trójwymiarowe gry akcji, które często posiadają złożone środowiska gry, wiele dynamicznych obiektów oraz graczy uczestniczących w rozgrywce poprzez przez sieć komputerową. Przy projektowaniu sztucznej inteligencji w takim środowisku w tej chwili możemy liczyć jedynie na wyniki przybliżone.
 \end{itemize}
 Sztuczna inteligencja w grach może dotyczyć różnych aspektów gry. 
 W grach logicznych (turowych) głównym, i jedynym problemem jest podjęcie najlepszej decyzji dla aktualnego stanu gry, prowadzącej do zwycięstwa. 
 W większości gier logicznych sztuczna inteligencja ma za zadanie symulację godnego przeciwnika dla człowieka.
 Często jednak te same algorytmy mogą służyć do celów edukacyjnych bądź do podpowiedzi - ten sam system grający w szachy może grać przeciwko nam, jak i podpowiadać nam ruchy na podstawie naszej pozycji na planszy.
 W grach zręcznościowych oraz akcji (gry czasu rzeczywistego) występuje często inny rodzaj sztucznej inteligencji.
-Ponieważ przestrzeń rozwiązań jest bardzo duża, często podjęcie decyzji może być wspomagane przez algorytm niedeterministyczny, bądź oparty na algorytmach genetycznych.
+Ponieważ przestrzeń rozwiązań jest bardzo duża, często podjęcie decyzji może być wspomagane przez algorytm przybliżony, bądź oparty na algorytmach genetycznych.
 Algorytm minmax w większości przypadków zawodzi, bądź jego czas działania jest zbyt wolny do zastosowania w dynamicznym środowisku gry.
-Korzystając z algorytmów ``jedynie'' optymalizujących rozgrywkę tracimy możliwość rozegrania idealnej partii gry, jednak często wystarcza to dla osiągnięcia celu końcowego.
+Korzystając z algorytmów ``jedynie'' optymalizujących rozgrywkę tracimy możliwość rozegrania idealnej partii gry, jednak często wystarcza to dla osiągnięcia celu końcowego jakim jest
+stworzenie godnego przeciwnika.
 \end{par}
-
-
 
 \subsection{Podstawy algorytmów genetycznych.}
 \begin{par}
-Często wykorzystywanym sposobem realizacji celu są algorytmy genetyczne.
-Opierają się one na prawach ewolucji odkrytych przez Charlesa Darwina, i wzorują się na faktycznych rozwiązaniach doboru naturalnego występujących w przyrodzie.
-Algorytm ewolucyjny opiera się na wprowadzeniu losowego czynnika do całej procedury, i tym też różni się od poprzedniego podejścia, iż jest niedeterministyczny. 
-Początkowy chaos z czasem jest zastępowana przez odpowiednio przystosowaną populację rozwiązań, o ile zasymulujemy jej ewolucję dostateczną ilość razy. 
+Często wykorzystywanym sposobem rozwiązania złożonego problemu algorytmicznego są algorytmy genetyczne.
+Opierają się one na zasadach ewolucji odkrytych przez Charlesa Darwina, i wzorują się na faktycznych rozwiązaniach doboru naturalnego występujących w przyrodzie.
+Algorytm ewolucyjny opiera się na wprowadzeniu losowego czynnika do całej procedury, i tym też różni się od klasycznego algorytmu, iż jest niedeterministyczny. 
+Ogólny przebieg algorytmu genetycznego może wyglądać następująco:
+\begin{enumerate}
+\item Wygenerowanie początkowej populacji osobników (rozwiązań) w sposób losowy.
+\item Przeliczenie funkcji przystosowania dla każdego z osobników.
+\item Uporządkowanie populacji malejąco względem wyniku funkcji przystosowania.
+\item Wybranie populacji rodzicielskiej zgodnie z przyjętą metodą selekcji.
+\item Krzyżowanie osobników z populacji rodzicielskiej i otrzymanie nowej populacji - nowe potomstwo posiada cechy rodziców którzy w poprzedniej populacji byli najlepiej przystosowani do rozwiązania danego problemu.
+\item Mutacja części potomstwa - wprowadzenie czynnika losowego poprzez zmianę niektórych fragmentów chromosomu w sposób losowy.
+\item Jeśli warunek końcowy nie został osiągnięty powrót do kroku 2, w przeciwnym wypadku koniec algorytmu.
+\end{enumerate}
+Wynikiem takiego algorytmu jest nie jedno rozwiązanie problemu, a cała ich populacja.
 W większości algorytmów genetycznych można wydzielić kilka koniecznych do zaprojektowania klas bądź procedur.
 \begin{enumerate}
 \item Chromosom oraz Populacja
