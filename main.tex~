@@ -8,6 +8,7 @@
 \usepackage{listings}
 \usepackage{setspace}
 \usepackage{color}
+\usepackage[section,subsection,subsubsection]{extraplaceins}k
 %\promotor{dr inż. Marek Tabędzki}
 
 \begin{document}

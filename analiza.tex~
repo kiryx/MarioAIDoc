@@ -31,7 +31,45 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 	Strona domowa projektu znajduje się pod adresem www.marioai.org.
 \end{par}
 
-\subsection{Wymagania funkcjonalne}
+\subsection{Wykorzystane narzędzia i języki programowania}
+\begin{par}
+	\subsection{Język aplikacji}
+	Głównym celem do zrealizowania w pracy jest problem algorytmiczny i teoretyczny.
+	Praca w mniejszym stopniu opiera się na wykorzystaniu konkretnej technologii, czy języka programowania, wobec czego zostały wykorzystane popularne narzędzia i języki programowania.
+	System został napisany w języku Java oraz testowany na wirtualnej maszynie javy w wersji Java SE 7u2. Biblioteka Swing została użyta do stworzenia warstwy wizualnej programu.
+	\subsection{Java}
+	Java jest językiem programowania wysokiego poziomu zaprojektowanym i stworzonym przez Jamesa Groslinga podczas gry pracował w firmie Sun Microsystems. Pierwsza propozycja stworzenia Javy pojawiłą się w roku 1991, do głównych twórców oprócz Jamesa Groslinga zalicza się również Mike'a Sheridana oraz Patrick'a Naughtona.
+	Początkowo język Java był bezpośrednio związany z firmą Sun Microsystems, która kontrolowała jego rozwój do roku 2010.
+	Od tego czasu firma Sun stała się częścią korporacji Oracle, wobec czego wszelkie prawa związane z językiem Java posiada Oracle.
+	Java swoją składnią przypomina język C, aczkolwiek wśród pierwowzorów wymienia się również język Smalltalk.
+	Aplikacje napisane w języku Java są kompilowane do kodu bajtowego Javy (ang. java bytecode), i uruchamiane na maszynie wirtualnej, co zapewnia pewnego rodzaju bezpieczeństwo w stosunku do języka C lub C++.
+	Inną dużą zaletą języka Java jest jego przenośność.
+	Jedynym wymogiem uruchomienia aplikacji javowej na dowolnym systemie jest obecność wirtualnej maszyny javy (ang. JVM - Java Virtual Machine).
+	Dziś większość urządzeń mobilnych posiada wirtualną maszynę javy pozwalającą na uruchamianie aplikacji napisanych w tym języku.
+	::BIBLIOGRAFIA TIJ-Bruce Eckel::
+	Jak pisze Bruce Eckel w swojej książce poświęconej językowi Java: ``To, co wywarło na mnie największe wrażenie, kiedy poznawałem javę, to fakt, że wśród innych celów projektantów z firmy Sun znalazła się także redukcja złożoności dla programisty. 
+	To tak, jakby powiedzieć: ``Nie dbamy o nic poza zmniejszeniem czasu i trudności tworzenia porządnego kodu.''(...)''.
+	Ponieważ część algorytmiczna aplikacji wymaga przeprowadzania częstych symulacji zachowania środowiska oraz przeprowadzania całego przebiegu gry, istotnym czynnikiem był czas działania krytycznych miejsc w aplikacji - głównie pętli gry, wyświetlania oraz generowania nowej populacji na podstawie poprzedniej.
+	Java jako język polegający na maszynie wirtualnej posiada warstwę pośrednią która spowalnia cały proces jest wolniejsza od języka C lub C++, jednak prostota realizacji części wizualnej aplikacji oraz bardzo dobra przenośność przeważyły w wyborze języka.
+	Kolejnym trafnym wyborem jeśli chodzi o język i narzędzia byłby prawdopodobnie C++ wraz z biblioteką Qt do generowania grafiki i tworzenia okienek oraz kontrolek.
+	Tą samą aplikację można by zrealizować za pomocą języka Python i biblioteki PyGame/Qt do warstwy wizualizacyjnej, jednak wówczas koszt czasowy realizacji algorytmu genetycznego oraz logiki gry mógłby okazać się znacząco duży, ze względu na fakt iż Python jest językiem interpretowanym, i generalnie nie jest przeznaczony do dużych obliczeń.
+	Przy konieczności realizacji prostej wersji demonstracyjnej programu opisywanego w pracy, język Python wraz z biblioteką PyGame może okazać się najszybszym do implementacji ze względu na krótki kod, dynamiczne typy zmiennych oraz bogatą kolekcję struktur takich jak listy czy mapy incydencji konieczne do realizacji algorytmu.
+	Sama aplikacja korzysta z kolekcji i podstawowych struktur danych występujących w języku Java.
+	\subsection{Swing}
+	Pierwszą próbą stworzenia biblioteki graficznej javy pozwalającej na tworzenie graficznego interfejsu użytkownika była biblioteka AWT (ang. Abstract Window Toolkit).
+	Fala niezadowolenia wśród programistów sprawiła iż ograniczone i mało efektowne elementy graficzne biblioteki AWT zostały zastąpione przez zbiór komponentów dziś znanych jako Swing.
+	W bibliotece Swing znajdziemy większość podstawowych komponentów występujących we współczesnych systemach operacyjnych włącznie z obsługą okien, natomiast w bibliotece AWT znajdziemy obsługę zdarzeń, co w połączeniu daje nam wystarczające narzędzia do stworzenia graficznego interfejsu.
+	Warto zauważyć iż Swing nie korzysta z domyślnych ustawień systemu jeśli chodzi o wygląd komponentów, dzięki czemu ten sam program wygląda identycznie na każdym systemie operacyjnym.
+	Alternatywą dla biblioteki Swing może być biblioteka SWT związana z projektem Eclipse.
+	W odróżnieniu do Swing, komponenty korzystają z wyglądu komponentów systemu operacyjnego.
+	\subsection{Narzędzia}
+	Aplikacja w całości została zrealizowana w programie Netbeans 6.9.1 wspierającym testowanie, kompilację budowanie aplikacji napisanych w języku Java.
+	Innym popularnym narzędziem może być Eclipse, jednak lepsze narzędzia testujące (ang. profiler) przeważyły o wyborze pierwszej aplikacji.
+\end{par}
+
+\subsection{Moduł silnika i symulatora gry}
+
+\subsubsection{Wymagania funkcjonalne}
 	System nie wymaga różnicowania użytkowników ze względu na role. Wymagania funkcjonalne wyglądają następująco:
 	\begin{itemize}
 		\item {\bf Poruszanie się w środowisku gry za pomocą klawiatury.}
@@ -72,20 +110,13 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 		Wynik końcowy, ilość zebranych punktów, czas działania, wartość funkcji przystosowania. Dodatkowym elementem jest możliwość przerwania aktualnego przebiegu gry i uruchomienie tymczasowo nowego przebiegu dla dowolnego osobnika z listy wybranego przez użytkownika. Po zakończeniu przebiegu algorytm powraca do treningu populacji.
 		\item {\bf Otworzenie okna osobnika. }
 		\newline
-		Bezpośrednio z okna populacji użytkownik ma możliwość podejrzenia szczegółów dotyczących osobników. Wówczas otwierane jest nowe okno zawierające wszystkie informacje na temat danego osobnika takie jak długość tablicy chromosomu bądź tekstowa reprezentacja całego chromosomu.
-		\item {\bf Otworzenie okna edytora map. }
-		\newline
-		Ważnym elementem systemu jest narzędzie pozwalające tworzyć nowe mapy oraz modyfikować istniejące.
-		Użytkownik po otworzeniu okna edytora map ma do dyspozycji narzędzia pozwalające na umieszczanie prostokątnych obiektów na planszy odpowiadających za typy obiektów występujących w grze. Oprócz tego niezbędne są narzędzia edycji takie jak cofnięcie ostatniej akcji, usunięcie wszystkich obiektów, bądź zaznaczanie poszczególnych.
-		\item {\bf Wczytywanie oraz Zapisywanie map do edytora. }
-		\newline
-		Wczytywanie może być zrealizowane analogicznie do wczytywania mapy do środowiska gry. Podobnie zapis mapy powinien być dostępny dla użytkownika z menu, dzięki czemu informacje o aktualnie tworzonej mapie są dostępne do wczytania przez silnik gry.
+		Bezpośrednio z okna populacji użytkownik ma możliwość podejrzenia szczegółów dotyczących osobników. Wówczas otwierane jest nowe okno zawierające wszystkie informacje na temat danego osobnika takie jak długość tablicy chromosomu bądź tekstowa reprezentacja całego chromosomu.		
 		\item {\bf Przyspieszenie pracy algorytmu.}
 		\newline
 		Podczas treningu populacji często niepotrzebne jest użytkownikowi śledzenie ruchów algorytmu szczególnie w początkowym stadium. Aby szybciej osiągnąć wyniki działania algorytmu rozgrywka jest przyspieszana przez wstrzymanie wyświetlania grafiki na mapie. Oprócz tego opóźnienie koniecznie do osiągnięcia 60 klatek na sekundę podczas wyświetlania zostaje wyłączone - algorytm w tle przeprowadza symulacje.
 	\end{itemize}
-\subsection{Wymagania niefunkcjonalne}
-	\begin{enumerate}
+\subsubsection{Wymagania niefunkcjonalne}
+	\begin{itemize}
 	\item {\bf Prędkość działania aplikacji. }	
 	\newline
 	Ponieważ aplikacja wymaga przeprowadzenia wielu symulacji gry do osiągnięcia wyniku, koniecznie jest optymalne zaprojektowanie funkcji biorących udział w działaniu algorytmu genetycznego.
@@ -99,27 +130,10 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 	Innym powodem zachowania prostej grafiki jest swoboda rozmiarów obiektów. 
 	W większości gier platformowych stosowana jest grafika rastrowa która przy skalowaniu obiektów bez zachowania proporcji wygląda źle.
 	Rozwiązanie tego problemu wiązałoby się z generowaniem grafiki proceduralnie bądź używaniem grafiki wektorowej, co jednak odbiega od istoty pracy.
-	\end{enumerate}
+	\end{itemize}
 
-\subsection{Wykorzystane narzędzia i języki programowania}
-\begin{par}
-	Głównym celem do zrealizowania w pracy jest problem algorytmiczny i teoretyczny.
-Praca w mniejszym stopniu opiera się na wykorzystaniu konkretnej technologii, czy języka programowania, wobec czego zostały wykorzystane popularne narzędzia i języki programowania.
-Językiem programowania wykorzystanym w aplikacji jest język java.
-Ponieważ część algorytmiczna aplikacji wymaga przeprowadzania częstych symulacji zachowania środowiska oraz przeprowadzania całego przebiegu gry, istotnym czynnikiem był czas działania krytycznych miejsc w aplikacji - głównie pętli gry, wyświetlania oraz generowania nowej populacji na podstawie poprzedniej.
-Java jako język polegający na maszynie wirtualnej posiada warstwę pośrednią która spowalnia cały proces jest wolniejsza od języka C lub C++,
-jednak prostota realizacji części wizualnej aplikacji, bardzo dobra przenośność języka java oraz relatywnie małe zyski czasowe przeważyły w wyborze języka.
-Kolejnym trafnym wyborem jeśli chodzi o język i narzędzia byłby prawdopodobnie C++ wraz z biblioteką Qt do generowania grafiki i tworzenia okienek oraz kontrolek.
-Tą samą aplikację można by zrealizować za pomocą języka Python i biblioteki PyGame do warstwy wizualizacyjnej,
-jednak wówczas koszt czasowy realizacji algorytmu genetycznego oraz logiki gry mógłby okazać się znacząco duży, ze względu na fakt iż Python jest językiem interpretowanym, i generalnie nie jest przeznaczony do dużych i częstych obliczeń.
-Przy konieczności realizacji prostej wersji demonstracyjnej programu opisywanego w pracy, język Python wraz z biblioteką PyGame może okazać się najszybszym do implementacji ze względu na krótki kod, dynamiczne typy zmiennych oraz bogatą kolekcję struktur takich jak listy czy mapy incydencji konieczne do realizacji algorytmu.
-Sama aplikacja korzysta z kolekcji i podstawowych struktur danych występujących w języku Java.
-Warstwa graficzna korzysta z biblioteki Swing do rysowania interfejsu użytkownika oraz AWT do reakcji na zdarzenia.
-Inną biblioteką wykorzystywaną do tworzenia graficznych interfejsów użytkownika jest SWT, która nie tylko jest równie przenośnia, lecz też imituje wygląd domyślnie używany w systemie operacyjnym - aplikacje napisane w całości w Swing wyglądają tak samo bez względu na system operacyjny.
-Aplikacja w całości została zrealizowana w programie Netbeans 6.9.1 wspierającym testowanie, kompilację budowanie aplikacji napisanych w języku Java.
-Innym popularnym narzędziem może być Eclipse, jednak lepsze narzędzia testujące (ang. profiler) przeważyły o wyborze pierwszej aplikacji.
-\end{par}
-\subsection{Diagram przypadków użycia}
+
+\subsubsection{Diagram przypadków użycia}
 \begin{par}
 	Diagram przypadków użycia został przedstawiony na Rys. \ref{fig:diagram_przypadkow}.
 		\begin{figure}[!h]
@@ -130,7 +144,7 @@ Innym popularnym narzędziem może być Eclipse, jednak lepsze narzędzia testuj
 		\end{figure}
 		\FloatBarrier
 \end{par}
-\subsection{Opis tekstowy przypadków użycia}
+\subsubsection{Opis tekstowy przypadków użycia}
 \begin{par}
 	We wszystkich przypadkach użycia aktorem jest użytkownik aplikacji.
 	\begin{itemize}
@@ -191,38 +205,7 @@ Innym popularnym narzędziem może być Eclipse, jednak lepsze narzędzia testuj
 		\item Jeśli użytkownik uruchomi tryb poruszania się po mapie wówczas przywrócone zostaje wyświetlanie stanu gry (jeśli był włączony tryb przyspieszonego treningu). Użytkownik uzyskuje kontrolę nad postacią gracza.
 		\end{enumerate}
 	\end{enumerate}
-	\item
-	Opis przypadku użycia {\bf Edycja bieżącej mapy. }.
-	\begin{enumerate}
-	\item Podstawowy ciąg zdarzeń:
-		\begin{enumerate}
-		\item Użytkownik klika w przycisk menu dotyczący edytora map.
-		\item Wyświetlone zostaje nowe okno aplikacji zawierające przyciski dotyczące edycji mapy.
-		\item Do edytora map domyślnie zostaje wczytana bieżąca mapa wczytana do środowiska symulatora.
-		\item Użytkownik wybiera obiekty gry użyciu przycisków znajdujących się w menu okna a następnie metodą przeciągnij-upuść rysuje prostokątne obiekty odpowiadające za obiekty w grze.
-		\item Użytkownik z menu wybiera opcję zapisu mapy do pliku.
-		\item Wyświetlone zostaje okno dialogowe zapisu pliku w którym użytkownik wybiera nazwę pliku.
-		\item Użytkownik zamyka okno edytora map.
-		\end{enumerate}
-	\item Alternatywne ciąg zdarzeń:
-		\begin{enumerate}
-		\item Użytkownik wczytuje nowa mapę do edytora map. 
-			\begin{enumerate}
-			\item Wyświetlone zostaje okno dialogowe dotyczące otwarcia pliku z systemu.
-			\item Wszystkie obiekty z planszy zostają usunięte, i wczytywane są nowe z wybranej wcześniej mapy.
-			\end{enumerate}
-		\end{enumerate}
-	\item Zależności czasowe:
-		\begin{enumerate}
-		\item Częstotliwość wykonania: 0-5 razy w ciągu działania aplikacji.
-		\item Typowy czas realizacji: 5 minut.
-		\item Maksymalny czas realizacji: nieokreślony.
-		\end{enumerate}
-	\item Wartości uzyskiwane przez aktorów po zakończeniu przypadku użycia:
-		\begin{enumerate}
-		\item Użytkownik po zapisaniu stworzonej mapy do pliku ma możliwość wczytania mapy z dysku do symulatora gry i przeprowadzenia treningu populacji na nowej mapie.
-		\end{enumerate}
-	\end{enumerate}
+	
 	\item
 	Opis przypadku użycia {\bf Zmiana ustawień aplikacji. }.
 	\begin{enumerate}
@@ -344,26 +327,162 @@ Innym popularnym narzędziem może być Eclipse, jednak lepsze narzędzia testuj
 	\end{itemize}
 \end{par}
 
-\subsection{Diagramy czynności}
+\subsubsection{Diagramy czynności}
 \begin{par}
-		Poniżej zostaną przedstawione diagramy czynności najistotniejszych czynności w systemie.
+		Poniżej zostaną przedstawione diagramy najistotniejszych czynności w systemie.
 		\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth]{obrazki/activity_diagram.png}
 		\caption{Diagram czynności ``Przemieszczanie się po mapie''.}
-		\label{fig:sterowanie}
+		\label{fig:activ1}
 		\end{figure}
 		\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth]{obrazki/activity_diagram_2.png}
 		\caption{Diagram czynności ``Zmiana ustawień aplikacji''.}
-		\label{fig:sterowanie}
+		\label{fig:activ2}
 		\end{figure}
+		\FloatBarrier
+\end{par}
+\subsubsection{Diagram stanów}
+\begin{par}
+	System sam w sobie nie posiada wielu stanów jakie może przyjąć. Dwa główne stany to gra użytkownika w której akcje z klawiatury są interpretowane jako ruchy gracza, oraz tryb treningu populacji.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/diagram_stanow.jpg}
+		\caption{Diagram czynności ``Diagram stanów systemu''.}
+		\label{fig:stany}
+		\end{figure}
+	\FloatBarrier
+	Stany dla Systemu (Rys. \ref{fig:stany}):
+	Użytkownik po uruchomieniu aplikacji może poruszać się postacią po ekranie(stan ``Tryb poruszania się przez użytkownika'').
+	Jeśli zmieni tryb działania systemu automatycznie przechodzi do trybu treningu (stan ``Tryb treningu populacji'').
+	Będąc w stanie treningu populacji użytkownik może ponownie przejść w tym swobodnego poruszania się.
+	Użytkownik może wyłączyć wyświetlanie grafiki i tym samym przyspieszyć proces treningu (stan ``Tryb przyspieszonego treningu''). 
+	Ze stanu treningu przyspieszonego użytkownik może przejść do trybu poruszania się postacią po ekranie poprzez zmianę trybu, bądź do trybu treningu
+	populacji poprzez włączenie wyświetlania grafiki.
+\end{par}
+
+\subsection{Moduł edytora map}
+\subsubsection{Wymagania funkcjonalne}
+	System nie wymaga różnicowania użytkowników ze względu na role. Wymagania funkcjonalne wyglądają następująco:
+	\begin{itemize}
+		
+		\item {\bf Otworzenie okna edytora map. }
+		\newline
+		Ważnym elementem systemu jest narzędzie pozwalające tworzyć nowe mapy oraz modyfikować istniejące.
+		Powinno być ono dostępne jako osobne okno edytora map.
+		\item {\bf Wczytywanie mapy do edytora. }
+		\newline
+		Użytkownik powinien mieć możliwość edycji dowolnej wcześniej stworzonej mapy, w tym celu powinien móc z menu wybrać odpowiednią opcję pozwalającą na wczytanie pliku mapy z dysku.
+		Wczytywanie może być zrealizowane analogicznie do wczytywania mapy do środowiska gry.
+		\item {\bf Zapis mapy do pliku. }
+		\newline
+		Podobnie jak odczyt, zapis mapy powinien być dostępny dla użytkownika z menu. 
+		Dzięki zapisowi mapy na dysk twardy użytkownik ma możliwość przechowywania wcześniej tworzonych map, a co ważniejsze otworzenie ich bezpośrednio w symulatorze gry.
+		\item {\bf Edycja mapy za pomocą narzędzi graficznych.}
+		\newline
+		Edycja mapy powinna być intuicyjna i prosta nawet dla osoby nie znającej szczegółów formatu zapisu mapy. 
+		Ponieważ każdy obiekt w grze posiada prostokątny obszar kolizji, edytor powinien pozwalać na łatwe tworzenie prostokątnych obiektów.
+		Zrealizowane może być to przez wyznaczanie dwóch rogów prostokąta za pomocą metody ``przeciągnij i upuść''.
+		Narzędzia powinny być dostępne po wybraniu odpowiedniej ikony w panelu narzędzi edytora map.
+		Przydatne w edycji map mogą okazać się często używane akcje takie jak cofnięcie ostatniej zmiany, zaznaczenie elementów w edytorze i usuwanie ich, bądź czyszczenie całej mapy.
+	\end{itemize}
+\subsubsection{Wymagania niefunkcjonalne}
+	\begin{itemize}
+	\item {\bf Otwarty format mapy. }	
+	\newline
+	Istotną rzeczą może być tutaj przechowywanie mapy w pliku tekstowym. 
+	O ile zapis binarny może okazać się szybszy i bardziej kompaktowy, to ważniejsze jest jednak
+	umożliwienie użytkownikom edycji mapy ręcznie, bądź poprzez programy trzecie. Dzięki temu możliwe będzie generowanie np. bardzo długich losowych map.
+	\end{itemize}
+
+
+\subsubsection{Diagram przypadków użycia}
+\begin{par}
+	Diagram przypadków użycia został przedstawiony na Rys. \ref{fig:diagram_przypadkow_mapa}.
 		\begin{figure}[!h]
 		\centering
-		\includegraphics[width=\textwidth]{obrazki/czynnosci_edytor_map.jpg}
+		\includegraphics[width=\textwidth]{obrazki/use_case_editor.png}
+		\caption{Diagram przypadków użycia modułu edytora map.}
+		\label{fig:diagram_przypadkow_mapa}
+		\end{figure}
+		\FloatBarrier
+\end{par}
+\subsubsection{Opis tekstowy przypadków użycia}
+\begin{par}
+	We wszystkich przypadkach użycia aktorem jest użytkownik aplikacji.
+	\begin{itemize}
+
+	\item
+	Opis przypadku użycia {\bf Edycja bieżącej mapy. }.
+	\begin{enumerate}
+	\item Podstawowy ciąg zdarzeń:
+		\begin{enumerate}
+		\item Użytkownik klika w przycisk menu dotyczący edytora map.
+		\item Wyświetlone zostaje nowe okno aplikacji zawierające przyciski dotyczące edycji mapy.
+		\item Do edytora map domyślnie zostaje wczytana bieżąca mapa wczytana do środowiska symulatora.
+		\item Użytkownik wybiera obiekty gry użyciu przycisków znajdujących się w menu okna a następnie metodą przeciągnij-upuść rysuje prostokątne obiekty odpowiadające za obiekty w grze.
+		\item Użytkownik z menu wybiera opcję zapisu mapy do pliku.
+		\item Wyświetlone zostaje okno dialogowe zapisu pliku w którym użytkownik wybiera nazwę pliku.
+		\item Użytkownik zamyka okno edytora map.
+		\end{enumerate}
+	\item Alternatywne ciąg zdarzeń:
+		\begin{enumerate}
+		\item Użytkownik wczytuje nowa mapę do edytora map. 
+			\begin{enumerate}
+			\item Wyświetlone zostaje okno dialogowe dotyczące otwarcia pliku z systemu.
+			\item Wszystkie obiekty z planszy zostają usunięte, i wczytywane są nowe z wybranej wcześniej mapy.
+			\end{enumerate}
+		\end{enumerate}
+	\item Zależności czasowe:
+		\begin{enumerate}
+		\item Częstotliwość wykonania: 0-5 razy w ciągu działania aplikacji.
+		\item Typowy czas realizacji: 5 minut.
+		\item Maksymalny czas realizacji: nieokreślony.
+		\end{enumerate}
+	\item Wartości uzyskiwane przez aktorów po zakończeniu przypadku użycia:
+		\begin{enumerate}
+		\item Użytkownik po zapisaniu stworzonej mapy do pliku ma możliwość wczytania mapy z dysku do symulatora gry i przeprowadzenia treningu populacji na nowej mapie.
+		\end{enumerate}
+	\end{enumerate}
+
+	\item
+	Opis przypadku użycia {\bf Stworzenie nowej mapy. }.
+	\begin{enumerate}
+	\item Podstawowy ciąg zdarzeń:
+		\begin{enumerate}
+		\item Użytkownik wybiera z menu przycisk dotyczący edytora map.
+		\item Do edytora map domyślnie zostaje wczytana bieżąca mapa wczytana do środowiska symulatora.
+		\item Użytkownik z panelu narzędzi edytora map wybiera usunięcie wszystkich obiektów z mapy.
+		\item System usuwa obiekty z edytora map.
+		\item Użytkownik za pomocą narzędzi buduje elementy nowej mapy.
+		\item Użytkownik z menu wybiera opcję zapisu mapy do pliku.
+		\item Wyświetlone zostaje okno dialogowe zapisu pliku w którym użytkownik wybiera nazwę pliku.
+		\item Użytkownik zamyka okno edytora map.
+		\end{enumerate}
+	\item Zależności czasowe:
+		\begin{enumerate}
+		\item Częstotliwość wykonania: 0-5 razy w ciągu działania aplikacji.
+		\item Typowy czas realizacji: 5 minut.
+		\item Maksymalny czas realizacji: nieokreślony.
+		\end{enumerate}
+	\item Wartości uzyskiwane przez aktorów po zakończeniu przypadku użycia:
+		\begin{enumerate}
+		\item Użytkownik po utworzeniu nowej mapy ma możliwość wczytania jej w symulatorze.
+		\end{enumerate}
+	\end{enumerate}
+	\end{itemize}
+\end{par}
+
+\subsubsection{Diagramy czynności}
+\begin{par}
+		Poniżej zostaną przedstawione diagramy najistotniejszych czynności w systemie dotyczące modułu edytora map.
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/czynnosci_edytor_map.jpeg}
 		\caption{Diagram czynności ``Edycja bieżącej mapy''.}
-		\label{fig:sterowanie}
+		\label{fig:czynn_edytor_map}
 		\end{figure}
 		\FloatBarrier
 \end{par}
@@ -463,10 +582,66 @@ Innym popularnym narzędziem może być Eclipse, jednak lepsze narzędzia testuj
 	\end{par}
 	\begin{figure}[!h]
 	\centering
-	\includegraphics[width=\textwidth]{obrazki/diagram_klas.png}
+	\includegraphics[height=\textheight]{obrazki/diagram_klas.png}
 	\caption{Diagram Klas.}
 	\label{fig:diagram_klas}
 	\end{figure}
+	Poniżej zostały opisane poszczególne klasy w kolejności alfabetycznej.
+	\begin{enumerate}
+	\item{\bf Actor }\newline
+	Actor jest klasą dziedziczącą po klasie WorldObject. Reprezentuje ona obiekt postaci poruszającej się po ekranie w środowisku gry. Ponieważ instancja obiektu Actor jest przemieszczającym się obiektem niezbędne było dodanie wektora prędkości do klasy który odpowiada za zmianę pozycji w czasie. Klasa posiada metody takie jak moveLeft, moveRight, moveUp oraz moveDown pozwalające na łatwą zmianę kierunku ruchu aktora. Metody tickX, tickY aktualizują pozycje gracza. Aby wykryć kolizję możliwe jest wywołanie metody previewX (odp. previewY) która zwraca ``przyszłą'' pozycję obiektu po wykonaniu przez niego ruchu w osi X (odp. osi Y).
+	\item{\bf Bonus }\newline
+	Klasa Bonus jest abstrakcyjną klasą dziedziczącą po klasie WorldObject. Odpowiada ona za obiekty wpływające na przebieg gry. Kolizja aktora z obiektem powoduje wywołanie metody evalCollision, która decyduje o efekcie zdarzenia. Obiekty Bonus posiadają przypisaną wartość punktową która w zależności od typu obiektu różnie wpływa na rozgrywkę.
+	\item{\bf BonusCoin }\newline
+	Klasa BonusCoin reprezentuje jedynie punkty umieszczone na planszy. Kolizja z obiektem klasy BonusCoin powoduje zwiększenie licznika punków gracza bądź osobnika populacji. Poza dodaniem punktów obiekt klasy BonusCoin nie wpływa bezpośrednio na przebieg gry.
+	\item{\bf BonusLose }\newline
+	Obiekt klasy BonusLose reprezentuje obiekt kończący grę ze skutkiem negatywnym. Kolizja aktora z obiektem automatycznie kończy przebieg gry ze skutkiem RESULT\_LOST.
+	\item{\bf BonusWin }\newline
+	Obiekt klasy BonusWin stanowi cel każdej gry. Kolizja z obiektem typu BonusWin automatycznie kończy rozgrywkę ze skutkiem RESULT\_WON, co jest brane pod uwagę podczas liczenia funkcji przystosowania.
+	\item{\bf Camera }\newline
+	Obiekt Camera przechowuje wektor przesunięcia obrazu i jest używany do przesuwania ekranu za pomocą myszy. Jest ona wykorzystywana podczas symulacji do ``podążania'' za obiektem gracza, bądź do swobodnego przesuwania ekranu gry za pomocą myszy. Analogicznie w edytorze map użytkownik ma możliwość przesuwania ekranu za pomocą myszy, co upraszcza tworzenie dużych map. Obiekt Camera przechowuje również referencję do aktualnie śledzonego obiektu.
+	Metoda update pozwala na aktualizowanie kamery wraz z przesuwaniem się postaci po ekranie.
+	metody translateScreen oraz translateScreenNeg odpowiednio przesuwają ekran o żądany wektor przesunięcia.
+	\item{\bf Config }\newline
+	Klasa Config przechowuje zmienne dotyczące konfiguracji programu, wykorzystywane w celu wyszukiwania błędów. Przechowuje ona ustawienia wyświetlania informacji o pozycji każdego obiektu w grze, bądź dodatkowych zmiennych takich jak czas który upłynął od początku gry.
+	Domyślnie informacje te nie są widoczne, lecz można je włączyć z panelu konfiguracyjnego.
+	\item{\bf Controller }\newline
+	Klasa Controller jest klasą pośredniczącą w wymianie informacji pomiędzy sygnałami z klawiatury, bądź akcjami zapisanymi w chromosomie, a środowiskiem gry. Odseparowuje ona obie warstwy dzięki czemu możliwe jest pisanie logiki gry, bądź reakcji na poszczególne akcje, niezależnie od źródła sygnału. Klasa Controller jest klasą abstrakcyjną i uzupełnia interfejsy takie jak KeyListener, MouseListener, MouseMotionListener (tym samym implementuje wszystkie związane z nimi metody), dzięki czemu wszelkie zdarzenia wywołane w oknie gry zostają przechwycone i odpowiednio obsłużone. Klasa Controller posiada również zmienne całkowite które są kolejnymi potęgami 2, związane jest to z optymalizacją przechwytywania ruchów z klawiatury - każde wciśnięcie klawisza ustawia odpowiedni bit.
+	\item{\bf ControllerHuman }\newline
+	Klasa dziedzicząca po klasie Controller, nadpisuje powyższe metody, tak aby wciśnięcia klawiszy przez gracza odpowiednio poruszały postacią w grze. Posiada ona metodę down(int) która związana jest z wyżej wymienioną optymalizacją przechwytywania ruchu. Dzięki operacjom bitowym szybko sprawdzany jest stan każdego klawisza.
+	\item{\bf ControllerGenetic }\newline
+	Klasa dziedzicząca po klasie Controller, odpowiada za odczytywanie wygenerowanych akcji z osobników znajdujących się w populacji i odpowiednie przekazywanie ich do środowiska gry (logiki). Instancja klasy zawiera w sobie obiekt klasy Population który przechowuje całą populację osobników.
+	\item{\bf Chromosome }\newline
+	Chromosome jest klasą reprezentującą obiekt osobnika. Uzupełnia ona interfejs Comparable, dzięki czemu możliwe jest wykorzystanie algorytmów sortujących ze standardowej biblioteki javy. Każdy obiekt tej klasy zawiera w sobie instancje obiektu ResultData która przechowuje dane na temat wyniku gry. Klasa posiada metody takie jak mutateSpecial i mutateMoves które odpowiednio dokonują mutacji osobnika na tablicy akcji specjalnych i tablicy ruchów. Parametr breadth decyduje o ``rozległości'' mutacji, np: wartość 0.2 spowoduje mutację losowych 20\% akcji w danej tablicy chromosomu. Oprócz standardowego konstruktora klasy jest także konstruktor przyjmujący tablicę innych chromosomów. Traktowane jest to jako tworzenie nowego Chromosomu na podstawie kilku innych, czyli opisane wcześniej krzyżowanie statystyczne z grupy rodzicielskiej z poprzedniej populacji. 
+	\item{\bf GameState }\newline
+	Klasa GameState przechowuje aktualny stan gry, wraz ze zmiennymi takimi jak: czasy rozpoczęcia gry, aktualny oraz zakończenia (wszystkie wartości jako czasy systemowe w milisekundach), zebrane przez postać punkty bądź wartość wyliczona z funkcji przystosowania. Funkcja updateTime(d\_time) aktualizuje czas gry na podstawie faktycznego czasu który upłynął w systemie, dzięki czemu gra z punktu widzenia logiki przebiega tak samo bez względu na wydajność komputera na którym uruchamiany jest program.
+	\item{\bf GeneticsConfig }\newline
+	Klasa GeneticsConfig przechowuje wszystkie informacje dotyczące parametrów algorytmu genetycznego. Wartości prawdopodobieństw wylosowania akcji specjalnych (specialProb) bądź ruchu postaci (moveProb) przechowywane są w strukturach typu HashMap dostępnych w standardowych bibliotekach javy.
+	Oprócz prawdopodobieństw klasa przechowuje też parametry algorytmów genetycznych takie jak rozmiar populacji, wielkość tablicy chromosomu, stałą krzyżowania, czy rozległość mutacji poszczególnych tablic. Parametry te również przechowywane są w tablicy asocjacyjnej, dzięki czemu możliwe jest odwoływanie się do nich poprzez typ wyliczeniowy ``Parameter''.
+	Oprócz samych wartości przechowywany jest też typ każdego parametru. Metody registerParameter, updateParameter oraz getParameter służą do aktualizacji bądź pobierania parametrów z tablicy. Klasa oprócz przechowywania wartości posiada metody zwracające losowy ruch. Korzysta z tego głównie klasa Chromosome przy generowaniu nowych osobników.
+	\item{\bf GlobalVariables }\newline
+	Klasa GlobalVariables przechowuje zmienne statyczne widoczne w całym systemie takie jak aktualny tryb pracy, zmienną SLEEP\_TIME decydującą o tempie gry oraz zmienną odpowiadającą za zablokowywanie dostępu do zasobów - program jako aplikacja okienkowa korzysta z dwóch wątków wobec czego jest to koniecznie przy współdzieleniu zasobów takich jak obiekty gry.
+	\item{\bf LabeledTextBox }\newline
+	Jest to klasa pomocnicza przy tworzeniu interfejsu użytkownika - dzięki niej możliwe jest automatycznie generowanie par JLabel i JTextBox widocznych w oknie ustawień aplikacji.
+	\item{\bf Logic }\newline
+	Klasa Logic odpowiada za symulację logiki gry - głównie dotyczy to aktora i jego reakcji na różnego rodzaju akcje, gdyż jest on jedynym ruchomym obiektem w grze. Dzięki odseparowaniu logiki gry od pozostałych warstw możliwe jest proste rozszerzanie systemu o własne reguły gry. Klasa posiada metodę doLogic która jest cyklicznie wykonywana w każdej pętli gry. Oprócz tego metody executeMoveAction oraz executeSpecialAction decydują o reakcji środowiska oraz aktora na akcje generowane przez chromosom, bądź użytkownika.
+	\item{\bf LogicLabirynth }\newline
+	Jest to przykładowa implementacja gry, w której postać porusza się w 4 kierunkach. Klasa została rozszerzona o wartości ruchu postaci w obu osiach.
+	\item{\bf LogicMario }\newline
+	Podobnie jak klasa LogicLabirynth jest to prosta implementacja gry wzorowanej na grze Super Mario Brothers. Pomocnicza zmienne actor_falling pomaga w realizacji fizyki w grze (wpływie grawitacji na postać). Zmienna velocity_x odpowiada za wartość prędkości postaci w poziomie.
+	\item{\bf Main }\newline
+	\item{\bf MapEditor }\newline
+	\item{\bf Population }\newline
+	\item{\bf Renderer }\newline
+	\item{\bf RendererSimple }\newline
+	\item{\bf Resources }\newline
+	\item{\bf ResultData }\newline
+	\item{\bf Terrain }\newline
+	\item{\bf Vector }\newline
+	\item{\bf WorldObject }\newline
+	\end{enumerate}
+
+
 \end{par}
 
 
