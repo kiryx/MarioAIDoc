@@ -7,32 +7,31 @@
 \contentsline {section}{\numberline {2}Analiza wymaga\IeC {\'n}}{13}
 \contentsline {subsection}{\numberline {2.1}Opis problemu}{13}
 \contentsline {subsection}{\numberline {2.2}Wykorzystane narz\IeC {\k e}dzia i j\IeC {\k e}zyki programowania}{14}
-\contentsline {subsection}{\numberline {2.3}J\IeC {\k e}zyk aplikacji}{14}
-\contentsline {subsection}{\numberline {2.4}Java}{15}
-\contentsline {subsection}{\numberline {2.5}Swing}{16}
-\contentsline {subsection}{\numberline {2.6}Narz\IeC {\k e}dzia}{17}
-\contentsline {subsection}{\numberline {2.7}Modu\IeC {\l } silnika i symulatora gry}{17}
-\contentsline {subsubsection}{\numberline {2.7.1}Wymagania funkcjonalne}{17}
-\contentsline {subsubsection}{\numberline {2.7.2}Wymagania niefunkcjonalne}{19}
-\contentsline {subsubsection}{\numberline {2.7.3}Diagram przypadk\IeC {\'o}w u\IeC {\.z}ycia}{20}
-\contentsline {subsubsection}{\numberline {2.7.4}Opis tekstowy przypadk\IeC {\'o}w u\IeC {\.z}ycia}{21}
-\contentsline {subsubsection}{\numberline {2.7.5}Diagramy czynno\IeC {\'s}ci}{27}
-\contentsline {subsubsection}{\numberline {2.7.6}Diagram stan\IeC {\'o}w}{30}
-\contentsline {subsection}{\numberline {2.8}Modu\IeC {\l } edytora map}{30}
-\contentsline {subsubsection}{\numberline {2.8.1}Wymagania funkcjonalne}{30}
-\contentsline {subsubsection}{\numberline {2.8.2}Wymagania niefunkcjonalne}{31}
-\contentsline {subsubsection}{\numberline {2.8.3}Diagram przypadk\IeC {\'o}w u\IeC {\.z}ycia}{32}
-\contentsline {subsubsection}{\numberline {2.8.4}Opis tekstowy przypadk\IeC {\'o}w u\IeC {\.z}ycia}{32}
-\contentsline {subsubsection}{\numberline {2.8.5}Diagramy czynno\IeC {\'s}ci}{34}
-\contentsline {subsection}{\numberline {2.9}Wst\IeC {\k e}pna analiza problemu}{35}
-\contentsline {subsubsection}{\numberline {2.9.1}Sterowanie}{35}
-\contentsline {subsubsection}{\numberline {2.9.2}Projekt chromosomu}{36}
-\contentsline {subsection}{\numberline {2.10}Diagram klas}{39}
-\contentsline {section}{\numberline {3}Realizacja poszczeg\IeC {\'o}lnych element\IeC {\'o}w systemu}{46}
-\contentsline {subsection}{\numberline {3.1}Realizacja warstwy genetycznej}{46}
-\contentsline {subsubsection}{\numberline {3.1.1}Struktura danych chromosomu}{46}
-\contentsline {subsubsection}{\numberline {3.1.2}Dane konfiguracyjne}{47}
-\contentsline {subsubsection}{\numberline {3.1.3}Widok Populacji i Chromosomu}{48}
-\contentsline {subsection}{\numberline {3.2}Realizacja warstwy symulacyjnej}{50}
-\contentsline {subsubsection}{\numberline {3.2.1}Logika gry}{50}
-\contentsline {subsubsection}{\numberline {3.2.2}Edytor Map}{52}
+\contentsline {subsubsection}{\numberline {2.2.1}J\IeC {\k e}zyk Java}{14}
+\contentsline {subsubsection}{\numberline {2.2.2}Biblioteka Swing}{16}
+\contentsline {subsubsection}{\numberline {2.2.3}Narz\IeC {\k e}dzia}{16}
+\contentsline {subsection}{\numberline {2.3}Wst\IeC {\k e}pna analiza problemu}{17}
+\contentsline {subsubsection}{\numberline {2.3.1}Sterowanie}{17}
+\contentsline {subsubsection}{\numberline {2.3.2}Projekt chromosomu}{17}
+\contentsline {subsection}{\numberline {2.4}Modu\IeC {\l } silnika i symulatora gry}{21}
+\contentsline {subsubsection}{\numberline {2.4.1}Wymagania funkcjonalne}{21}
+\contentsline {subsubsection}{\numberline {2.4.2}Wymagania niefunkcjonalne}{23}
+\contentsline {subsubsection}{\numberline {2.4.3}Diagram przypadk\IeC {\'o}w u\IeC {\.z}ycia}{24}
+\contentsline {subsubsection}{\numberline {2.4.4}Opis tekstowy przypadk\IeC {\'o}w u\IeC {\.z}ycia}{25}
+\contentsline {subsubsection}{\numberline {2.4.5}Diagramy czynno\IeC {\'s}ci}{31}
+\contentsline {subsubsection}{\numberline {2.4.6}Diagram stan\IeC {\'o}w}{34}
+\contentsline {subsection}{\numberline {2.5}Modu\IeC {\l } edytora map}{34}
+\contentsline {subsubsection}{\numberline {2.5.1}Wymagania funkcjonalne}{34}
+\contentsline {subsubsection}{\numberline {2.5.2}Wymagania niefunkcjonalne}{35}
+\contentsline {subsubsection}{\numberline {2.5.3}Diagram przypadk\IeC {\'o}w u\IeC {\.z}ycia}{36}
+\contentsline {subsubsection}{\numberline {2.5.4}Opis tekstowy przypadk\IeC {\'o}w u\IeC {\.z}ycia}{36}
+\contentsline {subsubsection}{\numberline {2.5.5}Diagramy czynno\IeC {\'s}ci}{38}
+\contentsline {subsection}{\numberline {2.6}Diagram klas}{39}
+\contentsline {section}{\numberline {3}Opis interfejsu systemu}{48}
+\contentsline {subsection}{\numberline {3.1}Modu\IeC {\l } silnika i symulatora gry}{48}
+\contentsline {subsubsection}{\numberline {3.1.1}G\IeC {\l }\IeC {\'o}wne okno aplikacji}{48}
+\contentsline {subsubsection}{\numberline {3.1.2}Dane konfiguracyjne}{50}
+\contentsline {subsubsection}{\numberline {3.1.3}Widok Populacji i Chromosomu}{51}
+\contentsline {subsection}{\numberline {3.2}Modu\IeC {\l } edytora map}{53}
+\contentsline {subsection}{\numberline {3.3}Realizacja warstwy symulacyjnej}{53}
+\contentsline {subsubsection}{\numberline {3.3.1}Edytor Map}{53}

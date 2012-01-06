@@ -33,11 +33,10 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 
 \subsection{Wykorzystane narzędzia i języki programowania}
 \begin{par}
-	\subsection{Język aplikacji}
+	\subsubsection{Język Java}
 	Głównym celem do zrealizowania w pracy jest problem algorytmiczny i teoretyczny.
 	Praca w mniejszym stopniu opiera się na wykorzystaniu konkretnej technologii, czy języka programowania, wobec czego zostały wykorzystane popularne narzędzia i języki programowania.
 	System został napisany w języku Java oraz testowany na wirtualnej maszynie javy w wersji Java SE 7u2. Biblioteka Swing została użyta do stworzenia warstwy wizualnej programu.
-	\subsection{Java}
 	Java jest językiem programowania wysokiego poziomu zaprojektowanym i stworzonym przez Jamesa Groslinga podczas gry pracował w firmie Sun Microsystems. Pierwsza propozycja stworzenia Javy pojawiłą się w roku 1991, do głównych twórców oprócz Jamesa Groslinga zalicza się również Mike'a Sheridana oraz Patrick'a Naughtona.
 	Początkowo język Java był bezpośrednio związany z firmą Sun Microsystems, która kontrolowała jego rozwój do roku 2010.
 	Od tego czasu firma Sun stała się częścią korporacji Oracle, wobec czego wszelkie prawa związane z językiem Java posiada Oracle.
@@ -55,18 +54,104 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 	Tą samą aplikację można by zrealizować za pomocą języka Python i biblioteki PyGame/Qt do warstwy wizualizacyjnej, jednak wówczas koszt czasowy realizacji algorytmu genetycznego oraz logiki gry mógłby okazać się znacząco duży, ze względu na fakt iż Python jest językiem interpretowanym, i generalnie nie jest przeznaczony do dużych obliczeń.
 	Przy konieczności realizacji prostej wersji demonstracyjnej programu opisywanego w pracy, język Python wraz z biblioteką PyGame może okazać się najszybszym do implementacji ze względu na krótki kod, dynamiczne typy zmiennych oraz bogatą kolekcję struktur takich jak listy czy mapy incydencji konieczne do realizacji algorytmu.
 	Sama aplikacja korzysta z kolekcji i podstawowych struktur danych występujących w języku Java.
-	\subsection{Swing}
+	\subsubsection{Biblioteka Swing}
 	Pierwszą próbą stworzenia biblioteki graficznej javy pozwalającej na tworzenie graficznego interfejsu użytkownika była biblioteka AWT (ang. Abstract Window Toolkit).
 	Fala niezadowolenia wśród programistów sprawiła iż ograniczone i mało efektowne elementy graficzne biblioteki AWT zostały zastąpione przez zbiór komponentów dziś znanych jako Swing.
 	W bibliotece Swing znajdziemy większość podstawowych komponentów występujących we współczesnych systemach operacyjnych włącznie z obsługą okien, natomiast w bibliotece AWT znajdziemy obsługę zdarzeń, co w połączeniu daje nam wystarczające narzędzia do stworzenia graficznego interfejsu.
 	Warto zauważyć iż Swing nie korzysta z domyślnych ustawień systemu jeśli chodzi o wygląd komponentów, dzięki czemu ten sam program wygląda identycznie na każdym systemie operacyjnym.
 	Alternatywą dla biblioteki Swing może być biblioteka SWT związana z projektem Eclipse.
 	W odróżnieniu do Swing, komponenty korzystają z wyglądu komponentów systemu operacyjnego.
-	\subsection{Narzędzia}
+	\subsubsection{Narzędzia}
 	Aplikacja w całości została zrealizowana w programie Netbeans 6.9.1 wspierającym testowanie, kompilację budowanie aplikacji napisanych w języku Java.
 	Innym popularnym narzędziem może być Eclipse, jednak lepsze narzędzia testujące (ang. profiler) przeważyły o wyborze pierwszej aplikacji.
 \end{par}
+\subsection{Wstępna analiza problemu}
+\begin{par}
+	\subsubsection{Sterowanie}
+	\begin{par}
+	Aby zrealizować część odpowiedzialną za sterowanie postacią, należy użyć klasy pośredniej pomiędzy warstwą logiki silnika gry, a warstwą komunikacji z graczem.
+	Przy takim rozwiązaniu sygnały z klawiatury bądź innych urządzeń peryferyjnych są przekazywane do warstwy pośredniczącej.
+	Dzięki takiemu wyjściu możemy łatwo zmienić źródło sygnałów trafiających do postaci z bezpośrednich wciśnięć klawiszy na akcje przechowywane w chromosomie.
+	Warstwa pośrednia odpowiada wówczas za sterowanie postacią gracza w taki sam usystematyzowany sposób, niezależnie od źródła sygnałów. 
+	Z punktu widzenia logiki gry nie ma różnicy pomiędzy sygnałami z klawiatury, a wygenerowanymi akcjami.
+	\end{par}
+	
+	\subsubsection{Projekt chromosomu}
+	Kolejnym ważnym elementem jest odpowiednie zaprojektowanie struktury chromosomu. 
+	Dwa najbardziej trafne rozwiązania opierają się na dwóch zmiennych występujących w środowisku gry: czasie oraz pozycji gracza.
+	\begin{enumerate}
+	\item
+	{\bf Czas który upłynął od rozpoczęcia danej instancji przejścia. }
+	\begin{par}
 
+		To rozwiązanie zakłada podejmowanie akcji w grze w zależności od czasu który upłynął od jej rozpoczęcia.
+		Warto zauważyć iż nie jesteśmy ograniczeni położeniem postaci na planszy, dzięki czemu możliwe są takie operacje jak brak akcji, czy powrót do początku planszy jeśli to korzystne.
+		Istotną wadą tego rozwiązania byłaby duża podatność algorytmu na zapętlanie się, lub wykonywanie dużej ilości mało przydatnych ruchów. 
+		Można łatwo zauważyć że przy równym prawdopodobieństwie ruchu w lewo i prawo, postać tylko nieznacznie będzie oddalać się punktu startowego. 
+		Prostym rozwiązaniem tego problemu jest przyporządkowanie pewnego prawdopodobieństwa każdej akcji, dzięki czemu możemy założyć że preferowanym kierunkiem jest np. ruch postaci w prawo, nie tracąc możliwości minimalnego ruchu w lewo jeśli to korzystne.
+		Pewnym utrudnieniem może być krzyżowanie tego typu chromosomów. Ponieważ akcje postaci w większości przypadków mają sens w kontekście jej aktualnego położenia, o tyle klasyczne krzyżowanie poprzez ''cięcia'' chromosomu na dwie części może okazać się kosztowne.
+		Wybranie losowego punktu przecięcia i złączenie ze sobą dwóch chromosomów nie jest dobrym rozwiązaniem.
+		Po połączeniu otrzymamy niespójny ciąg ruchów, które będą miały niewiele wspólnego z aktualną pozycją gracza na mapie, wobec czego będą nieużyteczne.
+		Można temu zapobiec zapewniając łączenie się chromosomów jedynie w punktach w których postać w obu momentach znajduje się w tym samym lub zbliżonym miejscu. Wyznaczenie takich punktów może okazać się kosztowne.
+		Przeszukiwanie punktów wspólnych można zrealizować w czasie $O(n*log_2n)$ najpierw sortując tablice obu osobników odpowiadające za ruch w chromosomie. 
+		Tablice sortujemy względem współrzędnej X aktualnego położenia gracza dla każdej z akcji, a następnie liniowo przechodząc po obu tablicach osobników, szukając punktów wspólnych.
+		Wówczas widać iż trzeba przechowywać dane na temat położenia w chromosomie, co jest nieco niespójne z ideą poruszania się względem czasu.
+		Wstępny schemat takiego rozwiązania mógłby wówczas wyglądać tak jak na rysunku \ref{fig:sterowanie}.
+		
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/sterowanie.jpg}
+		\caption{Sterowanie względem czasu.}
+		\label{fig:sterowanie}
+		\end{figure}
+		
+		Tablice c1, c2 oznaczają odpowiednio tablicę odpowiadającą za akcje specjalne (np. skok), oraz tablicę odpowiadającą jedynie za ruch kierunkowy.
+
+		Lepszym rozwiązaniem jest realizacja krzyżowania nie poprzez klasyczne podejście, lecz modelowane statystycznie: Potomstwo nie otrzymuje bezpośrednich fragmentów chromosomu, lecz losuje za każdym razem nowe ruchy,
+		natomiast chromosomy populacji rodzicielskiej zwiększają prawdopodobieństwo wylosowania najczęściej występujących ruchów.
+		Schemat takiego rozwiązania zaprezentowany jest na Rys. \ref{fig:krzyżowanie}, gdzie przedstawione zostało krzyżowanie populacji składającej się z 3 osobników (p1,p2,p3) oraz sposób liczenia nowych prawdopodobieństw w danym punkcie chromosomu.
+		Do tego rozwiązania włączamy stałą decydującą o wadze jakie ma krzyżowanie: Jeśli rodzic posiada pewną akcję A w pewnym miejscu swojego chromosomu,
+		wówczas potomkowi losowana jest nowa akcja, z tą różnicą iż akcja A ma teraz prawdopodobieństwo wylosowania $p_A = p_A + p_A*k$. Jeśli populacja rodzicielska składa się z $n$ rodziców,
+		oraz $m$ z nich posiada w danym momencie taką samą akcję wówczas nowe prawdopodobieństwo wylosowania akcji (tylko dla tego rozpatrywanego miejsca) wynosi 
+		\begin{center}
+		$p_A =  p_A + {\displaystyle\sum\limits_{i=1}^m (p_A*k)} = p_A + (p_A*k)*m$.
+		\end{center}
+		Dzięki takiemu podejściu zachowujemy ideę krzyżowania oraz znacznie upraszczamy cały proces.
+		
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=5in]{obrazki/stat_cross.png}
+		\caption{Krzyżowanie statystyczne.}
+		\label{fig:krzyżowanie}
+		\end{figure}
+
+	\end{par}
+	\item
+	{\bf Aktualna pozycja gracza.}
+	\begin{par}
+		O ile poprzednie rozwiązanie dawało większą swobodę ruchu po mapie, to było jednak mało optymalne pod względem osiągania szybko dobrych wyników.
+		Jeśli założymy iż akcje przechowywane w chromosomie mają być aktywowane w momencie osiągnięcia przez gracza danej pozycji na osi X mapy, wówczas uprościmy cały mechanizm krzyżowania (już nie musimy szukać punktów wspólnych, gdyż dwa dowolne indeksy w obu tablicach $i,j$ gwarantują nam takie samo położenie gracza na mapie gdy $i=j$.
+		Oprócz tego przy założeniu że planszę da się rozwiązać poruszając się tylko w prawo upraszcza to większość operacji w algorytmie.
+		Innym udogodnieniem będzie uproszczenie samego typu przechowywanych danych. Ponieważ rezygnujemy z postojów i ruchu w lewo, równie dobrze możemy zrezygnować z tablicy przechowującej te informacje.
+
+		\begin{par}
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/sterowanie2.jpg}
+		\caption{Sterowanie względem pozycji gracza.}
+		\label{fig:sterowanie2}
+		\end{figure}
+		\end{par}
+
+		To podejście posiada jednak kilka poważnych wad i wymaga pewnych ograniczających założeń.
+		Plansza musi być ukierunkowana, i być rozwiązywalna przy ciągłym ruchu w określonym kierunku.
+		Jest to rozwiązanie działające jedynie dla bardzo wąskiej grupy gier platformowych (np. wspomniane wcześniej Super Mario Brothers).
+		Przeniesienie systemu do zastosowania w grze platformowej o nieco innym schemacie ruchu (np. rozwiązywania labiryntu) może okazać się trudne i wymagające dużych zmian w samym algorytmie.
+		Jeśli chcemy tego uniknąć i traktować system bardziej ogólnie, lepiej jest skorzystać z pierwszego podejścia.
+	\end{par}
+	\end{enumerate}
+	\FloatBarrier
+\end{par}
 \subsection{Moduł silnika i symulatora gry}
 
 \subsubsection{Wymagania funkcjonalne}
@@ -487,93 +572,7 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 		\FloatBarrier
 \end{par}
 
-\subsection{Wstępna analiza problemu}
-\begin{par}
-	\subsubsection{Sterowanie}
-	\begin{par}
-	Aby zrealizować część odpowiedzialną za sterowanie postacią, należy użyć klasy pośredniej pomiędzy warstwą logiki silnika gry, a warstwą komunikacji z graczem.
-	Przy takim rozwiązaniu sygnały z klawiatury bądź innych urządzeń peryferyjnych są przekazywane do warstwy pośredniczącej.
-	Dzięki takiemu wyjściu możemy łatwo zmienić źródło sygnałów trafiających do postaci z bezpośrednich wciśnięć klawiszy na akcje przechowywane w chromosomie.
-	Warstwa pośrednia odpowiada wówczas za sterowanie postacią gracza w taki sam usystematyzowany sposób, niezależnie od źródła sygnałów. 
-	Z punktu widzenia logiki gry nie ma różnicy pomiędzy sygnałami z klawiatury, a wygenerowanymi akcjami.
-	\end{par}
-	
-	\subsubsection{Projekt chromosomu}
-	Kolejnym ważnym elementem jest odpowiednie zaprojektowanie struktury chromosomu. 
-	Dwa najbardziej trafne rozwiązania opierają się na dwóch zmiennych występujących w środowisku gry: czasie oraz pozycji gracza.
-	\begin{enumerate}
-	\item
-	{\bf Czas który upłynął od rozpoczęcia danej instancji przejścia. }
-	\begin{par}
 
-		To rozwiązanie zakłada podejmowanie akcji w grze w zależności od czasu który upłynął od jej rozpoczęcia.
-		Warto zauważyć iż nie jesteśmy ograniczeni położeniem postaci na planszy, dzięki czemu możliwe są takie operacje jak brak akcji, czy powrót do początku planszy jeśli to korzystne.
-		Istotną wadą tego rozwiązania byłaby duża podatność algorytmu na zapętlanie się, lub wykonywanie dużej ilości mało przydatnych ruchów. 
-		Można łatwo zauważyć że przy równym prawdopodobieństwie ruchu w lewo i prawo, postać tylko nieznacznie będzie oddalać się punktu startowego. 
-		Prostym rozwiązaniem tego problemu jest przyporządkowanie pewnego prawdopodobieństwa każdej akcji, dzięki czemu możemy założyć że preferowanym kierunkiem jest np. ruch postaci w prawo, nie tracąc możliwości minimalnego ruchu w lewo jeśli to korzystne.
-		Pewnym utrudnieniem może być krzyżowanie tego typu chromosomów. Ponieważ akcje postaci w większości przypadków mają sens w kontekście jej aktualnego położenia, o tyle klasyczne krzyżowanie poprzez ''cięcia'' chromosomu na dwie części może okazać się kosztowne.
-		Wybranie losowego punktu przecięcia i złączenie ze sobą dwóch chromosomów nie jest dobrym rozwiązaniem.
-		Po połączeniu otrzymamy niespójny ciąg ruchów, które będą miały niewiele wspólnego z aktualną pozycją gracza na mapie, wobec czego będą nieużyteczne.
-		Można temu zapobiec zapewniając łączenie się chromosomów jedynie w punktach w których postać w obu momentach znajduje się w tym samym lub zbliżonym miejscu. Wyznaczenie takich punktów może okazać się kosztowne.
-		Przeszukiwanie punktów wspólnych można zrealizować w czasie $O(n*log_2n)$ najpierw sortując tablice obu osobników odpowiadające za ruch w chromosomie. 
-		Tablice sortujemy względem współrzędnej X aktualnego położenia gracza dla każdej z akcji, a następnie liniowo przechodząc po obu tablicach osobników, szukając punktów wspólnych.
-		Wówczas widać iż trzeba przechowywać dane na temat położenia w chromosomie, co jest nieco niespójne z ideą poruszania się względem czasu.
-		Wstępny schemat takiego rozwiązania mógłby wówczas wyglądać tak jak na rysunku \ref{fig:sterowanie}.
-		
-		\begin{figure}[!h]
-		\centering
-		\includegraphics[width=\textwidth]{obrazki/sterowanie.jpg}
-		\caption{Sterowanie względem czasu.}
-		\label{fig:sterowanie}
-		\end{figure}
-		
-		Tablice c1, c2 oznaczają odpowiednio tablicę odpowiadającą za akcje specjalne (np. skok), oraz tablicę odpowiadającą jedynie za ruch kierunkowy.
-
-		Lepszym rozwiązaniem jest realizacja krzyżowania nie poprzez klasyczne podejście, lecz modelowane statystycznie: Potomstwo nie otrzymuje bezpośrednich fragmentów chromosomu, lecz losuje za każdym razem nowe ruchy,
-		natomiast chromosomy populacji rodzicielskiej zwiększają prawdopodobieństwo wylosowania najczęściej występujących ruchów.
-		Schemat takiego rozwiązania zaprezentowany jest na Rys. \ref{fig:krzyżowanie}, gdzie przedstawione zostało krzyżowanie populacji składającej się z 3 osobników (p1,p2,p3) oraz sposób liczenia nowych prawdopodobieństw w danym punkcie chromosomu.
-		Do tego rozwiązania włączamy stałą decydującą o wadze jakie ma krzyżowanie: Jeśli rodzic posiada pewną akcję A w pewnym miejscu swojego chromosomu,
-		wówczas potomkowi losowana jest nowa akcja, z tą różnicą iż akcja A ma teraz prawdopodobieństwo wylosowania $p_A = p_A + p_A*k$. Jeśli populacja rodzicielska składa się z $n$ rodziców,
-		oraz $m$ z nich posiada w danym momencie taką samą akcję wówczas nowe prawdopodobieństwo wylosowania akcji (tylko dla tego rozpatrywanego miejsca) wynosi 
-		\begin{center}
-		$p_A =  p_A + {\displaystyle\sum\limits_{i=1}^m (p_A*k)} = p_A + (p_A*k)*m$.
-		\end{center}
-		Dzięki takiemu podejściu zachowujemy ideę krzyżowania oraz znacznie upraszczamy cały proces.
-		
-		\begin{figure}[!h]
-		\centering
-		\includegraphics[width=5in]{obrazki/stat_cross.png}
-		\caption{Krzyżowanie statystyczne.}
-		\label{fig:krzyżowanie}
-		\end{figure}
-
-	\end{par}
-	\item
-	{\bf Aktualna pozycja gracza.}
-	\begin{par}
-		O ile poprzednie rozwiązanie dawało większą swobodę ruchu po mapie, to było jednak mało optymalne pod względem osiągania szybko dobrych wyników.
-		Jeśli założymy iż akcje przechowywane w chromosomie mają być aktywowane w momencie osiągnięcia przez gracza danej pozycji na osi X mapy, wówczas uprościmy cały mechanizm krzyżowania (już nie musimy szukać punktów wspólnych, gdyż dwa dowolne indeksy w obu tablicach $i,j$ gwarantują nam takie samo położenie gracza na mapie gdy $i=j$.
-		Oprócz tego przy założeniu że planszę da się rozwiązać poruszając się tylko w prawo upraszcza to większość operacji w algorytmie.
-		Innym udogodnieniem będzie uproszczenie samego typu przechowywanych danych. Ponieważ rezygnujemy z postojów i ruchu w lewo, równie dobrze możemy zrezygnować z tablicy przechowującej te informacje.
-
-		\begin{par}
-		\begin{figure}[!h]
-		\centering
-		\includegraphics[width=\textwidth]{obrazki/sterowanie2.jpg}
-		\caption{Sterowanie względem pozycji gracza.}
-		\label{fig:sterowanie2}
-		\end{figure}
-		\end{par}
-
-		To podejście posiada jednak kilka poważnych wad i wymaga pewnych ograniczających założeń.
-		Plansza musi być ukierunkowana, i być rozwiązywalna przy ciągłym ruchu w określonym kierunku.
-		Jest to rozwiązanie działające jedynie dla bardzo wąskiej grupy gier platformowych (np. wspomniane wcześniej Super Mario Brothers).
-		Przeniesienie systemu do zastosowania w grze platformowej o nieco innym schemacie ruchu (np. rozwiązywania labiryntu) może okazać się trudne i wymagające dużych zmian w samym algorytmie.
-		Jeśli chcemy tego uniknąć i traktować system bardziej ogólnie, lepiej jest skorzystać z pierwszego podejścia.
-	\end{par}
-	\end{enumerate}
-	\FloatBarrier
-\end{par}
 
 \subsection{Diagram klas}
 \begin{par}
@@ -628,7 +627,7 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 	\item{\bf LogicLabirynth }\newline
 	Jest to przykładowa implementacja gry, w której postać porusza się w 4 kierunkach. Klasa została rozszerzona o wartości ruchu postaci w obu osiach.
 	\item{\bf LogicMario }\newline
-	Podobnie jak klasa LogicLabirynth jest to prosta implementacja gry wzorowanej na grze Super Mario Brothers. Pomocnicza zmienne actor_falling pomaga w realizacji fizyki w grze (wpływie grawitacji na postać). Zmienna velocity_x odpowiada za wartość prędkości postaci w poziomie.
+	Podobnie jak klasa LogicLabirynth jest to prosta implementacja gry wzorowanej na grze Super Mario Brothers. Pomocnicza zmienne actor\_falling pomaga w realizacji fizyki w grze (wpływie grawitacji na postać). Zmienna velocity\_x odpowiada za wartość prędkości postaci w poziomie.
 	\item{\bf Main }\newline
 	Klasa Main jest główną klasą w grze. Zawiera ona referencje do poszczególnych komponentów systemu takich jak silnik renderujący, logika gry, mapy gry, warstwy kontrolującej wykonywanie akcji oraz bieżącego stanu gry.
 	Podczas uruchomienia aplikacji uruchamiana jest metoda main(String[]) która inicjuje wszystkie koniecznie komponenty i wyświetla okno aplikacji.
@@ -636,16 +635,25 @@ W tym rozdziale zostanie najpierw opisany problem oraz koniecznie do zaimplement
 	\item{\bf MapEditor }\newline
 	Klasa MapEditor podobnie jak klasa Main dziedziczy po klasie JPanel. Zawiera ona listę obiektów niezależną od obiektów istniejących w symulatorze gry. Metoda loadMap pozwala na wczytanie mapy z pliku na dysku, metoda saveMap służy do zapisu aktualnie edytowanej mapy do pliku tekstowego. Klasa uzupełnia interfejsy MouseListener oraz MouseMotionListener przez co nadpisuje metody służące do obsługi zdarzeń. 
 	\item{\bf Population }\newline
-	Klasa Population przechowuje tablicę osobników uczestniczących w działaniu algorytmu
+	Klasa Population przechowuje tablicę osobników biorących udział w treningu populacji. 
+	Metoda getNextPopulation odpowiada za wygenerowanie nowej populacji na podstawie wyników poprzedniej - to w niej wykonywane są wszystkie kroki związane z algorytmem genetycznym.
+	Oprócz tego klasa posiada konstruktor generujący nową Populację na podstawie populacji rodzicielskiej (wspomniane wcześniej krzyżowanie statystyczne). Metoda getParents zwraca populację rodzicielską na podstawie aktualnej populacji.
 	\item{\bf Renderer }\newline
+	Renderer jest klasą odpowiedzialną za wyświetlanie elementów gry w oknie. Warstwa ta została odseparowana, dzięki czemu podczas dalszej rozbudowy aplikacji łatwo można zastąpić silnik renderujący na inny, bądź wprowadzić używanie tekstur do programu.
 	\item{\bf RendererSimple }\newline
+	Jest to prosta implementacja silnika renderującego. Głównym założeniem jest tutaj jedynie rysowanie prostokątnych obiektów, różniących się kolorami (Każda klasa dziedzicząca po WorldObject posiada inny kolor).
 	\item{\bf Resources }\newline
+	Klasa Resources przechowuje wszystkie obiekty świata gry. Metoda loadResources(String) interpretuje plik tekstowy przekazany w parametrze jako ścieżka na dysku i zamienia opis tekstowy mapy na obiekty w grze. Warto zauważyć iż metoda getMainActor zwraca jeden obiekt Aktora, natomiast w zasobach gry może być ich kilku (kolekcja actors jest listą). Jest to rozwiązanie mające na celu późniejsze rozwinięcie systemu np. do obsługi gry wieloosobowej.
 	\item{\bf ResultData }\newline
+	ResultData jest klasą pomocniczą przechowującą dane na temat przejścia gry każdego osobnika. Przechowuje ona zmienne takie jak wynik funkcji przystosowania (zmienna final\_score), ilość zebranych punktów na mapie (score), czas przejścia (time\_elapsed) oraz stan w jakim przejście się zakończyło (final\_state przyjmujący wartości RESULT\_TIMEOUT, RESULT\_WON bądź RESULT\_LOST). Oprócz tego posiada ona metodę liczącą funkcję przystosowania na podstawie parametrów w ustawieniach algorytmu genetycznego.
 	\item{\bf Terrain }\newline
+	Klasa Terrain jest klasą dziedziczącą po klasie WorldObject. Odpowiada za statyczny teren. Najczęściej kolizja z nim powoduje zatrzymanie ruchu, jednak zależy to od implementacji logiki gry.
 	\item{\bf Vector }\newline
+	Klasa pomocnicza przechowująca współrzędne punktu (typ double).
 	\item{\bf WorldObject }\newline
+	Klasa abstrakcyjna po której dziedziczą wszystkie elementy gry. Podstawową jej zmienną jest położenie na mapie oraz rozmiar (odpowiednio zmienne ``position'' oraz ``size'').
+	Klasa posiada metodę getRectangle zwracającą obiekt Rectangle dostępny w standardowej bibliotece, dzięki czemu realizowanie kolizji pomiędzy dwoma obiektami jest realizowanie poprzez wywołanie metody intersects(Rectangle). Każdy dziedziczący po WorldObject obiekt ma do dyspozycji metodę evalCollision która decyduje o czynnościach wykonywanych podczas kolizji dwóch obiektów. Obiekty klasy WorldObject posiadają również metodę paint(Graphics) która odpowiada za rysowanie obiektu na ekranie (obiekcie Graphics).
 	\end{enumerate}
-
 
 \end{par}
 

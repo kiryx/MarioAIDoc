@@ -5,13 +5,13 @@
 	Jeśli chodzi o typ struktury danych przyjęto pierwszy schemat (rys.\ref{fig:sterowanie}), wraz z krzyżowaniem statystycznym. 
 	O ile ukierunkowanie systemu na gry jednego typu może lepiej się sprawdzić jeśli zależy nam
 	jedynie na szybkim i optymalnym wyniku, to generalizacja systemu i elastyczna implementacja całego algorytmu da nam lepsze narzędzie nie tylko dydaktyczne, ale też badawcze.
-	Przykładem może być popularna gra Galaxian. Sama definicja klawiszy w Galaxian i Super Mario Brothers jest podobna (klawisze kierunkowe + klawisze specjalne),
-	jednak schemat poruszania się jest już inny: O ile gry typu Mario Brothers pasują do powyższych założeń o kierunkowości ruchu, to w grze Galaxian już tak nie jest.
+	Przykładem może być popularna gra Tetris. Sama definicja klawiszy w grach Tetris i Super Mario Brothers jest podobna (klawisze kierunkowe + klawisze specjalne),
+	jednak schemat poruszania się jest już inny: O ile gry typu Mario Brothers pasują do powyższych założeń o kierunkowości ruchu, to w grze Tetris już tak nie jest.
 	Korzystniej zatem jest traktowanie projektu jako systemu rozwiązującego gry platformowe czasu rzeczywistego na podstawie przyciśnięć klawiszy w czasie.
 \end{par}
 \begin{par}
 	
-	Sam chromosom przechowuje następujące dane:
+	Sama struktura chromosomu przechowuje następujące dane:
 
 	\begin{itemize}
 		\item Tablicę dotyczącą akcji ruchu przechowującą wartości typu wyliczeniowego: UP, DOWN, LEFT, RIGHT, NONE
@@ -23,9 +23,7 @@
 	Wartości A,B,C,D odpowiadają za kolejne klawisze specjalne które mogą być traktowane przez środowisko gry jako skok lub strzał. 
 	Ograniczamy się do 4 klawiszy specjalnych, które wystarczają w zupełności do zrealizowania większości gier platformowych.
 
-	Oprócz tego każdy Chromosom uzupełnia interfejs Comparable, dzięki czemu obiekty mogą być porównywane ze sobą. Porównanie składa się jedynie z porównania wyniku wartości funkcji przystosowania. Dzięki temu możemy łatwo posortować całe populacje.
-	Obiekt ten przechowuje dane na temat wyniku danego chromosomu i danych pomocniczych, które są uzupełniane po przetestowaniu chromosomu. 
-	Oprócz tego chromosom posiada metody pozwalające na mutację zarówno tablicy ruchu jak i tablicy akcji specjalnych.
+	Oprócz tego każdy Chromosom uzupełnia interfejs Comparable, dzięki czemu obiekty mogą być porównywane ze sobą. Porównanie składa się jedynie z porównania wyniku wartości funkcji przystosowania, dzięki temu możemy łatwo posortować daną populację.
 \end{par}
 \subsubsection{Dane konfiguracyjne}
 \begin{par}
@@ -35,7 +33,7 @@
 	Dzięki temu mamy pewność iż wszystkie parametry biorące udział w algorytmie będą w pełni konfigurowalne.
 \end{par}
 \begin{par}
-	Każda z akcji, zarówno ruchu jak i specjalna posiada prawdopodobieństwo wystąpienia.
+	Każda z akcji, zarówno ruchu jak i specjalna posiada pewne prawdopodobieństwo wystąpienia.
 	Wartości te również dostępne są w panelu konfiguracyjnym, przy czym są one normalizowane do sumy wszystkich wartości z danej kategorii.
 	Przykładowo dla wartości podanych na rys \ref{fig:config1}. Wartość ruchu w prawo (grupa ``Movement key probabilities'') wynosi $\frac{2.5}{2.5+0.5+0.2}=0.78125$.
 	\begin{figure}[!h]

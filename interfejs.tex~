@@ -1,40 +1,59 @@
-\section{Realizacja poszczególnych elementów systemu}
-\subsection{Realizacja warstwy genetycznej}
-\subsubsection{Struktura danych chromosomu}
+\section{Opis interfejsu systemu}
+\subsection{Moduł silnika i symulatora gry}
+\subsubsection{Główne okno aplikacji}
 \begin{par}
-	Jeśli chodzi o typ struktury danych przyjęto pierwszy schemat (rys.\ref{fig:sterowanie}), wraz z krzyżowaniem statystycznym. 
-	O ile ukierunkowanie systemu na gry jednego typu może lepiej się sprawdzić jeśli zależy nam
-	jedynie na szybkim i optymalnym wyniku, to generalizacja systemu i elastyczna implementacja całego algorytmu da nam lepsze narzędzie nie tylko dydaktyczne, ale też badawcze.
-	Przykładem może być popularna gra Tetris. Sama definicja klawiszy w grach Tetris i Super Mario Brothers jest podobna (klawisze kierunkowe + klawisze specjalne),
-	jednak schemat poruszania się jest już inny: O ile gry typu Mario Brothers pasują do powyższych założeń o kierunkowości ruchu, to w grze Tetris już tak nie jest.
-	Korzystniej zatem jest traktowanie projektu jako systemu rozwiązującego gry platformowe czasu rzeczywistego na podstawie przyciśnięć klawiszy w czasie.
+Podstawowym oknem aplikacji widocznym tuż po uruchomieniu jest główne okno symulatora gry. 
+Domyślnym trybem jest tryb poruszania się po mapie przez użytkownika. 
+Sterowanie postacią przez klawiaturę zrealizowanie jest za pomocą strzałek kierunkowych, oraz klawiszy $a,s,d,f$ jako akcji specjalnych.
+Reakcja środowiska na poszczególne klawisze zależy od logiki gry, domyślnie jest to logika reprezentowana przez klasę LogicMario (strzałki kierunkowe odpowiadają za ruch postaci, natomiast klawisz f za skok).
+Poniżej przedstawiony został opis poszczególnych elementów menu.
+\begin{figure}[!h]
+		\centering
+		\includegraphics[width=4in]{obrazki/main_window.png}
+		\caption{Główne okno aplikacji.}
+		\label{fig:main_window}
+	\end{figure}
+W oknie aplikacji widoczne jest menu oraz pasek narzędzi zawierający podstawowe przyciski sterujące systemem:
+	\begin{enumerate}
+	\item Z menu ``System'' użytkownik ma możliwość otwarcia dodatkowych okien aplikacji takich jak edytor map, panel ustawień, podgląd populacji oraz menu dialogowe dotyczące wczytania nowej mapy z pliku do środowiska gry.
+	\item Menu ``Help'' zawiera informacje dotyczące programu oraz krótki opis skrótów klawiszowych.
+	\item Przycisk ``Restart'' pozwala na ponowne uruchomienie algorytmu, czyli wygenerowanie losowej populacji.
+	\item Przycisk ``SpeedUp'' odpowiada za przejście systemu w tryb treningu przyspieszonego, jeśli populacja aktualnie znajduje się w trybie treningu. Przestaje wówczas być aktualizowana grafika, a system w tle symuluje kolejne populacje osobników w środowisku gry.
+	\item Domyślnym trybem kamery jest śledzenie obiektu aktora. Przycisk ``Mouse Cam'' pozwala na przejście w tryb swobodnej kamery - prawy przycisk myszy służy do ``przesuwania'' ekranu.
+	\item Przycisk ``Mode: User''(``Mode: Genetic'') służy do zmiany trybu działania systemu. Domyślnie pierwszym trybem jest tryb poruszania się po mapie przez użytkownika. Po wciśnięciu przycisku system przechodzi do trybu treningu populacji. Kolejne wciśnięcie przycisku przywraca poprzedni tryb swobodnego poruszania się.
+	\end{enumerate}
+	\FloatBarrier
 \end{par}
 \begin{par}
+	Środowisko gry znajduje się w centralnej części okna gry.
+	Wszystkie elementy gry z punktu widzenia kolizji są prostokątnymi obszarami, różniącymi się reakcją na kolizję z obiektem gracza. W podstawowym silniku renderującym zostały one wyróżnione kolorem.
 	
-	Sama struktura chromosomu przechowuje następujące dane:
+	\definecolor{orange}{rgb}{1,0.5,0}
+	\definecolor{gray}{rgb}{0.5,0.5,0.5}
+	Na Rys. \ref{fig:objects} widać obiekty świata gry: 
+	\textcolor{blue}{\textit{Actor}}, 
+	\textcolor{orange}{\textit{BonusCoin}},
+	\textcolor{red}{\textit{BonusLose}},
+	\textcolor{green}{\textit{BonusWin}},
+	\textcolor{black}{\textit{Terrain}}.
 
-	\begin{itemize}
-		\item Tablicę dotyczącą akcji ruchu przechowującą wartości typu wyliczeniowego: UP, DOWN, LEFT, RIGHT, NONE
-		\item Tablicę dotyczącą akcji specjalnych: A, B, C, D, NONE
-		\item Instancję obiektu \textit{ResultData} przechowującego dane dotyczące wyniku funkcji przystosowania, oraz wartości ustalane po przetestowaniu danego chromosomu takie jak czas który upłynął, rodzaj wyniku, ilość zebranych punktów.
-	\end{itemize}
-
-	Wartość NONE w obu tablicach odpowiada za brak akcji. 
-	Wartości A,B,C,D odpowiadają za kolejne klawisze specjalne które mogą być traktowane przez środowisko gry jako skok lub strzał. 
-	Ograniczamy się do 4 klawiszy specjalnych, które wystarczają w zupełności do zrealizowania większości gier platformowych.
-
-	Oprócz tego każdy Chromosom uzupełnia interfejs Comparable, dzięki czemu obiekty mogą być porównywane ze sobą. Porównanie składa się jedynie z porównania wyniku wartości funkcji przystosowania, dzięki temu możemy łatwo posortować daną populację.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=4in]{obrazki/objects.png}
+		\caption{Poszczególne obiekty świata gry.}
+		\label{fig:objects}
+	\end{figure}
 \end{par}
-\subsubsection{Dane konfiguracyjne}
+\subsubsection{Panel konfiguracyjny}
 \begin{par}
 	Jak już zostało wspomniane, podstawą dobrego systemu, szczególnie do zastosowań badawczych jest łatwo dostępna konfiguracja. 
-	W pracy rolę tę pełni pośrednio klasa \textit{GeneticsConfig} która zawiera wszystkie najważniejsze parametry dotyczące algorytmu (takie jak prawdopodobieństwo mutacji) są przechowywane jako wartości tablicy asocjacyjnej (klasa \textit{JHashMap}). 
-	Oprócz tego sama tablica została opakowana w taki sposób iż rejestracja nowej wartości do tablicy wiąże się z automatycznym wygenerowaniem odpowiedniego pola w panelu konfiguracyjnym. 
-	Dzięki temu mamy pewność iż wszystkie parametry biorące udział w algorytmie będą w pełni konfigurowalne.
+	W pracy rolę tę pełni pośrednio klasa \textit{GeneticsConfig} która zawiera wszystkie najważniejsze parametry dotyczące algorytmu. Są przechowywane jako wartości tablicy asocjacyjnej (klasa \textit{HashMap}). 
+	Oprócz tego sama tablica została opakowana w taki sposób iż rejestracja nowej wartości do tablicy wiąże się z automatycznym wygenerowaniem odpowiedniego pola w panelu konfiguracyjnym - dzięki temu dodanie kolejnych parametrów genetycznych przy przyszłym rozbudowywaniu aplikacji automatycznie aktualizuje panel konfiguracyjny.
 \end{par}
 \begin{par}
-	Każda z akcji, zarówno ruchu jak i specjalna posiada prawdopodobieństwo wystąpienia.
-	Wartości te również dostępne są w panelu konfiguracyjnym, przy czym są one normalizowane do sumy wszystkich wartości z danej kategorii.
+	Każda z akcji, zarówno ruchu jak i tablica akcji specjalnych posiada pewne prawdopodobieństwo wystąpienia.
+	Zostały one podzielone na dwie grupy: \textit{Movement key probabilities} oraz \textit{Special key probabilities}
+	Wartości te możliwe są do zmiany w panelu konfiguracyjnym, przy czym są one normalizowane do sumy wszystkich wartości z danej kategorii.
 	Przykładowo dla wartości podanych na rys \ref{fig:config1}. Wartość ruchu w prawo (grupa ``Movement key probabilities'') wynosi $\frac{2.5}{2.5+0.5+0.2}=0.78125$.
 	\begin{figure}[!h]
 		\centering
@@ -42,7 +61,7 @@
 		\caption{Panel Konfiguracyjny.}
 		\label{fig:config1}
 	\end{figure}
-	Oprócz tego klasa GeneticsConfig posiada metody pozwalające na zwrócenie losowej akcji w zależności od prawdopodobieństwa jej wystąpienia - Rys. \ref{fig:config1}.
+	Trzecia grupa parametrów są to parametry algorytmu genetycznego (grupa \textit{Genetic Settings})
 \end{par}
 \subsubsection{Widok Populacji i Chromosomu}
 \begin{par}
@@ -60,47 +79,6 @@
 		\includegraphics[width=4in]{obrazki/chromosom.png}
 		\caption{Okno szczegółów chromosomu.}
 		\label{fig:chromosom}
-	\end{figure}
-\end{par}
-
-
-
-
-\subsection{Realizacja warstwy symulacyjnej}
-\subsubsection{Logika gry}
-\begin{par}
-	Sama warstwa logiki gry podejmuje decyzje o relacjach pomiędzy obiektami w grze.
-	Wszystkie elementy gry dziedziczą po klasie \textit{WorldObject}, która przechowuje podstawowe dane konieczne do wyświetlenia go w oknie takie jak położenie oraz wymiary.
-	Kolejno można je podzielić na:
-	\begin{itemize}
-		\item Obiekt klasy \textit{Actor}. 
-		Obiekt reprezentujący postać w grze. 
-		Klasa ta posiada zmienną \textit{velocity}, oznaczającą wektor prędkości obiektu.  
-		W każdym cyklu gry zostaje on dodany do położenia aktora.
-		Na zmianę wektora wpływa klasa \textit{Controller} która w zależności od trybu gry przekazuje wciśnięcia klawiszy z klawiatury, lub akcje wygenerowane przez algorytm genetyczny.
-		\item Obiekt klasy \textit{Terrain}. Z nich zbudowana jest mapa gry. Z punktu widzenia logiki nie wpływają one w żaden sposób na wynik, a jedynie kolidują z obiektem aktora. To z nich zbudowana jest mapa gry.
-		\item Obiekty klasy \textit{Bonus}
-		Są to obiekty wpływające na wynik gry. Kolizja Aktora z nimi powoduje zmianę wyniku gry. Klasa \textit{Bonus} jest klasą po której dziedziczą podklasy:
-		\begin{itemize}
-			\item BonusCoin - Obiekt reprezentujący punkty w grze. Aktorowi po kolizji z nimi zostaje dodana wartość punktowa przechowywana w obiekcie. Z punktu widzenia algorytmu zwiększają one ostateczną wartość funkcji przystosowania, która zależy od ilości punktów zebranych na mapie.
-			\item BonusWin - Kolizja aktora z obiektem tego typu kończy przejście chromosomu bądź gracza i zapisuje w stanie gry wynik końcowy \textit{RESULT\_WON}. W praktyce oznacza on zakończenie gry z pozytywnym skutkiem, który jest brany pod uwagę podczas wyliczenia funkcji przystosowania.
-			\item BonusLose - Obiekt kończący grę ze skutkiem negatywnym. Ma on reprezentować wszelkiego rodzaju pułapki w grze, które natychmiastowo kończą przejście chromosomu. W stanie gry zostaje wówczas zapisany wynik końcowy \textit{RESULT\_LOST}.
-		\end{itemize}
-	\end{itemize}
-	\definecolor{orange}{rgb}{1,0.5,0}
-	\definecolor{gray}{rgb}{0.5,0.5,0.5}
-	Na Rys. \ref{fig:objects} widać obiekty świata gry: 
-	\textcolor{blue}{\textit{Actor}}, 
-	\textcolor{orange}{\textit{BonusCoin}},
-	\textcolor{red}{\textit{BonusLose}},
-	\textcolor{green}{\textit{BonusWin}},
-	\textcolor{black}{\textit{Terrain}}.
-
-	\begin{figure}[!h]
-		\centering
-		\includegraphics[width=4in]{obrazki/objects.png}
-		\caption{Poszczególne elementy mapy.}
-		\label{fig:objects}
 	\end{figure}
 \end{par}
 
@@ -122,6 +100,15 @@
 	Jedyną pracą jaką należy wykonać przy implementacji własnego środowiska gry jest uzupełnienie własnej klasy dziedziczącej po klasie \textit{Logic}.
 	Wówczas przy poprawnej implementacji logiki gry system automatycznie symuluje zbiory chromosomów w środowisku gry.
 \end{par}
+
+\subsection{Moduł edytora map}
+\begin{par}
+\end{par}
+
+
+
+\subsection{Realizacja warstwy symulacyjnej}
+
 \subsubsection{Edytor Map}
 \begin{par}
 Przy testowaniu różnych ustawień algorytmu genetycznego przydatnym narzędziem może okazać się edytor map. 
