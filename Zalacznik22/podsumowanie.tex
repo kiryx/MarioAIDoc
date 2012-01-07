@@ -1,0 +1,10 @@
+\chapter{Podsumowanie}
+\begin{par}
+	Podczas implementacji systemu wynikły problemy dotyczące wielowątkowości w języku java, a dokładnie współdzielenie zasobów przez wątek gry, oraz wątek związany z wyświetlaniem interfejsu użytkownika. Podczas pracy nad systemem dużym problemem było częste pojawianie się wyjątku ``ConcurrentModificationException'' dotyczącego jednoczej modyfikacji listy elementów gry przez dwa wątki. Domyślnym rozwiązaniem jest umieszczenie modyfikacji listy w bloku synchronized{ }, co zmniejszyło częstotliwość występowania wyjątku, jednak dopiero zastosowanie zmiennej typu mutex rozwiązało całkowicie problem. Przypuszcza się iż może być to pewna właściwość biblioteki Swing która w połączeniu z pewnymi błędami projektowymi po stronie implementacji system, sprawiała problem.
+\end{par}
+\begin{par}
+	Przy uruchamianiu aplikacji na wolniejszych komputerach można było zauważyć pewien spadek płynności gry. Problem ten można byłoby rozwiązać korzystając z gotowych bibliotek graficznych (np. OpenGL), które działają szybciej niż własna implementacja warstwy graficznej. Innym usprawnieniem mogłoby być użycie biblioteki SWT zamiast biblioteki Swing, dzięki czemu wygląd aplikacji lepiej pasowałby do danego systemu operacyjnego - aplikacje okienkowe napisane w bibliotece SWT przypominają wyglądem standardowe aplikacje systemu. Jeśli chodzi o sam język programowania to Java w zupełności spełnia wymagania systemu.
+\end{par}
+\begin{par}
+	Sam system genetyczny daje dość dobre wyniki na prostych mapach (np. ukierunkowanych). Dużo gorzej radzi sobie z logiką wymagającą poruszania się w 4 kierunkach (np. LogicLabirynth). Usprawnieniem systemu mogłoby być wykorzystanie algorytmów przeszukujących przestrzeń rozwiązań (np. algorytm przeszukujący A*) wraz z algorytmem genetycznym. Sam algorytm genetyczny znajduje rozwiązanie za pomocą standardowego podejścia, jednak jeśli celem systemu byłoby najszybsze rozwiązanie danej gry, algorytm przeszukujący z pewną heurystyką może okazać się lepszym podejściem. Dużą zaletą systemu jest jego elastyczność - możliwość dodawania własnych map oraz logik do systemu.
+\end{par}

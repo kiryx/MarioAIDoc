@@ -1,0 +1,45 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: glowny.aux
+The style file: unsrt.bst
+Database file #1: bibliografia.bib
+You've used 9 entries,
+            1791 wiz_defined-function locations,
+            478 strings with 4288 characters,
+and the built_in function-call counts, 1074 in all, are:
+= -- 82
+> -- 19
+< -- 0
++ -- 12
+- -- 3
+* -- 14
+:= -- 122
+add.period$ -- 22
+call.type$ -- 9
+change.case$ -- 9
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 59
+empty$ -- 177
+format.name$ -- 3
+if$ -- 275
+int.to.chr$ -- 0
+int.to.str$ -- 9
+missing$ -- 2
+newline$ -- 41
+num.names$ -- 2
+pop$ -- 75
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 33
+stack$ -- 0
+substring$ -- 0
+swap$ -- 11
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 2
+width$ -- 10
+write$ -- 73

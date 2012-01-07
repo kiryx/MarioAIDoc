@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{marioai}
+Strona domowa projektu marioai.
+\newblock http://www.marioai.org.
+
+\bibitem{watson}
+Strona projektu ibm watson.
+\newblock http://www-03.ibm.com/innovation/us/watson/index.html.
+
+\bibitem{wolfram}
+Strona projektu wolfram alpha.
+\newblock http://www.wolframalpha.com.
+
+\bibitem{ThinkingJava}
+Bruce Eckel.
+\newblock Thinking in java. edycja polska. wydanie iv.
+\newblock In {\em Thinking in Java. Edycja Polska. Wydanie IV}. {Wydawnictwo
+  Helion}, 2006.
+
+\bibitem{swt}
+Biblioteka graficzna swt.
+\newblock http://eclipse.org/swt/.
+
+\bibitem{netbeans}
+Strona domowa projektu netbeans.
+\newblock http://www.netbeans.org/.
+
+\bibitem{AIMA}
+Stuart Russell and Peter Norvig.
+\newblock Artificial intelligence: A modern approach.
+\newblock In {\em Artificial Intelligence: A Modern Approach}. {Prentice Hall},
+  2009.
+
+\bibitem{history}
+University of nottingham - history of ai.
+\newblock http://red.cs.nott.ac.uk/~gxk//courses/g5aiai/002history/history.htm.
+
+\bibitem{game_playing}
+University of nottingham - game playing.
+\newblock
+  http://red.cs.nott.ac.uk/~gxk//courses/g5aiai/005gameplaying/game-playing.ht%
+m.
+
+\end{thebibliography}

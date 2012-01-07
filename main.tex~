@@ -8,6 +8,7 @@
 \usepackage{listings}
 \usepackage{setspace}
 \usepackage{color}
+\usepackage{chapter}
 \usepackage[section,subsection,subsubsection]{extraplaceins}
 %\promotor{dr inż. Marek Tabędzki}
 
@@ -21,6 +22,7 @@
 \normalsize
 \input{wstep.tex}
 \input{analiza.tex}
-\input{realizacja.tex}
+\input{interfejs.tex}
+\input{podsumowanie.tex}
 
 \end{document}

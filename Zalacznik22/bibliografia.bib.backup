@@ -1,0 +1,59 @@
+
+@inproceedings{ThinkingJava,
+  author    = {Bruce Eckel},
+  title     = {Thinking in Java. Edycja Polska. Wydanie IV},
+  booktitle = {Thinking in Java. Edycja Polska. Wydanie IV},
+  publisher = { {Wydawnictwo Helion}},
+  year      = {2006},
+}
+
+@inproceedings{AIMA,
+  author    = {Stuart Russell and Peter Norvig},
+  title     = {Artificial Intelligence: A Modern Approach},
+  booktitle = {Artificial Intelligence: A Modern Approach},
+  publisher = { {Prentice Hall}},
+  year      = {2009},
+  ee		= {http://aima.cs.berkeley.edu/}
+}
+	
+@MISC{marioai,
+	AUTHOR       = "",
+	TITLE        = "Strona domowa projektu MarioAI",
+	HOWPUBLISHED = "",
+	MONTH        = "",
+	YEAR         = "",
+	NOTE         = "http://www.marioai.org"
+}
+
+@MISC{history,
+	AUTHOR       = "",
+	TITLE        = "University of Nottingham - History of AI",
+	HOWPUBLISHED = "",
+	MONTH        = "",
+	YEAR         = "",
+	NOTE         = "http://red.cs.nott.ac.uk/~gxk//courses/g5aiai/002history/history.htm"
+}
+@MISC{swt,
+	AUTHOR       = "",
+	TITLE        = "Biblioteka graficzna SWT.",
+	HOWPUBLISHED = "",
+	MONTH        = "",
+	YEAR         = "",
+	NOTE         = "http://eclipse.org/swt/"
+}
+@MISC{netbeans,
+	AUTHOR       = "",
+	TITLE        = "Strona domowa projektu NetBeans",
+	HOWPUBLISHED = "",
+	MONTH        = "",
+	YEAR         = "",
+	NOTE         = "http://www.netbeans.org/"
+}
+@MISC{game_playing,
+	AUTHOR       = "",
+	TITLE        = "University of Nottingham - Game Playing",
+	HOWPUBLISHED = "",
+	MONTH        = "",
+	YEAR         = "",
+	NOTE         = "http://red.cs.nott.ac.uk/~gxk//courses/g5aiai/005gameplaying/game-playing.htm"
+}

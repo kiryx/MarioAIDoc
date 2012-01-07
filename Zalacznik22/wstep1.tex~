@@ -1,0 +1,29 @@
+\chapter{Wstêp}
+\begin{par}
+	Tematem pracy jest zaprojektowanie i implementacja systemu podejmuj¹cego decyzje w prostej grze platformowej czasu rzeczywistego.
+	Modu³ odpowiedzialny za optymalizacjê przejœcia gry, oraz podejmowanie akcji powinien byæ oparty o zagadnienie algorytmów genetycznych.
+	Celem samej gry jest dotarcie do zdefiniowanego wczeœniej celu na dwuwymiarowej mapie. Wynik koñcowy przejœcia mo¿e zale¿eæ od wielu parametrów - mapa mo¿e zawieraæ elementy daj¹ce punkty, jak i elementy prowadz¹ce do natychmiastowego zakoñczenia gry (z wynikiem pozytywnym b¹dŸ negatywnym).
+	Efektem pracy powinien byæ system pozwalaj¹cy na rozwi¹zanie tego typu problemu bazuj¹cy na algorytmie genetycznym.
+	\newline
+	Ogólne wymogi dotycz¹ce systemu:
+	\begin{itemize}
+		\item
+			System powinien sk³adaæ siê z bazowego silnika gry, wzorowanego na rozwi¹zaniach w klasycznych grach platformowych. Ma to byæ jednoczeœnie warstwa prezentacyjna algorytmu.
+			System nie powinien sztywno zak³adaæ realizacji algorytmu na konkretnej grze platformowej, lecz byæ ogólnym systemem rozwi¹zuj¹cym gry platformowe czasu rzeczywistego.
+		\item
+			System powinien pozwalaæ zarówno na poruszanie siê po mapie przez u¿ytkownika jak i przejœcie w tryb treningu populacji, który na podstawie zadanych parametrów optymalizuje przejœcie po mapie algorytmem genetycznym.
+		\item
+			Do wyniku koñcowego mog¹ byæ brane pod uwagê równie¿ inne zdarzenia takie jak iloœæ zebranych obiektów na planszy, czy czas przejœcia gry.
+			Funkcja przystosowania zale¿eæ bêdzie od ro¿nych czynników, a ich modyfikacja powinna byæ ³atwo dostêpna.
+		\item
+			Projekt ma mieæ charakter edukacyjno-badawczy. Przydatnymi narzêdziami w systemie bêdzie prosty w obs³udze edytor map, panel konfiguracyjny w którym mo¿na ³atwo edytowaæ wiêkszoœæ parametrów zwi¹zanych z samym dzia³aniem algorytmu oraz aktywny podgl¹d populacji i osobników.
+	\end{itemize}
+\end{par}
+
+\begin{par}
+	Sam pomys³ stworzenia sztucznej inteligencji do gry platformowej w czasie rzeczywistym zosta³ ju¿ wczeœniej powo³ywany do ¿ycia, m.in. jako projekt MarioAI. 
+	W chwili obecnej funkcjonuje on jako odbywaj¹cy siê co roku turniej dla programistów sztucznej inteligencji.
+	Uczestnicy mog¹ implementowaæ w³asne rozwi¹zania do gotowego silnika generuj¹cego losowe poziomy, oraz porównywaæ wyniki z innymi uczestnikami.
+	Samo zg³oszenie sk³ada siê z implementacji w³asnej klasy odpowiedzialnej za podejmowanie decyzji w grze.
+	Strona domowa projektu znajduje siê pod adresem www.marioai.org \cite{marioai}.
+\end{par}

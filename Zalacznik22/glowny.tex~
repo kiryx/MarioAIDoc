@@ -1,0 +1,69 @@
+\documentclass[oneside,12pt]{wipb}
+\usetikzlibrary{mindmap,trees}%dla diagramu Computer science mindmap
+
+
+\katedra{Systemów Czasu Rzeczywistego}
+\typpracy{ %magisterska
+           in¿ynierska
+         }
+\temat{Samoucz¹cy siê automat steruj¹cy postaci¹ gracza w prostej grze zrêcznoœciowej.}
+\autor{Krzysztof Nowak}
+\promotor{dr in¿. Marek Tabêdzki }
+\indeks{75847}
+\studia{stacjonarne
+        %niestacjonarne
+       }
+\rokakademicki{2010/2011}
+\profil{%magisterskie jednolite
+        %magisterskie uzupe³niaj¹ce
+        studia I stopnia
+        %studia II stopnia
+}
+\kierunekstudiow{informatyka
+                 %matematyka
+                }
+\specjalnosc{%In¿ynieria Oprogramowania
+             %In¿ynieria Komputerowa
+             %Systemy Oprogramowania
+             %Metody infnformatyczne w~banknkowoœci i~finansach
+             %Ochrona systemów informatycznych
+            }
+\zakres{1. zakres I \newline 2. zakres II \newline 3. zakres III}
+
+\hypersetup{ %wpisy w pdf info
+pdfauthor={Krzysztof Nowak},
+pdftitle={Samoucz¹cy siê automat steruj¹cy postaci¹ gracza w prostej grze zrêcznoœciowej.},
+pdfsubject={},
+pdfkeywords={Praca dyplomowa},
+pdfpagemode=UseNone,
+linkcolor=black,
+citecolor=black
+} 
+\usepackage[section,subsection,subsubsection]{extraplaceins}
+\begin{document}
+\maketitle
+\tableofcontents
+\thispagestyle{empty}
+\setcounter{page}{0}
+\pagestyle{plain}
+\input{wstep1.tex}
+\input{wstep2.tex}
+\input{analiza2.tex}
+\input{interfejs2.tex}
+\input{podsumowanie2.tex}
+\nocite{*} %wszystkie wpisy w bibliografi
+\bibliographystyle{unsrt} %{latex8} posortowane wzgledem wystepowania
+\bibliography{bibliografia}%
+
+\addtocontents{toc}{\contentsline {chapter}{Bibliografia}{\thepage}{}}
+\listoftables
+%\addtocontents{toc}{\contentsline {chapter}{Spis tabel}{\thepage}{}}
+\listoffigures
+\addtocontents{toc}{\contentsline {chapter}{Spis rysunków}{\thepage}{}}
+%\lstlistoflistings
+%\addtocontents{toc}{\contentsline {chapter}{Spis listingów}{\thepage}{}}
+%\listofalgorithms % w zaleznosci od kompilatora i wersji klasy moga wystapic bledy przy kompilacji
+%\addtocontents{toc}{\contentsline {chapter}{Spis algorytmów}{\thepage}{}}
+
+%\biblioteka{tak} % tak/nie
+\end{document}

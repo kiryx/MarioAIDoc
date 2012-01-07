@@ -55,16 +55,24 @@ W oknie aplikacji widoczne jest menu oraz pasek narzędzi zawierający podstawow
 	Zostały one podzielone na dwie grupy: \textit{Movement key probabilities} oraz \textit{Special key probabilities}
 	Wartości te możliwe są do zmiany w panelu konfiguracyjnym, przy czym są one normalizowane do sumy wszystkich wartości z danej kategorii.
 	Przykładowo dla wartości podanych na rys \ref{fig:config1}. Wartość ruchu w prawo (grupa ``Movement key probabilities'') wynosi $\frac{2.5}{2.5+0.5+0.2}=0.78125$.
+	Aby nie brać pod uwagę akcji które i tak nie będą interpretowane przez logikę, najlepiej jest ustawić prawdopodobieństwo wylosowania ruchów nieaktywnych na wartość $0$. 
+	Mapa gry może być ukierunkowana bądź nie, wówczas ustawienie odpowiedniego stosunku akcji ruchu może znacznie przyspieszyć znalezienie wyniku. Przykładowo: Jeśli problemem jest znalezienie rozwiązania na szerokiej mapie, której cel znajduje się w jej prawym krańcu, dobrą strategią będzie ustawienie ruchu w prawo na wysoką wartość np. $0.95$ a ruchu w lewo na wartość $0.05$.
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=2in]{obrazki/config1.png}
+		\includegraphics[width=4in]{obrazki/config1.png}
 		\caption{Panel Konfiguracyjny.}
 		\label{fig:config1}
 	\end{figure}
-	Trzecia grupa parametrów są to parametry algorytmu genetycznego (grupa \textit{Genetic Settings})
+	Trzecia grupa parametrów są to parametry algorytmu genetycznego (grupa \textit{Genetic Settings}). Po umieszczeniu kursora myszy nad nazwą parametru wyświetlany jest jego opis słowny. Uzytkownik może zmienić poszczególne parametry. W wypadku zmiany parametrów wymagających ponownego uruchomienia aplikacji, wyświetlone zostaje okno pytające o potwierdzenie operacji.
+	\newline
+	Ponieważ algorytm genetyczny jest niezależny od stosowanej logiki gry, możliwe jest rozbudowywanie aplikacji o dodawanie własnych klas dziedziczących po klasie Logic. Użytkownik ma możliwość zmiany logiki w panelu ustawień, za pomocą listy na górze okna ustawień.
+	Dwa dodatkowe przyciski w panelu konfiguracyjnym (``Coordinates'' oraz ``Debug'') służą do włączenia wyświetlania informacji o obiektach takich jak ich położenie w przestrzeni, lub informacji o stanie gry. Mogą one okazać się przydatne przy tworzeniu własnych map, bądź pisaniu własnej logiki gry.
 \end{par}
 \subsubsection{Widok Populacji i Chromosomu}
 \begin{par}
+	Podczas działania algorytmu genetycznego nawet w trybie przyspieszonym, użytkownik może śledzić postępy w oknie ``Population'' dostępnym z menu (Rys. \ref{fig:populacja}).
+	Zawiera ono listę aktualnie dostępnych osobników w populacji i wyświetla krótkie podsumowanie dotyczące przebiegu danego osobnika w symulacji gry. Kolejno \textit{Result} oznacza wynik końcowy po zakończeniu przebiegu, \textit{Score} dotyczy sumy wszystkich zebranych punktów na mapie. Wartość \textit{Time} oznacza czas przebiegu danego chromosomu w milisekundach.
+	Ostatecznie \textit{Final Score} jest wartością funkcji przystosowania przeliczoną przez algorytm. Jeśli dany osobnik jeszcze nie wziął udziału w przebiegu gry, wyświetlany jest komunikat ``State not Set''. Po zaznaczeniu dowolnego osobnika użytkownik ma możliwość tymczasowego uruchomienia przejścia za pomocą przycisku ``Run selected gene''. Po zaznaczeniu osobnika i wciśnięciu przycisku ``Show details'' wyświetlane zostaje okno podglądu chromosomu - Rys. \ref{fig:chromosom}.
 
 	\begin{figure}[!h]
 		\centering
@@ -80,12 +88,13 @@ W oknie aplikacji widoczne jest menu oraz pasek narzędzi zawierający podstawow
 		\caption{Okno szczegółów chromosomu.}
 		\label{fig:chromosom}
 	\end{figure}
+	\FloatBarrier
 \end{par}
-
 \begin{par}
-	Podstawową logiką gry i detekcją kolizji pomiędzy obiektami zarządza obiekt klasy \textit{Logic}. Użytym w pracy schematem logiki jest schemat gry ``Super Mario Brothers''. Wobec czego domyślną logiką gry przy uruchomieniu programu jest instancja klasy \textit{LogicMario}
+	Podstawową logiką gry i detekcją kolizji pomiędzy obiektami zarządza obiekt klasy \textit{Logic}. Użytym w pracy schematem logiki jest schemat gry ``Super Mario Brothers''. Wobec czego domyślną logiką gry przy uruchomieniu programu jest instancja klasy \textit{LogicMario}.
 	Zakłada ona ruch w 2 kierunkach, skok oraz działanie grawitacji na obiekt aktora.
 	Ponieważ klasa \textit{LogicMario} dziedziczy po klasie \textit{Logic} możliwe jest napisanie własnej logiki i podmiana tej obowiązującej w systemie.
+	Inną logiką gry dostępną w systemie jest klasa LogicLabirynth: zakłada ona ruch postaci w 4 kierunkach, akcje specjalne nie są używane.
 	Ponieważ działanie algorytmu nie jest związane z fizyką ani zasadami obowiązującymi w grze, system może działać dla wielu różnych typów gier platformowych i zręcznościowych.
 	Jedynym wymogiem jest to iż muszą one dać się opisać za pomocą wyżej zdefiniowanych klas i cech:
 	\begin{enumerate}
@@ -101,40 +110,15 @@ W oknie aplikacji widoczne jest menu oraz pasek narzędzi zawierający podstawow
 	Wówczas przy poprawnej implementacji logiki gry system automatycznie symuluje zbiory chromosomów w środowisku gry.
 \end{par}
 
-\subsection{Moduł edytora map}
-\begin{par}
-\end{par}
-
-
-
-\subsection{Realizacja warstwy symulacyjnej}
-
 \subsubsection{Edytor Map}
 \begin{par}
 Przy testowaniu różnych ustawień algorytmu genetycznego przydatnym narzędziem może okazać się edytor map. 
 Ustawienia algorytmu, szczególnie dotyczące prawdopodobieństwa wylosowania akcji w dużej mierze zależą od typu mapy. 
-\begin{itemize}
-\item 
-Mapa może być ukierunkowana bądź nie, wówczas ustawienie odpowiedniego stosunku akcji ruchu może znacznie przyspieszyć szukanie wyniku. Przykładowo: Jeśli problemem jest znalezienie rozwiązania na szerokiej mapie, której cel znajduje się w jej prawym krańcu, dobrą strategią będzie ustawienie ruchu w prawo na wysoką wartość np. $0.95$ a ruchu w lewo na wartość $0.05$.
-\item
-Podobna sytuacja ma miejsce z akcjami specjalnymi. 
-Należy pamiętać iż wartość \textit{NONE} może być szczególnie istotna w ustawieniach genetycznych akcji specjalnych.
-Powołując się znów na przykład gry ``Super Mario Brothers'', można zauważyć iż ciągły skok nie koniecznie jest optymalną strategią - przez większość czasu nasza postać porusza się po podłożu.
-\item 
-Logika gry może zakładać różną ilość kierunków w których można się poruszać, co w dużej mierze zależy od typu gry jaki reprezentuje.
-Niektóre wymagają 2 klawiszy kierunkowych do poruszania się po mapie, inne 3 lub 4. 
-Aby nie brać pod uwagę akcji które i tak nie będą interpretowane przez logikę, najlepiej jest ustalić prawdopodobieństwo wylosowania ruchów nieaktywnych na wartość $0$. 
-Wówczas istnieje pewność iż w genotypie nie znajdują się niepotrzebne informacje.
-\end{itemize}
-
-Dobrze zaprojektowany edytor map może okazać się szczególnie przydatny dla bardziej zaawansowanych użytkowników którzy mogą korzystać z systemu w celach edukacyjnych, a logiki zaimplementowane w systemie nie spełniają ich wszystkich oczekiwań.
-Wówczas po napisaniu własnej klasy odpowiadającej za logikę, dobrze jest skonstruować mapy odpowiadające typowi rozgrywki jakie logika przewiduje.
-
 \begin{par}
-	Po otworzeniu edytora map domyślnie wczytywana jest bieżąca mapa, dzięki czemu można dokonać szybkich edycji jeśli koniecznie jest sprawdzenie działania algorytmu z pewnym wariantem, lub dodatkowym obiektem na mapie.
-	Oprócz tego wszystkie mapy zapisywane są w prostym formacie tekstowym, dzięki czemu możliwe jest generowanie map przy pomocy programów trzecich, lub skryptów - zostawia to bardziej zainteresowanym użytkownikom na generowanie dużych, losowych poziomów, o ile wcześniej zaznajomią się z formatem zapisu mapy.
+	Użytkownik może otworzyć okno edytora map wybierają opcję ``Map Editor'' z menu głównego okna aplikacji.
+	Po otworzeniu edytora map domyślnie wczytywana jest bieżąca mapa z symulatora gry, dzięki czemu można dokonać szybkich edycji jeśli koniecznie jest sprawdzenie działania algorytmu z pewnym wariantem, lub dodatkowym obiektem na mapie.
+	Oprócz tego wszystkie mapy zapisywane są w prostym formacie tekstowym, dzięki czemu możliwe jest generowanie map przy pomocy programów trzecich, lub skryptów - zostawia to furtkę dla bardziej zaawansowanych użytkowników na generowanie dużych poziomów, lub wykorzystanie algorytmów tworzących losowe tereny.
 	Przykładowy plik z mapą może wyglądać następująco:
-	
 	\begin{lstlisting}
 		Terrain 122 361 239 27
 		Terrain 110 211 25 151
@@ -149,15 +133,37 @@ Wówczas po napisaniu własnej klasy odpowiadającej za logikę, dobrze jest sko
 	Pierwszym elementem każdego wiersza jest nazwa klasy.
 	Kolejne wartości to punkt oznaczający położenie lewego górnego rogu obiektu, oraz jego szerokość i wysokość.
 	W wypadku obiektów klasy \textit{Bonus} ostatnia liczba oznacza wartość punktową. 
-	Zachowanie prostego formatu mapy uprościło proces sprawdzania aplikacji, oraz otworzyło możliwość generowania dużych map poprzez skrypty.
-	Ponieważ nie było powodu aby przechowywać mapy jako dane binarne - samo wczytywanie mapy nie spowalnia aplikacji, nie jest wykonywane często - otwarty format pozostał jako obowiązujący w systemie.
+	Ponieważ nie było powodu aby przechowywać mapy jako dane binarne - samo wczytywanie mapy nie spowalnia aplikacji oraz nie jest wykonywane często - otwarty format pozostał jako obowiązujący w systemie.
 \end{par}
-
-		\begin{figure}[!h]
-		\centering
-		\includegraphics[width=4in]{obrazki/map_editor.png}
-		\caption{Okno edytora map.}
-		\label{fig:map_editor}
+\begin{par}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=5.5in]{obrazki/map_editor.png}
+	\caption{Okno edytora map.}
+	\label{fig:map_editor}
 	\end{figure}
+	Samo okno edytora map składa się z menu oraz paska narzędzi. Posługiwanie się większością narzędzi jest podobne:
+	\begin{itemize}
+	\item Użytkownik aby narysować obszar wybiera odpowiedni typ obiektu z paska narzędzi, a następnie trzymając lewy przycisk myszy, wyznacza prostokątny obszar.
+	\item Po kliknięciu na dowolny obiekt lewym przyciskiem myszy, zostaje on zaznaczony, dzięki czemu użytkownik może łatwo usuwać z mapy niepotrzebne obiekty.
+	\item Prawy przycisk myszy służy do przesuwania mapy - analogicznie do trybu ``MouseCam'' w module symulacyjnym.
+	\end{itemize}
+	Poniżej zostaną opisane poszczególne elementy edytora.
+	\begin{enumerate}
+		\item Menu edytora pozwalające użytkownikowi na wczytanie mapy z pliku, bądź zapis bieżącej mapy do pliku na dysku. W obu przypadkach wyświetlane jest okno dialogowe potwierdzające operację.
+		\item Przycisk uaktywniający obiekt aktora. Po wybraniu przycisku obiekty tworzone przez użytkownika będą obiektami aktora. Na mapie jednocześnie może być utworzonych wiele obiektów aktora. Ponieważ w założeniach nie jest powiedziane iż gra może zawierać tylko jeden obiekt sterowany przez użytkownika istnieje możliwość dodania na mapie wielu aktorów - możliwe jest napisanie logiki wykorzystującej więcej niż jeden obiekt aktora.
+		\item Obiekt Terrain odpowiada za statyczny teren gry. O ile interpretacja kolizji aktora z obiektem tego typu jest pozostawiona do interpretacji dla twórcy logiki, to głównym założeniem obiektu Terrain miało być ograniczanie ruchu postaci po mapie.
+		\item Przycisk Coin odpowiada za umieszczanie obiekty BonusCoin dających punkty.
+		\item Wartość w polu tekstowym pozwala na ustalenie wartości jaką ma mieć następny stworzony przez użytkownika obiekt BonusCoin.
+		\item Przycisk Lose odpowiada za umieszczanie na mapie obiektów typu BonusLose.
+		\item Przycisk Win odpowiada za umieszczanie na mapie obiektów typu BonusWin.
+		\item Przycisk Undo usuwa ostatnio stworzony obiekt z mapy.
+		\item Przycisk Delete usuwa aktualnie zaznaczony na mapie obiekt.
+		\item Jeśli użytkownik chce usunąć wszystkie elementy z mapy i rozpocząć tworzenie mapy od początku, może użyć do tego przycisku Erase All który usuwa wszystkie obiekty z edytora map. Przed wykonaniem akcji użytkownik zatwierdza akcję w oknie dialogowym.
+		\item Przycisk Test Run służy do załadowania bieżącej mapy z edytora do środowiska gry. Jeśli aktualnie system pracuje w trybie treningu populacji, konieczne jest rozpoczęcie algorytmu od początku. Mapa zostaje zapisana na dysk jako plik tymczasowy. Przed wykonaniem akcji użytkownik zatwierdza akcję w oknie dialogowym.
+		
+	\end{enumerate}
+\end{par}
+	
 \end{par}
 

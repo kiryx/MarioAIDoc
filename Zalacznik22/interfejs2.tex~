@@ -1,0 +1,168 @@
+\chapter{Opis interfejsu systemu}
+\section{Modu³ silnika i symulatora gry}
+\subsection{G³ówne okno aplikacji}
+\begin{par}
+Podstawowym oknem aplikacji widocznym tu¿ po uruchomieniu jest g³ówne okno symulatora gry. 
+Domyœlnym trybem jest tryb poruszania siê po mapie przez u¿ytkownika. 
+\begin{itemize}
+\item Sterowanie postaci¹ przez klawiaturê zrealizowanie jest za pomoc¹ strza³ek kierunkowych, oraz klawiszy $a,s,d,f$ jako akcji specjalnych.
+\item Reakcja œrodowiska na poszczególne klawisze zale¿y od logiki gry. 
+\item Domyœln¹ logik¹ w systemie jest instancja klasy LogicMario: strza³ki kierunkowe odpowiadaj¹ za ruch postaci (tylko w osi poziomej), natomiast klawisz f odpowiada za skok postaci.
+\item Logika LogicLabirynth zak³ada ruch postaci w 4 kierunkach, bez wp³ywu innych si³ na postaæ (takich jak grawitacja). Akcje specjalne nie s¹ wykorzystywane.
+\end{itemize}
+\begin{par}
+	Poniewa¿ dzia³anie algorytmu nie jest zwi¹zane z fizyk¹ ani zasadami obowi¹zuj¹cymi w grze, system mo¿e dzia³aæ dla wielu ró¿nych typów gier platformowych i zrêcznoœciowych.
+	Jedynym wymogiem jest to i¿ musz¹ one daæ siê opisaæ za pomoc¹ wy¿ej zdefiniowanych klas i cech:
+	\begin{enumerate}
+		\item
+			Obiekty œwiata musz¹ nale¿eæ do którejœ z klas dziedzicz¹cych po klasie \textit{WorldObject}.
+		\item 
+			Mo¿liwe rezultaty zakoñczenia algorytmu musz¹ byæ wœród zbioru rezultatów: \{Koniec Czasu, Wygrana, Przegrana\}, 
+		\item
+			Rodzaje mo¿liwych akcji do wykonania w grze musz¹ byæ przypisane do 4 akcji ruchu kierunkowego oraz 4 akcji specjalnych.
+	\end{enumerate}
+	Jedyn¹ prac¹ jak¹ nale¿y wykonaæ przy implementacji w³asnego œrodowiska gry jest uzupe³nienie w³asnej klasy dziedzicz¹cej po klasie \textit{Logic}.
+	Wówczas przy poprawnej implementacji logiki gry system automatycznie symuluje zbiory chromosomów w œrodowisku gry.
+\end{par}
+Poni¿ej przedstawiony zosta³ opis poszczególnych elementów g³ównego okna aplikacji.
+\begin{figure}[!h]
+		\centering
+		\includegraphics[width=4in]{obrazki/main_window.png}
+		\caption{G³ówne okno aplikacji.}
+		\label{fig:main_window}
+	\end{figure}
+W oknie aplikacji widoczne jest menu oraz pasek narzêdzi zawieraj¹cy podstawowe przyciski steruj¹ce systemem:
+	\begin{enumerate}
+	\item Z menu ``System'' u¿ytkownik ma mo¿liwoœæ otwarcia dodatkowych okien aplikacji takich jak edytor map, panel ustawieñ, podgl¹d populacji oraz menu dialogowe dotycz¹ce wczytania nowej mapy z pliku do œrodowiska gry.
+	\item Menu ``Help'' zawiera informacje dotycz¹ce programu oraz krótki opis skrótów klawiszowych.
+	\item Przycisk ``Restart'' pozwala na ponowne uruchomienie algorytmu, czyli wygenerowanie losowej populacji.
+	\item Przycisk ``SpeedUp'' odpowiada za przejœcie systemu w tryb treningu przyspieszonego, jeœli populacja aktualnie znajduje siê w trybie treningu. Przestaje wówczas byæ aktualizowana grafika, a system w tle symuluje kolejne populacje osobników w œrodowisku gry.
+	\item Domyœlnym trybem kamery jest œledzenie obiektu aktora. Przycisk ``Mouse Cam'' pozwala na przejœcie w tryb swobodnej kamery - prawy przycisk myszy s³u¿y do ``przesuwania'' ekranu.
+	\item Przycisk ``Mode: User''(``Mode: Genetic'') s³u¿y do zmiany trybu dzia³ania systemu. Domyœlnie pierwszym trybem jest tryb poruszania siê po mapie przez u¿ytkownika. Po wciœniêciu przycisku system przechodzi do trybu treningu populacji. Kolejne wciœniêcie przycisku przywraca poprzedni tryb swobodnego poruszania siê.
+	\end{enumerate}
+	\FloatBarrier
+\end{par}
+\begin{par}
+	Œrodowisko gry znajduje siê w centralnej czêœci okna gry.
+	Wszystkie elementy gry z punktu widzenia kolizji s¹ prostok¹tnymi obszarami, ró¿ni¹cymi siê reakcj¹ na kolizjê z obiektem gracza. W podstawowym silniku renderuj¹cym zosta³y one wyró¿nione kolorem.
+	
+	\definecolor{orange}{rgb}{1,0.5,0}
+	\definecolor{gray}{rgb}{0.5,0.5,0.5}
+	Na Rys. \ref{fig:objects} widaæ obiekty œwiata gry: 
+	\textcolor{blue}{\textit{Actor}}, 
+	\textcolor{orange}{\textit{BonusCoin}},
+	\textcolor{red}{\textit{BonusLose}},
+	\textcolor{green}{\textit{BonusWin}},
+	\textcolor{black}{\textit{Terrain}}.
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=4in]{obrazki/objects.png}
+		\caption{Poszczególne obiekty œwiata gry.}
+		\label{fig:objects}
+	\end{figure}
+\end{par}
+\subsection{Panel konfiguracyjny}
+\begin{par}
+	Jak ju¿ zosta³o wspomniane, podstaw¹ dobrego systemu, szczególnie do zastosowañ badawczych jest ³atwo dostêpna konfiguracja. 
+	W pracy rolê tê pe³ni poœrednio klasa \textit{GeneticsConfig} która zawiera wszystkie najwa¿niejsze parametry dotycz¹ce algorytmu. S¹ przechowywane jako wartoœci tablicy asocjacyjnej (klasa \textit{HashMap}). 
+	Oprócz tego sama tablica zosta³a opakowana w taki sposób i¿ rejestracja nowej wartoœci do tablicy wi¹¿e siê z automatycznym wygenerowaniem odpowiedniego pola w panelu konfiguracyjnym - dziêki temu dodanie kolejnych parametrów genetycznych przy przysz³ym rozbudowywaniu aplikacji automatycznie aktualizuje panel konfiguracyjny.
+\end{par}
+\begin{par}
+	Ka¿da z akcji, zarówno ruchu jak i tablica akcji specjalnych posiada pewne prawdopodobieñstwo wyst¹pienia.
+	Zosta³y one podzielone na dwie grupy: \textit{Movement key probabilities} oraz \textit{Special key probabilities}
+	Wartoœci te mo¿liwe s¹ do zmiany w panelu konfiguracyjnym, przy czym s¹ one normalizowane do sumy wszystkich wartoœci z danej kategorii.
+	Przyk³adowo dla wartoœci podanych na rys \ref{fig:config1}. Wartoœæ ruchu w prawo (grupa ``Movement key probabilities'') wynosi $\frac{0.7}{0.7+0.4}=0.6364$.
+	Aby nie braæ pod uwagê akcji które i tak nie bêd¹ interpretowane przez logikê, najlepiej jest ustawiæ prawdopodobieñstwo wylosowania ruchów nieaktywnych na wartoœæ $0$. 
+	Mapa gry mo¿e byæ ukierunkowana b¹dŸ nie, wówczas ustawienie odpowiedniego stosunku akcji ruchu mo¿e znacznie przyspieszyæ znalezienie wyniku. Przyk³adowo: Jeœli problemem jest znalezienie rozwi¹zania na szerokiej mapie, której cel znajduje siê w jej prawym krañcu, dobr¹ strategi¹ bêdzie ustawienie ruchu w prawo na wysok¹ wartoœæ np. $0.95$ a ruchu w lewo na wartoœæ $0.05$.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=4in]{obrazki/config1.png}
+		\caption{Panel Konfiguracyjny.}
+		\label{fig:config1}
+	\end{figure}
+	Trzecia grupa parametrów s¹ to parametry algorytmu genetycznego (grupa \textit{Genetic Settings}). Po umieszczeniu kursora myszy nad nazw¹ parametru wyœwietlany jest jego opis s³owny. Uzytkownik mo¿e zmieniæ poszczególne parametry. W wypadku zmiany parametrów wymagaj¹cych ponownego uruchomienia aplikacji, wyœwietlone zostaje okno pytaj¹ce o potwierdzenie operacji.
+	\newline
+	Poniewa¿ algorytm genetyczny jest niezale¿ny od stosowanej logiki gry, mo¿liwe jest rozbudowywanie aplikacji o dodawanie w³asnych klas dziedzicz¹cych po klasie Logic. U¿ytkownik ma mo¿liwoœæ zmiany logiki w panelu ustawieñ, za pomoc¹ listy na górze okna ustawieñ.
+	Dwa dodatkowe przyciski w panelu konfiguracyjnym (``Coordinates'' oraz ``Debug'') s³u¿¹ do w³¹czenia wyœwietlania informacji o obiektach takich jak ich po³o¿enie w przestrzeni, lub informacji o stanie gry. Mog¹ one okazaæ siê przydatne przy tworzeniu w³asnych map, b¹dŸ pisaniu w³asnej logiki gry.
+\end{par}
+\subsection{Widok Populacji i Chromosomu}
+\begin{par}
+	Podczas dzia³ania algorytmu genetycznego nawet w trybie przyspieszonym, u¿ytkownik mo¿e œledziæ postêpy w oknie ``Population'' dostêpnym z menu (Rys. \ref{fig:populacja}).
+	Zawiera ono listê aktualnie dostêpnych osobników w populacji i wyœwietla krótkie podsumowanie dotycz¹ce przebiegu danego osobnika w symulacji gry. Kolejno \textit{Result} oznacza wynik koñcowy po zakoñczeniu przebiegu, \textit{Score} dotyczy sumy wszystkich zebranych punktów na mapie. Wartoœæ \textit{Time} oznacza czas przebiegu danego chromosomu w milisekundach.
+	Ostatecznie \textit{Final Score} jest wartoœci¹ funkcji przystosowania przeliczon¹ przez algorytm. Jeœli dany osobnik jeszcze nie wzi¹³ udzia³u w przebiegu gry, wyœwietlany jest komunikat ``State not Set''. Po zaznaczeniu dowolnego osobnika u¿ytkownik ma mo¿liwoœæ tymczasowego uruchomienia przejœcia za pomoc¹ przycisku ``Run selected gene''. Po zaznaczeniu osobnika i wciœniêciu przycisku ``Show details'' wyœwietlane zostaje okno podgl¹du chromosomu - Rys. \ref{fig:chromosom}.
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=4in]{obrazki/populacja.png}
+		\caption{Okno populacji.}
+		\label{fig:populacja}
+	\end{figure}
+
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=4in]{obrazki/chromosom.png}
+		\caption{Okno szczegó³ów chromosomu.}
+		\label{fig:chromosom}
+	\end{figure}
+	\FloatBarrier
+\end{par}
+
+
+\subsection{Edytor Map}
+\begin{par}
+	Przy testowaniu ró¿nych ustawieñ algorytmu genetycznego przydatnym narzêdziem mo¿e okazaæ siê edytor map. 
+	Ustawienia algorytmu, szczególnie dotycz¹ce prawdopodobieñstwa wylosowania akcji w du¿ej mierze zale¿¹ od typu mapy. 
+	U¿ytkownik mo¿e otworzyæ okno edytora map wybieraj¹ opcjê ``Map Editor'' z menu g³ównego okna aplikacji.
+	Po otworzeniu edytora map domyœlnie wczytywana jest bie¿¹ca mapa z symulatora gry, dziêki czemu mo¿na dokonaæ szybkich edycji jeœli koniecznie jest sprawdzenie dzia³ania algorytmu z pewnym wariantem, lub dodatkowym obiektem na mapie.
+	Oprócz tego wszystkie mapy zapisywane s¹ w prostym formacie tekstowym, dziêki czemu mo¿liwe jest generowanie map przy pomocy programów trzecich, lub skryptów - zostawia to furtkê dla bardziej zaawansowanych u¿ytkowników na generowanie du¿ych poziomów, lub wykorzystanie algorytmów tworz¹cych losowe tereny.
+	Przyk³adowy plik z map¹ mo¿e wygl¹daæ nastêpuj¹co:
+	\begin{lstlisting}
+		Terrain 122 361 239 27
+		Terrain 110 211 25 151
+		Terrain 355 201 28 165
+		Actor 140 295 20 32
+		BonusCoin 202 328 18 30 25
+		BonusCoin 248 330 16 27 25
+		BonusWin 327 236 18 36 25
+		BonusLose 313 311 33 40 0
+	\end{lstlisting}
+
+	Pierwszym elementem ka¿dego wiersza jest nazwa klasy.
+	Kolejne wartoœci to punkt oznaczaj¹cy po³o¿enie lewego górnego rogu obiektu, oraz jego szerokoœæ i wysokoœæ.
+	W wypadku obiektów klasy \textit{Bonus} ostatnia liczba oznacza wartoœæ punktow¹. 
+	Poniewa¿ nie by³o powodu aby przechowywaæ mapy jako dane binarne - samo wczytywanie mapy nie spowalnia aplikacji oraz nie jest wykonywane czêsto - otwarty format pozosta³ jako obowi¹zuj¹cy w systemie.
+\end{par}
+\begin{par}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=5.5in]{obrazki/map_editor.png}
+	\caption{Okno edytora map.}
+	\label{fig:map_editor}
+	\end{figure}
+	Samo okno edytora map sk³ada siê z menu oraz paska narzêdzi. Pos³ugiwanie siê wiêkszoœci¹ narzêdzi jest podobne:
+	\begin{itemize}
+	\item U¿ytkownik aby narysowaæ obszar wybiera odpowiedni typ obiektu z paska narzêdzi, a nastêpnie trzymaj¹c lewy przycisk myszy, wyznacza prostok¹tny obszar.
+	\item Po klikniêciu na dowolny obiekt lewym przyciskiem myszy, zostaje on zaznaczony, dziêki czemu u¿ytkownik mo¿e ³atwo usuwaæ z mapy niepotrzebne obiekty.
+	\item Prawy przycisk myszy s³u¿y do przesuwania mapy - analogicznie do trybu ``MouseCam'' w module symulacyjnym.
+	\end{itemize}
+	Poni¿ej zostan¹ opisane poszczególne elementy edytora.
+	\begin{enumerate}
+		\item Menu edytora pozwalaj¹ce u¿ytkownikowi na wczytanie mapy z pliku, b¹dŸ zapis bie¿¹cej mapy do pliku na dysku. W obu przypadkach wyœwietlane jest okno dialogowe potwierdzaj¹ce operacjê.
+		\item Przycisk uaktywniaj¹cy obiekt aktora. Po wybraniu przycisku obiekty tworzone przez u¿ytkownika bêd¹ obiektami aktora. Na mapie jednoczeœnie mo¿e byæ utworzonych wiele obiektów aktora. Poniewa¿ w za³o¿eniach nie jest powiedziane i¿ gra mo¿e zawieraæ tylko jeden obiekt sterowany przez u¿ytkownika istnieje mo¿liwoœæ dodania na mapie wielu aktorów - mo¿liwe jest napisanie logiki wykorzystuj¹cej wiêcej ni¿ jeden obiekt aktora.
+		\item Obiekt Terrain odpowiada za statyczny teren gry. O ile interpretacja kolizji aktora z obiektem tego typu jest pozostawiona do interpretacji dla twórcy logiki, to g³ównym za³o¿eniem obiektu Terrain mia³o byæ ograniczanie ruchu postaci po mapie.
+		\item Przycisk Coin odpowiada za umieszczanie obiekty BonusCoin daj¹cych punkty.
+		\item Wartoœæ w polu tekstowym pozwala na ustalenie wartoœci jak¹ ma mieæ nastêpny stworzony przez u¿ytkownika obiekt BonusCoin.
+		\item Przycisk Lose odpowiada za umieszczanie na mapie obiektów typu BonusLose.
+		\item Przycisk Win odpowiada za umieszczanie na mapie obiektów typu BonusWin.
+		\item Przycisk Undo usuwa ostatnio stworzony obiekt z mapy.
+		\item Przycisk Delete usuwa aktualnie zaznaczony na mapie obiekt.
+		\item Jeœli u¿ytkownik chce usun¹æ wszystkie elementy z mapy i rozpocz¹æ tworzenie mapy od pocz¹tku, mo¿e u¿yæ do tego przycisku Erase All który usuwa wszystkie obiekty z edytora map. Przed wykonaniem akcji u¿ytkownik zatwierdza akcjê w oknie dialogowym.
+		\item Przycisk Test Run s³u¿y do za³adowania bie¿¹cej mapy z edytora do œrodowiska gry. Jeœli aktualnie system pracuje w trybie treningu populacji, konieczne jest rozpoczêcie algorytmu od pocz¹tku. Mapa zostaje zapisana na dysk jako plik tymczasowy. Przed wykonaniem akcji u¿ytkownik zatwierdza akcjê w oknie dialogowym.
+		
+	\end{enumerate}
+\end{par}
+	
+\end{par}
+

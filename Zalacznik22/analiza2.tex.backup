@@ -1,0 +1,637 @@
+\chapter{Analiza wymagañ}
+Przed implementacj¹ systemu nale¿y przeprowadziæ analizê problemu, okreœliæ wymagania systemu, zadecydowaæ o narzêdziach i technologiach niezbêdnych w implementacji systemu.
+W tym rozdziale zostan¹ opisane koniecznie do zaimplementowania modu³y oraz postawione zostan¹ wymagania jakie system musi spe³niaæ. Pierwszym krokiem bêdzie omówienie narzêdzi i technologii koniecznych do implementacji systemu.
+
+
+\section{Wykorzystane narzêdzia i jêzyki programowania}
+\begin{par}
+	\subsection{Jêzyk Java}
+	G³ównym celem do zrealizowania w pracy jest problem algorytmiczny i teoretyczny.
+	Praca w mniejszym stopniu opiera siê na wykorzystaniu konkretnej technologii, czy jêzyka programowania, wobec czego zosta³y wykorzystane popularne narzêdzia i jêzyki programowania.
+	System zosta³ napisany w jêzyku Java oraz testowany na wirtualnej maszynie javy w wersji Java SE 7u2. 
+	Java jest jêzykiem programowania wysokiego poziomu zaprojektowanym i stworzonym przez Jamesa Groslinga podczas gry pracowa³ w firmie Sun Microsystems. Pierwsza propozycja stworzenia Javy pojawi³a siê w roku 1991, do g³ównych twórców oprócz Jamesa Groslinga zalicza siê równie¿ Mike'a Sheridana oraz Patrick'a Naughtona.
+	Pocz¹tkowo jêzyk Java by³ bezpoœrednio zwi¹zany z firm¹ Sun Microsystems, która kontrolowa³a jego rozwój do roku 2010.
+	Od tego czasu firma Sun sta³a siê czêœci¹ korporacji Oracle, wobec czego wszelkie prawa zwi¹zane z jêzykiem Java posiada Oracle.
+	Java swoj¹ sk³adni¹ przypomina jêzyk C, aczkolwiek wœród pierwowzorów wymienia siê równie¿ jêzyk Smalltalk.
+	Aplikacje napisane w jêzyku Java s¹ kompilowane do kodu bajtowego Javy (ang. java bytecode), i uruchamiane na maszynie wirtualnej, co zapewnia pewnego rodzaju bezpieczeñstwo w stosunku do jêzyka C lub C++.
+	Inn¹ du¿¹ zalet¹ jêzyka Java jest jego przenoœnoœæ.
+	Jedynym wymogiem uruchomienia aplikacji javowej na dowolnym systemie jest obecnoœæ wirtualnej maszyny javy (ang. JVM - Java Virtual Machine).
+	Dziœ wiêkszoœæ urz¹dzeñ mobilnych posiada wirtualn¹ maszynê javy pozwalaj¹c¹ na uruchamianie aplikacji napisanych w tym jêzyku.
+	Jak pisze Bruce Eckel w swojej ksi¹¿ce poœwiêconej jêzykowi Java: ``To, co wywar³o na mnie najwiêksze wra¿enie, kiedy poznawa³em javê, to fakt, ¿e wœród innych celów projektantów z firmy Sun znalaz³a siê tak¿e redukcja z³o¿onoœci dla programisty. 
+	To tak, jakby powiedzieæ: ``Nie dbamy o nic poza zmniejszeniem czasu i trudnoœci tworzenia porz¹dnego kodu.''(...)''.\cite[str. 19-20]{ThinkingJava}
+	Poniewa¿ czêœæ algorytmiczna aplikacji wymaga przeprowadzania czêstych symulacji zachowania œrodowiska oraz przeprowadzania ca³ego przebiegu gry, istotnym czynnikiem by³ czas dzia³ania krytycznych miejsc w aplikacji - g³ównie pêtli gry, wyœwietlania oraz generowania nowej populacji na podstawie poprzedniej.
+	Java jako jêzyk polegaj¹cy na maszynie wirtualnej posiada warstwê poœredni¹ która spowalnia ca³y proces i jest wolniejsza od jêzyka C lub C++, jednak prostota realizacji czêœci wizualnej aplikacji oraz bardzo dobra przenoœnoœæ przewa¿y³y w wyborze jêzyka.
+	Kolejnym trafnym wyborem jeœli chodzi o jêzyk i narzêdzia by³by prawdopodobnie C++ wraz z bibliotek¹ Qt do generowania grafiki, tworzenia okien oraz kontrolek.
+	T¹ sam¹ aplikacjê mo¿na by zrealizowaæ za pomoc¹ jêzyka Python i biblioteki PyGame/Qt do warstwy wizualizacyjnej, jednak wówczas koszt czasowy realizacji algorytmu genetycznego oraz logiki gry móg³by okazaæ siê znacz¹co du¿y. Wynika to z faktu i¿ Python jest jêzykiem interpretowanym, i generalnie nie jest przeznaczony do du¿ych obliczeñ. Mimo to, przy koniecznoœci realizacji prostej wersji demonstracyjnej programu opisywanego w pracy, jêzyk Python wraz z bibliotek¹ PyGame mo¿e okazaæ siê najszybszym do implementacji ze wzglêdu na krótki kod, dynamiczne typy zmiennych oraz bogat¹ kolekcjê struktur takich jak listy czy mapy incydencji konieczne do realizacji algorytmu.
+	Sama aplikacja korzysta z kolekcji i podstawowych struktur danych wystêpuj¹cych w jêzyku Java.
+	\subsection{Biblioteka Swing}
+	Biblioteka Swing zosta³a u¿yta do stworzenia warstwy wizualnej programu.
+	Pierwsz¹ prób¹ stworzenia biblioteki graficznej javy pozwalaj¹cej na tworzenie graficznego interfejsu u¿ytkownika by³a biblioteka AWT (ang. Abstract Window Toolkit).
+	Fala niezadowolenia wœród programistów sprawi³a i¿ ograniczone i ma³o efektowne elementy graficzne biblioteki AWT zosta³y zast¹pione przez zbiór komponentów dziœ znanych jako Swing.
+	W bibliotece Swing znajdziemy wiêkszoœæ podstawowych komponentów wystêpuj¹cych we wspó³czesnych systemach operacyjnych w³¹cznie z obs³ug¹ okien, natomiast w bibliotece AWT znajdziemy obs³ugê zdarzeñ, co w po³¹czeniu daje nam wystarczaj¹ce narzêdzia do stworzenia graficznego interfejsu.
+	Warto zauwa¿yæ i¿ Swing nie korzysta z domyœlnych ustawieñ systemu jeœli chodzi o wygl¹d komponentów, dziêki czemu ten sam program wygl¹da identycznie na ka¿dym systemie operacyjnym.
+	Wiêcej informacji o bibliotece Swing jak i jêzyku Java mo¿na znaleŸæ w ksi¹¿ce Thinking in Java \cite[rozdz. 22. Graficzne interfejsy u¿ytkownika]{ThinkingJava}.
+	Alternatyw¹ dla biblioteki Swing mo¿e byæ biblioteka SWT zwi¹zana z projektem Eclipse.
+	W odró¿nieniu do Swing, komponenty korzystaj¹ z wygl¹du komponentów systemu operacyjnego, dziêki czemu mo¿liwe jest uzyskanie wygl¹du pasuj¹cego do danego systemu operacyjnego. Biblioteka SWT jest darmowa i dostêpna na stronie domowej projektu Eclipse \cite{swt}.
+	\subsection{Narzêdzia}
+	Aplikacja w ca³oœci zosta³a zrealizowana w programie Netbeans 6.9.1 wspieraj¹cym testowanie, kompilacjê i budowanie aplikacji napisanych w jêzyku Java.
+	Projekt NetBeans jako narzêdzie by³ pocz¹tkowo rozwijany przez Romana Staneka od roku 1996 a¿ do roku 1999 kiedy to NetBeans zosta³ on zakupiony przez firmê Sun Microsystems. Rok póŸniej udostêpniony zosta³ kod Ÿród³owy programu. Do dzisiaj jest on rozwijany przez wielu programistów z ca³ego œwiata. Aktualna wersja to NetBeans 7.0.1, dostêpna od 1 Sierpnia 2011 roku. Aplikacja NetBeans wraz z dokumentacj¹ jest darmowa i dostêpna na stronie domowej projektu \cite{netbeans}
+	Innym popularnym narzêdziem jest program Eclipse. Z punktu widzenia programisty ró¿nica pomiêdzy narzêdziami jest nieznaczna i w g³ównej mierze zale¿y od preferencji.
+\end{par}
+\section{Wstêpna analiza problemu}
+\begin{par}
+	\subsection{Sterowanie}
+	\begin{par}
+	Aby zrealizowaæ czêœæ odpowiedzialn¹ za sterowanie postaci¹, nale¿y u¿yæ klasy poœredniej pomiêdzy warstw¹ logiki silnika gry, a warstw¹ komunikacji z graczem.
+	Przy takim rozwi¹zaniu sygna³y z klawiatury b¹dŸ innych urz¹dzeñ peryferyjnych s¹ przekazywane do warstwy poœrednicz¹cej.
+	Dziêki takiemu wyjœciu mo¿emy ³atwo zmieniæ Ÿród³o sygna³ów trafiaj¹cych do postaci z bezpoœrednich wciœniêæ klawiszy na akcje przechowywane w chromosomie.
+	Warstwa poœrednia odpowiada wówczas za sterowanie postaci¹ gracza w taki sam usystematyzowany sposób, niezale¿nie od Ÿród³a sygna³ów. 
+	Z punktu widzenia logiki gry nie ma ró¿nicy pomiêdzy sygna³ami z klawiatury, a wygenerowanymi akcjami.
+	\end{par}
+	
+	\subsection{Projekt chromosomu}
+	Kolejnym wa¿nym elementem jest odpowiednie zaprojektowanie struktury chromosomu. 
+	Dwa najbardziej trafne rozwi¹zania opieraj¹ siê na dwóch zmiennych wystêpuj¹cych w œrodowisku gry: czasie oraz pozycji gracza.
+	\begin{enumerate}
+	\item
+	{\bf Czas który up³yn¹³ od rozpoczêcia danej instancji przejœcia. }
+	\begin{par}
+
+		To rozwi¹zanie zak³ada podejmowanie akcji w grze w zale¿noœci od czasu który up³yn¹³ od jej rozpoczêcia.
+		Warto zauwa¿yæ i¿ nie jesteœmy ograniczeni po³o¿eniem postaci na planszy, dziêki czemu mo¿liwe s¹ takie operacje jak brak akcji, czy powrót do pocz¹tku planszy jeœli to korzystne.
+		Istotn¹ wad¹ tego rozwi¹zania by³aby du¿a podatnoœæ algorytmu na zapêtlanie siê, lub wykonywanie du¿ej iloœci ma³o przydatnych ruchów. 
+		Mo¿na ³atwo zauwa¿yæ ¿e przy równym prawdopodobieñstwie ruchu w lewo i prawo, postaæ tylko nieznacznie bêdzie oddalaæ siê punktu startowego. 
+		Prostym rozwi¹zaniem tego problemu jest przyporz¹dkowanie pewnego prawdopodobieñstwa ka¿dej akcji, dziêki czemu mo¿emy za³o¿yæ ¿e preferowanym kierunkiem jest np. ruch postaci w prawo, nie trac¹c mo¿liwoœci minimalnego ruchu w lewo jeœli to korzystne.
+		Pewnym utrudnieniem mo¿e byæ krzy¿owanie tego typu chromosomów. Poniewa¿ akcje postaci w wiêkszoœci przypadków maj¹ sens w kontekœcie jej aktualnego po³o¿enia, o tyle klasyczne krzy¿owanie poprzez ''ciêcia'' chromosomu na dwie czêœci mo¿e okazaæ siê kosztowne.
+		Wybranie losowego punktu przeciêcia i z³¹czenie ze sob¹ dwóch chromosomów nie jest dobrym rozwi¹zaniem.
+		Po po³¹czeniu otrzymamy niespójny ci¹g ruchów, które bêd¹ mia³y niewiele wspólnego z aktualn¹ pozycj¹ gracza na mapie, wobec czego bêd¹ nieu¿yteczne.
+		Mo¿na temu zapobiec zapewniaj¹c ³¹czenie siê chromosomów jedynie w punktach w których postaæ w obu momentach znajduje siê w tym samym lub zbli¿onym miejscu. Wyznaczenie takich punktów mo¿e okazaæ siê kosztowne.
+		Przeszukiwanie punktów wspólnych mo¿na zrealizowaæ w czasie $O(n*log_2n)$ najpierw sortuj¹c tablice obu osobników odpowiadaj¹ce za ruch w chromosomie. 
+		Tablice sortujemy wzglêdem wspó³rzêdnej X aktualnego po³o¿enia gracza dla ka¿dej z akcji, a nastêpnie liniowo przechodz¹c po obu tablicach osobników, szukaj¹c punktów wspólnych.
+		Wówczas widaæ i¿ trzeba przechowywaæ dane na temat po³o¿enia w chromosomie, co jest nieco niespójne z ide¹ poruszania siê wzglêdem czasu.
+		Wstêpny schemat takiego rozwi¹zania móg³by wówczas wygl¹daæ tak jak na rysunku \ref{fig:sterowanie}.
+		
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/sterowanie.jpg}
+		\caption{Sterowanie wzglêdem czasu.}
+		\label{fig:sterowanie}
+		\end{figure}
+		
+		Tablice c1, c2 oznaczaj¹ odpowiednio tablicê odpowiadaj¹c¹ za akcje specjalne (np. skok), oraz tablicê odpowiadaj¹c¹ jedynie za ruch kierunkowy.
+
+		Lepszym rozwi¹zaniem jest realizacja krzy¿owania nie poprzez klasyczne podejœcie, lecz modelowane statystycznie: Potomstwo nie otrzymuje bezpoœrednich fragmentów chromosomu, lecz losuje za ka¿dym razem nowe ruchy,
+		natomiast chromosomy populacji rodzicielskiej zwiêkszaj¹ prawdopodobieñstwo wylosowania najczêœciej wystêpuj¹cych ruchów.
+		Schemat takiego rozwi¹zania zaprezentowany jest na Rys. \ref{fig:krzy¿owanie}, gdzie przedstawione zosta³o krzy¿owanie populacji sk³adaj¹cej siê z 3 osobników (p1,p2,p3) oraz sposób liczenia nowych prawdopodobieñstw w danym punkcie chromosomu.
+		Do tego rozwi¹zania w³¹czamy sta³¹ decyduj¹c¹ o wadze jakie ma krzy¿owanie: Jeœli rodzic posiada pewn¹ akcjê A w pewnym miejscu swojego chromosomu,
+		wówczas potomkowi losowana jest nowa akcja, z t¹ ró¿nic¹ i¿ akcja A ma teraz prawdopodobieñstwo wylosowania $p_A = p_A + p_A*k$. Jeœli populacja rodzicielska sk³ada siê z $n$ rodziców,
+		oraz $m$ z nich posiada w danym momencie tak¹ sam¹ akcjê wówczas nowe prawdopodobieñstwo wylosowania akcji (tylko dla tego rozpatrywanego miejsca) wynosi 
+		\begin{center}
+		$p_A =  p_A + {\displaystyle\sum\limits_{i=1}^m (p_A*k)} = p_A + (p_A*k)*m$.
+		\end{center}
+		Dziêki takiemu podejœciu zachowujemy ideê krzy¿owania oraz znacznie upraszczamy ca³y proces. Wartoœci prawdopodobieñstw na koniec s¹ normalizowane aby dawaæ w sumie wartoœæ 1.
+		
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=5in]{obrazki/stat_cross.png}
+		\caption{Krzy¿owanie modelowane statystyczne.}
+		\label{fig:krzy¿owanie}
+		\end{figure}
+
+	\end{par}
+	\item
+	{\bf Aktualna pozycja gracza.}
+	\begin{par}
+		O ile poprzednie rozwi¹zanie dawa³o wiêksz¹ swobodê ruchu po mapie, to by³o jednak ma³o optymalne pod wzglêdem osi¹gania szybko dobrych wyników.
+		Jeœli za³o¿ymy i¿ akcje przechowywane w chromosomie maj¹ byæ aktywowane w momencie osi¹gniêcia przez gracza danej pozycji na osi X mapy, wówczas uproœcimy ca³y mechanizm krzy¿owania (ju¿ nie musimy szukaæ punktów wspólnych, gdy¿ dwa dowolne indeksy w obu tablicach $i,j$ gwarantuj¹ nam takie samo po³o¿enie gracza na mapie gdy $i=j$.
+		Oprócz tego przy za³o¿eniu ¿e planszê da siê rozwi¹zaæ poruszaj¹c siê tylko w prawo upraszcza to wiêkszoœæ operacji w algorytmie.
+		Innym udogodnieniem bêdzie uproszczenie samego typu przechowywanych danych. Poniewa¿ rezygnujemy z postojów i ruchu w lewo, równie dobrze mo¿emy zrezygnowaæ z tablicy przechowuj¹cej te informacje.
+
+		\begin{par}
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/sterowanie2.jpg}
+		\caption{Sterowanie wzglêdem pozycji gracza.}
+		\label{fig:sterowanie2}
+		\end{figure}
+		\end{par}
+
+		To podejœcie posiada jednak kilka powa¿nych wad i wymaga pewnych ograniczaj¹cych za³o¿eñ.
+		Plansza musi byæ ukierunkowana, i byæ rozwi¹zywalna przy ci¹g³ym ruchu w okreœlonym kierunku.
+		Jest to rozwi¹zanie dzia³aj¹ce jedynie dla bardzo w¹skiej grupy gier platformowych (np. wspomniane wczeœniej Super Mario Brothers).
+		Przeniesienie systemu do zastosowania w grze platformowej o nieco innym schemacie ruchu (np. rozwi¹zywania labiryntu) mo¿e okazaæ siê trudne i wymagaj¹ce du¿ych zmian w samym algorytmie.
+		Jednym z za³o¿eñ pracy jest unikniêcie takiego podejœcia i traktowanie system bardziej ogólnie, wobec czego obowi¹zuj¹c¹ struktur¹ chromosomu bêdzie ta opisana w pierwszym punkcie.
+		
+	\end{par}
+	\end{enumerate}
+	\FloatBarrier
+\end{par}
+\section{Modu³ silnika i symulatora gry}
+Poniewa¿ system mo¿na podzieliæ na dwa g³ówne modu³y (symulacji oraz edytora map) zostan¹ one rozpatrzone oddzielnie.
+W tym rozdziale zostanie przeprowadzona analiza wymagañ modu³u odpowiadaj¹cego za symulacjê œrodowiska gry oraz przeprowadzanie treningu populacji algorytmem genetycznym.
+
+\subsection{Wymagania funkcjonalne}
+	System nie wymaga ró¿nicowania u¿ytkowników ze wzglêdu na role. Wymagania funkcjonalne wygl¹daj¹ nastêpuj¹co:
+	\begin{itemize}
+		\item {\bf Poruszanie siê w œrodowisku gry za pomoc¹ klawiatury.}
+		\newline
+		Podstawowym wymogiem systemu jest implementacja silnika prostej gry platformowej pozwalaj¹cego na poruszanie siê postaci¹ po mapie.
+		Sterowanie zrealizowane powinno byæ intuicyjne i analogiczne do przyjêtych rozwi¹zañ w grach platformowych.
+		Poniewa¿ oprawa graficzna nie jest priorytetem w projekcie, wystarczy prosta reprezentacja obiektów za pomoc¹ prostok¹tów.
+		\item {\bf Wczytanie mapy do œrodowiska gry.}
+		\newline
+		System powinien pozwalaæ na wczytywanie map z plików tekstowych do bie¿¹cego œrodowiska symuluj¹cego przebieg gry.
+		Wówczas bie¿¹ca gra zostaje przerwana i inicjowany jest nowy przebieg gry na nowo wczytanej mapie.
+		\item {\bf Wczytanie nowej logiki do œrodowiska gry.}
+		\newline
+		Poniewa¿ system powinien byæ ogólnym systemem rozwi¹zuj¹cym gry platformowe, dostêpnych powinno byæ kilka przyk³adowych gier,
+		ró¿ni¹cych siê miêdzy sob¹ pod wzglêdem logiki. Podobnie jak w powy¿szym przypadku bie¿¹ca gra powinna zostaæ przerwana i
+		powinien zostaæ zainicjowany nowy przebieg gry z now¹ logik¹.
+		\item {\bf Przejœcie w tryb treningu populacji.}
+		\newline
+		Po przejœciu w tryb treningu populacji u¿ytkownikowi odbierana jest mo¿liwoœæ poruszania siê postaci¹ po ekranie.
+		Jeœli nie istnieje jeszcze zainicjowana ¿adna populacja pocz¹tkowa, nastêpuje wylosowanie pierwszej populacji, po czym system rozpoczyna trening populacji w danym œrodowisku gry, zgodnie z danymi ustawieniami w systemie. Przechodzenie pomiêdzy treningiem populacji a gr¹ u¿ytkownika powinno byæ mo¿liwe w obie strony. 
+		Wówczas jeœli u¿ytkownik zainicjuje trening populacji, nastêpnie przejdzie w tryb swobodnej gry, a ostatecznie znowu rozpocznie trening populacji, domyœln¹ populacj¹ jest ta która zosta³a zapisana podczas ostatniego treningu.
+		\item {\bf Zainicjowane nowej populacji. }
+		\newline
+		Mo¿e okazaæ siê koniecznie zainicjowanie nowej populacji podczas dzia³ania systemu, np. gdy populacja wpad³a w stagnacjê.
+		Inicjowanie nowej populacji podczas zmiany logiki, ustawieñ b¹dŸ wczytywania mapy jest realizowane automatycznie.
+		\item {\bf Otworzenie okna ustawieñ.}
+		\newline
+		System ze wzglêdu na warstwê genetyczn¹ powinien byæ w ³atwo konfigurowalny. Po wyœwietleniu okna ustawieñ u¿ytkownik ma mo¿liwoœæ zmiany
+		poszczególnych parametrów algorytmu b¹dŸ symulacji gry.
+		\item {\bf Zastosowanie nowych ustawieñ. }
+		\newline
+		Poniewa¿ niektóre ustawienia wymagaj¹ porzucenia aktualnego wyniku populacji i rozpoczêcia symulacji od pocz¹tku (np. rozmiar chromosomu).
+		U¿ytkownik jest o tym fakcie informowany i pytany o ponownie uruchomienie algorytmu. 
+		W przypadku gdy nie jest to koniecznie, algorytm nie zostaje przerwany, a u¿ytkownik wedle woli mo¿e to uczyniæ w³asnorêcznie.
+		\item {\bf Otworzenie okna populacji. }
+		\newline
+		Podczas dzia³ania algorytmu powinien byæ mo¿liwy podgl¹d aktualnej populacji. U¿ytkownikowi widoczna jest wówczas lista osobników, oraz krótki opis ka¿dego z nich:
+		Wynik koñcowy, iloœæ zebranych punktów, czas dzia³ania, wartoœæ funkcji przystosowania. Dodatkowym elementem jest mo¿liwoœæ przerwania aktualnego przebiegu gry i uruchomienie tymczasowo nowego przebiegu dla dowolnego osobnika z listy wybranego przez u¿ytkownika. Po zakoñczeniu przebiegu algorytm powraca do treningu populacji.
+		\item {\bf Otworzenie okna osobnika. }
+		\newline
+		Bezpoœrednio z okna populacji u¿ytkownik ma mo¿liwoœæ podejrzenia szczegó³ów dotycz¹cych osobników. Wówczas otwierane jest nowe okno zawieraj¹ce wszystkie informacje na temat danego osobnika takie jak d³ugoœæ tablicy chromosomu b¹dŸ tekstowa reprezentacja ca³ego chromosomu.		
+		\item {\bf Przyspieszenie pracy algorytmu.}
+		\newline
+		Podczas treningu populacji czêsto niepotrzebne jest u¿ytkownikowi œledzenie ruchów algorytmu szczególnie w pocz¹tkowym stadium. Aby szybciej osi¹gn¹æ wyniki dzia³ania algorytmu rozgrywka jest przyspieszana przez wstrzymanie wyœwietlania grafiki na mapie. Oprócz tego opóŸnienie koniecznie do osi¹gniêcia 60 klatek na sekundê podczas wyœwietlania zostaje wy³¹czone - algorytm w tle przeprowadza symulacje.
+	\end{itemize}
+\subsection{Wymagania niefunkcjonalne}
+	\begin{itemize}
+	\item {\bf Prêdkoœæ dzia³ania aplikacji. }	
+	\newline
+	Poniewa¿ aplikacja wymaga przeprowadzenia wielu symulacji gry do osi¹gniêcia wyniku, koniecznie jest optymalne zaprojektowanie funkcji bior¹cych udzia³ w dzia³aniu algorytmu genetycznego.
+	\item {\bf Elastycznoœæ. }
+	\newline
+	System powinien byæ napisany w taki sposób aby mo¿liwe by³o go póŸniejsze rozwijanie, szczególnie jeœli chodzi o rozszerzanie systemu o nowe logiki gier.
+	System musi zostaæ rozpatrzony jako generalny system rozwi¹zuj¹cy gry czasu rzeczywistego opieraj¹ce siê na 4 klawiszach kierunkowych i do 4 klawiszy specjalnych.
+	\item {\bf Oprawa Graficzna. }
+	\newline
+	Oprawa graficzna samej gry nie jest istotna w systemie. Jeœli system ma byæ elastyczny w kwestii mechaniki gry, wprowadzenie bogatej grafiki niepotrzebne skomplikuje proces dodawania nowego typu gry do systemu. 
+	Innym powodem zachowania prostej grafiki jest swoboda rozmiarów obiektów. 
+	W wiêkszoœci gier platformowych stosowana jest grafika rastrowa która przy skalowaniu obiektów bez zachowania proporcji wygl¹da Ÿle.
+	Rozwi¹zanie tego problemu wi¹za³oby siê z generowaniem grafiki proceduralnie b¹dŸ u¿ywaniem grafiki wektorowej, co jednak odbiega od istoty pracy.
+	\end{itemize}
+
+
+\subsection{Diagram przypadków u¿ycia}
+\begin{par}
+	Diagram przypadków u¿ycia zosta³ przedstawiony na Rys. \ref{fig:diagram_przypadkow}.
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/diagram_przypadkow.png}
+		\caption{Diagram przypadków u¿ycia.}
+		\label{fig:diagram_przypadkow}
+		\end{figure}
+		\FloatBarrier
+\end{par}
+\subsection{Opis tekstowy przypadków u¿ycia}
+\begin{par}
+	We wszystkich przypadkach u¿ycia aktorem jest u¿ytkownik aplikacji.
+	\begin{itemize}
+
+	\item
+	Opis przypadku u¿ycia {\bf Przemieszczanie siê po mapie }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item Po uruchomieniu instancji gry w g³ównym oknie aplikacji wyœwietlona zostaje mapa wraz ze znajduj¹cymi siê na niej obiektami.
+		\item U¿ytkownik za pomoc¹ klawiszy na klawiaturze przesy³a dane dotycz¹ce ruchu i akcji specjalnych do œrodowiska gry.
+		\item Postaæ gracza znajduj¹ca siê w grze reaguje na ¿¹dane akcje, logika gry decyduje o reakcjach obiektów w œrodowisku na postêpy gracza.
+		\item Gracz wchodzi w kolizjê z jednym z obiektów koñcz¹cych grê z danym wynikiem pozytywnym b¹dŸ negatywnym.
+		\item Po zakoñczeniu gry mapa jest ponownie wczytywana i automatycznie rozpoczynana jest nowa instancja gry.
+		\end{enumerate}
+	\item Alternatywne ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik w trakcie gry uruchamia tryb treningu populacji.
+		\item U¿ytkownik w trakcie gry wczytuje now¹ mapê, b¹dŸ now¹ logikê gry, przez co gra jest przerywana i rozpoczynana od nowa.
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: Samo przemieszczanie siê po mapie jest akcj¹ o charakterze ci¹g³ym. 
+		Rozpoczynanie akcji poruszania siê po mapie ze stanu treningu populacji jest bli¿ej nieokreœlone, lecz mo¿e byæ wykonywane œrednio 1-2 razy na minutê dzia³ania aplikacji.
+		\item Typowy czas realizacji: 1 minuta.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item Jeœli u¿ytkownik zakoñczy tryb poruszania siê po mapie przez prze³¹czenie na tryb treningu populacji, wówczas traci kontrolê nad postaci¹ i nie ma wp³ywu na akcje rozgrywane w œrodowisku gry.
+		\end{enumerate}
+	\end{enumerate}
+	\item
+	Opis przypadku u¿ycia {\bf Uruchomienie trybu treningu populacji. }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item Podczas dzia³ania aplikacji gracz uruchamia tryb treningu populacji.
+		\item Jeœli jest to pierwsze uruchomienie trybu treningu, nie ¿adna wczeœniej zdefiniowana populacja. Wówczas losowana jest populacja pocz¹tkowa w sposób losowy. W przeciwnym wypadku, symulacja zaczyna siê od ostatniej populacji wygenerowanej przez system. 
+		\item System kolejno przeprowadza wszystkie kroki algorytmu genetycznego na bie¿¹cej populacji.
+		\item Jeœli wyœwietlone jest okno widoku populacji jest ono aktualizowane po ka¿dym przebiegu gry.
+		\end{enumerate}
+	\item Alternatywne ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik wybiera w oknie populacji osobnika i przeprowadza jego tymczasow¹ symulacjê w œrodowisku, przez co trening jest chwilowo wstrzymany. Po symulacji gry danego osobnika trening jest wznawiany od ostatniego osobnika.
+		\item U¿ytkownik wczytuje now¹ logikê b¹dŸ mapê, przez co aktualny przebieg gry jest przerywany. Zostaje uruchomiona nowa gra i trening populacji jest automatycznie uruchamiany od pocz¹tku.
+		\item U¿ytkownik zmienia ustawienia algorytmu genetycznego. Jeœli s¹ to zmiany wymagaj¹ce ponownego uruchomienia gry jest wyœwietlony komunikat potwierdzaj¹cy operacjê, w innym wypadku zmiany nastêpuj¹ bez zaburzania aktualnego przebiegu treningu.
+		\item U¿ytkownik uruchamia tryb przyspieszonego treningu, przez co wy³¹czona zostaje aktualizacja stanu gry w oknie aplikacji.
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: Prze³¹czanie na trening populacji mo¿e byæ œrednio uruchamiane 1-2 razy w ci¹gu minuty dzia³ania aplikacji. 
+		\item Typowy czas realizacji: 10 sekund - 5 minut. Samo dzia³anie treningu populacji stanowiæ mo¿e oko³o 90\% czasu dzia³ania aplikacji.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item Jeœli u¿ytkownik uruchomi tryb poruszania siê po mapie wówczas przywrócone zostaje wyœwietlanie stanu gry (jeœli by³ w³¹czony tryb przyspieszonego treningu). U¿ytkownik uzyskuje kontrolê nad postaci¹ gracza.
+		\end{enumerate}
+	\end{enumerate}
+	
+	\item
+	Opis przypadku u¿ycia {\bf Zmiana ustawieñ aplikacji. }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik wyœwietla okno ustawieñ aplikacji.
+		\item W polach tekstowych u¿ytkownik dokonuje zmian na poszczególnych parametrach aplikacji
+		\item U¿ytkownik zatwierdza zmiany przyciskiem.
+		\item System sprawdza czy zmiany nie wymagaj¹ przerwania bie¿¹cej gry i ponownego uruchomienia algorytmu.
+		\begin{enumerate}
+			\item Jeœli zmiany nie wymagaj¹ ponownego uruchomienia algorytmu, zmiany zostaj¹ wprowadzone bez przerywania bie¿¹cej instancji gry.
+			\item W wypadku gdy ponowne uruchomienie jest koniecznie wyœwietlone zostaje okno dialogowe.
+			U¿ytkownik jest pytanie o ponowne uruchomienie algorytmu, ma wówczas on do dyspozycji zgodê na operacjê, b¹dŸ cofniêcie zmian wymagaj¹cych ponownego uruchomienia.
+			\item Po podjêciu decyzji okno dalej pozostaje otwarte, a zgodnie z wyborem zmiany zostaj¹ dokonane b¹dŸ nie.
+		\end{enumerate}
+		\item U¿ytkownik dalej mo¿e dokonywaæ zmian ustawieniach aplikacji.
+		\end{enumerate}
+	\item Alternatywne ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik dokonuje zmian, lecz zamiast zatwierdziæ je przyciskiem - zamyka okno ustawieñ. Wówczas po ponownym otwarciu ³adowane s¹ aktualne ustawienia a zmiany wprowadzone przez u¿ytkownika nie s¹ zapamiêtywane.
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: 0-5 razy w ci¹gu dzia³ania aplikacji.
+		\item Typowy czas realizacji: 1 minuta.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item brak
+		\end{enumerate}
+	\end{enumerate}
+
+	\item
+	Opis przypadku u¿ycia {\bf Wyœwietlenie podgl¹du populacji. }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item Podczas treningu populacji u¿ytkownik z menu w oknie g³ównym gry wybiera opcjê ``Population''.
+		\item Okno zostaje wyœwietlone, i utworzony zostaje komponent JList wype³niony aktualnymi osobnikami z populacji.
+		\item Jeœli dany osobnik na liœcie ju¿ przeprowadzi³ symulacjê, widoczne s¹ wartoœci punktowe zdobyte przez danego osobnika, czas przejœcia oraz wynik koñcowy.
+		\item Podczas dzia³ania algorytmu lista jest automatycznie aktualizowana.
+		\item U¿ytkownik zamyka okno populacji.
+		\end{enumerate}
+	\item Alternatywne ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik zaznacza osobnika i wyœwietla o nim szczegó³y.
+		\begin{enumerate}
+			\item Uruchamiany jest przypadek u¿ycia ``Wyœwietlenie podgl¹du chromosomu''.
+		\end{enumerate}
+		\item U¿ytkownik zaznacza osobnika i uruchamia jego przejœcie gry.
+		\begin{enumerate}
+			\item Uruchamiany jest przypadek u¿ycia ``Uruchomienie przejœcia osobnika z listy.''.
+		\end{enumerate}
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: 0-5 razy w ci¹gu dzia³ania aplikacji.
+		\item Typowy czas realizacji: 1 minuta.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item brak
+		\end{enumerate}
+	\end{enumerate}
+	\item
+	Opis przypadku u¿ycia {\bf Wyœwietlenie podgl¹du chromosomu. }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik zaznacza osobnika z listy w oknie populacji.
+		\item Przyciskiem "Show details" wyœwietla okno szczegó³ów na temat danego osobnika.
+		\item Dane na temat osobnika s¹ w postaci tekstowej - u¿ytkownik mo¿e je skopiowaæ do schowka.
+		\item U¿ytkownik zamyka okno podgl¹du.
+		\end{enumerate}
+	\item Alternatywne ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik otwiera okna podgl¹du dla kilku osobników po kolei - Otwiera siê kilka osobnych okien.
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: 0-5 razy w ci¹gu dzia³ania aplikacji.
+		\item Typowy czas realizacji: 20 sekund.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item brak.
+		\end{enumerate}
+	\end{enumerate}
+
+	\item
+	Opis przypadku u¿ycia {\bf Uruchomienie przejœcia osobnika z listy. }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik zaznacza osobnika z listy w oknie populacji.
+		\item Przyciskiem "Run selected" zatwierdza wybór osobnika.
+		\item Jeœli jest aktualnie przeprowadzana symulacja wówczas zostaje ona przerwana i rozpoczyna siê przejœcie gry wybranego wczeœniej osobnika.
+		\item Po zakoñczeniu przejœcia system ponownie wraca do treningu populacji i zaczyna od ostatniego osobnika.
+		\end{enumerate}
+	\item Alternatywne ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik uruchamia przejœcie osobnika w trybie przemieszczania siê po mapie. Symulacja nie zostaje wówczas przeprowadzona.
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: 0-10 razy w ci¹gu dzia³ania aplikacji.
+		\item Typowy czas realizacji: zale¿ny od d³ugoœci przejœcia osobnika 1 - 40 sekund.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item brak.
+		\end{enumerate}
+	\end{enumerate}
+
+	\end{itemize}
+\end{par}
+
+\subsection{Diagramy czynnoœci}
+\begin{par}
+		Poni¿ej zostan¹ przedstawione diagramy najistotniejszych czynnoœci w systemie.
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/activity_diagram.png}
+		\caption{Diagram czynnoœci ``Przemieszczanie siê po mapie''.}
+		\label{fig:activ1}
+		\end{figure}
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/activity_diagram_2.png}
+		\caption{Diagram czynnoœci ``Zmiana ustawieñ aplikacji''.}
+		\label{fig:activ2}
+		\end{figure}
+		\FloatBarrier
+\end{par}
+\subsection{Diagram stanów}
+\begin{par}
+	System sam w sobie nie posiada wielu stanów jakie mo¿e przyj¹æ. Dwa g³ówne stany to gra u¿ytkownika w której akcje z klawiatury s¹ interpretowane jako ruchy gracza, oraz tryb treningu populacji.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/diagram_stanow.jpg}
+		\caption{Diagram czynnoœci ``Diagram stanów systemu''.}
+		\label{fig:stany}
+		\end{figure}
+	\FloatBarrier
+	Stany dla Systemu (Rys. \ref{fig:stany}):
+	U¿ytkownik po uruchomieniu aplikacji mo¿e poruszaæ siê postaci¹ po ekranie(stan ``Tryb poruszania siê przez u¿ytkownika'').
+	Jeœli zmieni tryb dzia³ania systemu automatycznie przechodzi do trybu treningu (stan ``Tryb treningu populacji'').
+	Bêd¹c w stanie treningu populacji u¿ytkownik mo¿e ponownie przejœæ w tym swobodnego poruszania siê.
+	U¿ytkownik mo¿e wy³¹czyæ wyœwietlanie grafiki i tym samym przyspieszyæ proces treningu (stan ``Tryb przyspieszonego treningu''). 
+	Ze stanu treningu przyspieszonego u¿ytkownik mo¿e przejœæ do trybu poruszania siê postaci¹ po ekranie poprzez zmianê trybu, b¹dŸ do trybu treningu
+	populacji poprzez w³¹czenie wyœwietlania grafiki.
+\end{par}
+
+\section{Modu³ edytora map}
+W tej czêœci zostanie przedstawiona analiza wymagañ modu³u edytora map.
+\subsection{Wymagania funkcjonalne}
+	System nie wymaga ró¿nicowania u¿ytkowników ze wzglêdu na role. Wymagania funkcjonalne wygl¹daj¹ nastêpuj¹co:
+	\begin{itemize}
+		
+		\item {\bf Otworzenie okna edytora map. }
+		\newline
+		Wa¿nym elementem systemu jest narzêdzie pozwalaj¹ce tworzyæ nowe mapy oraz modyfikowaæ istniej¹ce.
+		Powinno byæ ono dostêpne jako osobne okno edytora map.
+		\item {\bf Wczytywanie mapy do edytora. }
+		\newline
+		U¿ytkownik powinien mieæ mo¿liwoœæ edycji dowolnej wczeœniej stworzonej mapy, w tym celu powinien móc z menu wybraæ odpowiedni¹ opcjê pozwalaj¹c¹ na wczytanie pliku mapy z dysku.
+		Wczytywanie mo¿e byæ zrealizowane analogicznie do wczytywania mapy do œrodowiska gry.
+		\item {\bf Zapis mapy do pliku. }
+		\newline
+		Podobnie jak odczyt, zapis mapy powinien byæ dostêpny dla u¿ytkownika z menu. 
+		Dziêki zapisowi mapy na dysk twardy, u¿ytkownik ma mo¿liwoœæ przechowywania wczeœniej tworzonych map, a co wa¿niejsze otworzenie ich bezpoœrednio w symulatorze gry.
+		\item {\bf Edycja mapy za pomoc¹ narzêdzi graficznych.}
+		\newline
+		Edycja mapy powinna byæ intuicyjna i prosta nawet dla osoby nie znaj¹cej szczegó³ów formatu zapisu mapy. 
+		Poniewa¿ ka¿dy obiekt w grze posiada prostok¹tny obszar kolizji, edytor powinien pozwalaæ na ³atwe tworzenie prostok¹tnych obiektów.
+		Zrealizowane mo¿e byæ to przez wyznaczanie dwóch rogów prostok¹ta za pomoc¹ metody ``przeci¹gnij i upuœæ''.
+		Narzêdzia powinny byæ dostêpne po wybraniu odpowiedniej ikony w panelu narzêdzi edytora map.
+		Przydatne w edycji map mog¹ okazaæ siê czêsto u¿ywane akcje takie jak cofniêcie ostatniej zmiany, zaznaczenie elementów w edytorze i usuwanie ich, b¹dŸ czyszczenie ca³ej mapy.
+	\end{itemize}
+\subsection{Wymagania niefunkcjonalne}
+	\begin{itemize}
+	\item {\bf Otwarty format mapy. }	
+	\newline
+	Istotn¹ rzecz¹ mo¿e byæ tutaj przechowywanie mapy w pliku tekstowym. 
+	O ile zapis binarny mo¿e okazaæ siê szybszy i bardziej kompaktowy, to wa¿niejsze jest jednak
+	umo¿liwienie u¿ytkownikom edycji mapy rêcznie, b¹dŸ poprzez programy trzecie. Dziêki temu mo¿liwe bêdzie generowanie np. bardzo d³ugich losowych map.
+	\end{itemize}
+
+
+\subsection{Diagram przypadków u¿ycia}
+\begin{par}
+	Diagram przypadków u¿ycia zosta³ przedstawiony na Rys. \ref{fig:diagram_przypadkow_mapa}.
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/use_case_editor.png}
+		\caption{Diagram przypadków u¿ycia modu³u edytora map.}
+		\label{fig:diagram_przypadkow_mapa}
+		\end{figure}
+		\FloatBarrier
+\end{par}
+\subsection{Opis tekstowy przypadków u¿ycia}
+\begin{par}
+	We wszystkich przypadkach u¿ycia aktorem jest u¿ytkownik aplikacji.
+	\begin{itemize}
+
+	\item
+	Opis przypadku u¿ycia {\bf Edycja bie¿¹cej mapy. }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik klika w przycisk menu dotycz¹cy edytora map.
+		\item Wyœwietlone zostaje nowe okno aplikacji zawieraj¹ce przyciski dotycz¹ce edycji mapy.
+		\item Do edytora map domyœlnie zostaje wczytana bie¿¹ca mapa wczytana do œrodowiska symulatora.
+		\item U¿ytkownik wybiera obiekty gry u¿yciu przycisków znajduj¹cych siê w menu okna a nastêpnie metod¹ przeci¹gnij-upuœæ rysuje prostok¹tne obiekty odpowiadaj¹ce za obiekty w grze.
+		\item U¿ytkownik z menu wybiera opcjê zapisu mapy do pliku.
+		\item Wyœwietlone zostaje okno dialogowe zapisu pliku w którym u¿ytkownik wybiera nazwê pliku.
+		\item U¿ytkownik zamyka okno edytora map.
+		\end{enumerate}
+	\item Alternatywne ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik wczytuje nowa mapê do edytora map. 
+			\begin{enumerate}
+			\item Wyœwietlone zostaje okno dialogowe dotycz¹ce otwarcia pliku z systemu.
+			\item Wszystkie obiekty z planszy zostaj¹ usuniête, i wczytywane s¹ nowe z wybranej wczeœniej mapy.
+			\end{enumerate}
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: 0-5 razy w ci¹gu dzia³ania aplikacji.
+		\item Typowy czas realizacji: 5 minut.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item U¿ytkownik po zapisaniu stworzonej mapy do pliku ma mo¿liwoœæ wczytania mapy z dysku do symulatora gry i przeprowadzenia treningu populacji na nowej mapie.
+		\end{enumerate}
+	\end{enumerate}
+
+	\item
+	Opis przypadku u¿ycia {\bf Stworzenie nowej mapy. }.
+	\begin{enumerate}
+	\item Podstawowy ci¹g zdarzeñ:
+		\begin{enumerate}
+		\item U¿ytkownik wybiera z menu przycisk dotycz¹cy edytora map.
+		\item Do edytora map domyœlnie zostaje wczytana bie¿¹ca mapa wczytana do œrodowiska symulatora.
+		\item U¿ytkownik z panelu narzêdzi edytora map wybiera usuniêcie wszystkich obiektów z mapy.
+		\item System usuwa obiekty z edytora map.
+		\item U¿ytkownik za pomoc¹ narzêdzi buduje elementy nowej mapy.
+		\item U¿ytkownik z menu wybiera opcjê zapisu mapy do pliku.
+		\item Wyœwietlone zostaje okno dialogowe zapisu pliku w którym u¿ytkownik wybiera nazwê pliku.
+		\item U¿ytkownik zamyka okno edytora map.
+		\end{enumerate}
+	\item Zale¿noœci czasowe:
+		\begin{enumerate}
+		\item Czêstotliwoœæ wykonania: 0-5 razy w ci¹gu dzia³ania aplikacji.
+		\item Typowy czas realizacji: 5 minut.
+		\item Maksymalny czas realizacji: nieokreœlony.
+		\end{enumerate}
+	\item Wartoœci uzyskiwane przez aktorów po zakoñczeniu przypadku u¿ycia:
+		\begin{enumerate}
+		\item U¿ytkownik po utworzeniu nowej mapy ma mo¿liwoœæ wczytania jej w symulatorze.
+		\end{enumerate}
+	\end{enumerate}
+	\end{itemize}
+\end{par}
+
+\subsection{Diagramy czynnoœci}
+\begin{par}
+		Poni¿ej zostan¹ przedstawione diagramy najistotniejszych czynnoœci w systemie dotycz¹ce modu³u edytora map.
+		\begin{figure}[!h]
+		\centering
+		\includegraphics[width=\textwidth]{obrazki/czynnosci_edytor_map.jpeg}
+		\caption{Diagram czynnoœci ``Edycja bie¿¹cej mapy''.}
+		\label{fig:czynn_edytor_map}
+		\end{figure}
+		\FloatBarrier
+\end{par}
+
+
+
+\section{Diagram klas}
+\begin{par}
+	\begin{par}
+	Diagram klas projektu przedstawiony zosta³ na rysunku \ref{fig:diagram_klas}.
+	\end{par}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[height=\textheight]{obrazki/diagram_klas.png}
+	\caption{Diagram Klas.}
+	\label{fig:diagram_klas}
+	\end{figure}
+	Poni¿ej zosta³y opisane poszczególne klasy w kolejnoœci alfabetycznej.
+	\begin{enumerate}
+	\item{\bf Actor }\newline
+	Actor jest klas¹ dziedzicz¹c¹ po klasie WorldObject. Reprezentuje ona obiekt postaci poruszaj¹cej siê po ekranie w œrodowisku gry. Poniewa¿ instancja obiektu Actor jest przemieszczaj¹cym siê obiektem niezbêdne by³o dodanie wektora prêdkoœci do klasy, który odpowiada za zmianê pozycji w czasie. Klasa posiada metody takie jak moveLeft, moveRight, moveUp oraz moveDown pozwalaj¹ce na ³atw¹ zmianê kierunku ruchu aktora. Metody tickX, tickY aktualizuj¹ pozycje gracza. Aby wykryæ kolizjê mo¿liwe jest wywo³anie metody previewX (odp. previewY) która zwraca ``przysz³¹'' pozycjê obiektu po wykonaniu przez niego ruchu w osi X (odp. osi Y).
+	\item{\bf Bonus }\newline
+	Klasa Bonus jest abstrakcyjn¹ klas¹ dziedzicz¹c¹ po klasie WorldObject. Odpowiada ona za obiekty wp³ywaj¹ce na przebieg gry. Kolizja aktora z obiektem powoduje wywo³anie metody evalCollision, która decyduje o efekcie zdarzenia. Obiekty Bonus posiadaj¹ przypisan¹ wartoœæ punktow¹ która w zale¿noœci od typu obiektu ró¿nie wp³ywa na rozgrywkê.
+	\item{\bf BonusCoin }\newline
+	Klasa BonusCoin reprezentuje jedynie punkty umieszczone na planszy. Kolizja z obiektem klasy BonusCoin powoduje zwiêkszenie licznika punków gracza b¹dŸ osobnika populacji. Poza dodaniem punktów obiekt klasy BonusCoin nie wp³ywa bezpoœrednio na przebieg gry.
+	\item{\bf BonusLose }\newline
+	Obiekt klasy BonusLose reprezentuje obiekt koñcz¹cy grê ze skutkiem negatywnym. Kolizja aktora z obiektem automatycznie koñczy przebieg gry ze skutkiem RESULT\_LOST.
+	\item{\bf BonusWin }\newline
+	Obiekt klasy BonusWin stanowi cel ka¿dej gry. Kolizja z obiektem typu BonusWin automatycznie koñczy rozgrywkê ze skutkiem RESULT\_WON, co jest brane pod uwagê podczas liczenia funkcji przystosowania.
+	\item{\bf Camera }\newline
+	Obiekt Camera przechowuje wektor przesuniêcia obrazu i jest u¿ywany do przesuwania ekranu. Jest ona wykorzystywana podczas symulacji do ``pod¹¿ania'' za obiektem gracza, b¹dŸ do swobodnego przesuwania ekranu gry za pomoc¹ myszy. Analogicznie w edytorze map u¿ytkownik ma mo¿liwoœæ przesuwania ekranu za pomoc¹ myszy, co upraszcza tworzenie du¿ych map. Obiekt Camera przechowuje równie¿ referencjê do aktualnie œledzonego obiektu.
+	Metoda update pozwala na aktualizowanie kamery wraz z przesuwaniem siê postaci po ekranie.
+	metody translateScreen oraz translateScreenNeg odpowiednio przesuwaj¹ ekran o ¿¹dany wektor przesuniêcia.
+	\item{\bf Config }\newline
+	Klasa Config przechowuje zmienne dotycz¹ce konfiguracji programu, wykorzystywane w celu wyszukiwania b³êdów. Przechowuje ona ustawienia wyœwietlania informacji o pozycji ka¿dego obiektu w grze, b¹dŸ dodatkowych zmiennych takich jak czas który up³yn¹³ od pocz¹tku gry.
+	Domyœlnie informacje te nie s¹ widoczne, lecz mo¿na je w³¹czyæ z panelu konfiguracyjnego.
+	\item{\bf Controller }\newline
+	Klasa Controller jest klas¹ poœrednicz¹c¹ w wymianie informacji pomiêdzy sygna³ami z klawiatury, b¹dŸ akcjami zapisanymi w chromosomie, a œrodowiskiem gry. Odseparowuje ona obie warstwy dziêki czemu mo¿liwe jest pisanie logiki gry, b¹dŸ reakcji na poszczególne akcje, niezale¿nie od Ÿród³a sygna³u. Klasa Controller jest klas¹ abstrakcyjn¹ i uzupe³nia interfejsy takie jak KeyListener, MouseListener, MouseMotionListener (tym samym implementuje wszystkie zwi¹zane z nimi metody), dziêki czemu wszelkie zdarzenia wywo³ane w oknie gry zostaj¹ przechwycone i odpowiednio obs³u¿one. Klasa Controller posiada równie¿ zmienne ca³kowite które s¹ kolejnymi potêgami 2, zwi¹zane jest to z optymalizacj¹ przechwytywania ruchów z klawiatury - ka¿de wciœniêcie klawisza ustawia odpowiedni bit.
+	\item{\bf ControllerHuman }\newline
+	Klasa dziedzicz¹ca po klasie Controller, nadpisuje powy¿sze metody, tak aby wciœniêcia klawiszy przez gracza odpowiednio porusza³y postaci¹ w grze. Posiada ona metodê down(int) która zwi¹zana jest z wy¿ej wymienion¹ optymalizacj¹ przechwytywania ruchu. Dziêki operacjom bitowym szybko sprawdzany jest stan ka¿dego klawisza.
+	\item{\bf ControllerGenetic }\newline
+	Klasa dziedzicz¹ca po klasie Controller, odpowiada za odczytywanie wygenerowanych akcji z osobników znajduj¹cych siê w populacji i odpowiednie przekazywanie ich do œrodowiska gry (logiki). Instancja klasy zawiera w sobie obiekt klasy Population który przechowuje ca³¹ populacjê osobników.
+	\item{\bf Chromosome }\newline
+	Chromosome jest klas¹ reprezentuj¹c¹ obiekt osobnika. Uzupe³nia ona interfejs Comparable, dziêki czemu mo¿liwe jest wykorzystanie algorytmów sortuj¹cych ze standardowej biblioteki javy. Ka¿dy obiekt tej klasy zawiera w sobie instancje obiektu ResultData która przechowuje dane na temat wyniku gry. Klasa posiada metody takie jak mutateSpecial i mutateMoves które odpowiednio dokonuj¹ mutacji osobnika na tablicy akcji specjalnych i tablicy ruchów. Parametr breadth decyduje o ``rozleg³oœci'' mutacji, np: wartoœæ 0.2 spowoduje mutacjê losowych 20\% akcji w danej tablicy chromosomu. Oprócz standardowego konstruktora klasy jest tak¿e konstruktor przyjmuj¹cy tablicê innych chromosomów. Traktowane jest to jako tworzenie nowego Chromosomu na podstawie kilku innych, czyli opisane wczeœniej krzy¿owanie statystyczne z grupy rodzicielskiej z poprzedniej populacji. 
+	\item{\bf GameState }\newline
+	Klasa GameState przechowuje aktualny stan gry, wraz ze zmiennymi takimi jak: czasy rozpoczêcia gry, aktualny oraz zakoñczenia (wszystkie wartoœci jako czasy systemowe w milisekundach), zebrane przez postaæ punkty b¹dŸ wartoœæ wyliczona z funkcji przystosowania. Funkcja updateTime(d\_time) aktualizuje czas gry na podstawie faktycznego czasu który up³yn¹³ w systemie, dziêki czemu gra z punktu widzenia logiki przebiega tak samo bez wzglêdu na wydajnoœæ komputera na którym uruchamiany jest program.
+	\item{\bf GeneticsConfig }\newline
+	Klasa GeneticsConfig przechowuje wszystkie informacje dotycz¹ce parametrów algorytmu genetycznego. Wartoœci prawdopodobieñstw wylosowania akcji specjalnych (specialProb) b¹dŸ ruchu postaci (moveProb) przechowywane s¹ w strukturach typu HashMap dostêpnych w standardowych bibliotekach javy.
+	Oprócz prawdopodobieñstw klasa przechowuje te¿ parametry algorytmów genetycznych takie jak rozmiar populacji, wielkoœæ tablicy chromosomu, sta³¹ krzy¿owania, czy rozleg³oœæ mutacji poszczególnych tablic. Parametry te równie¿ przechowywane s¹ w tablicy asocjacyjnej, dziêki czemu mo¿liwe jest odwo³ywanie siê do nich poprzez typ wyliczeniowy ``Parameter''.
+	Oprócz samych wartoœci przechowywany jest te¿ typ ka¿dego parametru. Metody registerParameter, updateParameter oraz getParameter s³u¿¹ do aktualizacji b¹dŸ pobierania parametrów z tablicy. Klasa oprócz przechowywania wartoœci posiada metody zwracaj¹ce losowy ruch. Korzysta z tego g³ównie klasa Chromosome przy generowaniu nowych osobników.
+	\item{\bf GlobalVariables }\newline
+	Klasa GlobalVariables przechowuje zmienne statyczne widoczne w ca³ym systemie takie jak aktualny tryb pracy, zmienn¹ SLEEP\_TIME decyduj¹c¹ o tempie gry oraz zmienn¹ odpowiadaj¹c¹ za zablokowywanie dostêpu do zasobów - program jako aplikacja okienkowa korzysta z dwóch w¹tków wobec czego jest to koniecznie przy wspó³dzieleniu zasobów takich jak obiekty gry.
+	\item{\bf LabeledTextBox }\newline
+	Jest to klasa pomocnicza przy tworzeniu interfejsu u¿ytkownika - dziêki niej mo¿liwe jest automatycznie generowanie par JLabel i JTextBox widocznych w oknie ustawieñ aplikacji.
+	\item{\bf Logic }\newline
+	Klasa Logic odpowiada za symulacjê logiki gry - g³ównie dotyczy to aktora i jego reakcji na ró¿nego rodzaju akcje, gdy¿ jest on jedynym ruchomym obiektem w grze. Dziêki odseparowaniu logiki gry od pozosta³ych warstw mo¿liwe jest proste rozszerzanie systemu o w³asne regu³y gry. Klasa posiada metodê doLogic która jest cyklicznie wykonywana w ka¿dej pêtli gry. Oprócz tego metody executeMoveAction oraz executeSpecialAction decyduj¹ o reakcji œrodowiska oraz aktora na akcje generowane przez chromosom, b¹dŸ u¿ytkownika.
+	\item{\bf LogicLabirynth }\newline
+	Jest to przyk³adowa implementacja gry, w której postaæ porusza siê w 4 kierunkach. Klasa zosta³a rozszerzona o wartoœci ruchu postaci w obu osiach.
+	\item{\bf LogicMario }\newline
+	Podobnie jak klasa LogicLabirynth jest to prosta implementacja gry wzorowanej na grze Super Mario Brothers. Pomocnicza zmienne actor\_falling pomaga w realizacji fizyki w grze (wp³ywie grawitacji na postaæ). Zmienna velocity\_x odpowiada za wartoœæ prêdkoœci postaci w poziomie.
+	\item{\bf Main }\newline
+	Klasa Main jest g³ówn¹ klas¹ w grze. Zawiera ona referencje do poszczególnych komponentów systemu takich jak silnik renderuj¹cy, logika gry, mapy gry, warstwy kontroluj¹cej wykonywanie akcji oraz bie¿¹cego stanu gry.
+	Podczas uruchomienia aplikacji uruchamiana jest metoda main(String[]) która inicjuje wszystkie koniecznie komponenty i wyœwietla okno aplikacji.
+	Klasa uzupe³nia interfejs Runnable, dziêki czemu dzia³a jako osobny w¹tek. Oprocz tego klasa Main dziedziczy po klasie JPanel i nadpisuje metodê painComponent(Graphics), dziêki czemu mo¿liwe jest stworzenie warstwy wizualizacyjnej dla œrodowiska gry.
+	\item{\bf MapEditor }\newline
+	Klasa MapEditor podobnie jak klasa Main dziedziczy po klasie JPanel. Zawiera ona listê obiektów niezale¿n¹ od obiektów istniej¹cych w symulatorze gry. Metoda loadMap pozwala na wczytanie mapy z pliku na dysku, metoda saveMap s³u¿y do zapisu aktualnie edytowanej mapy do pliku tekstowego. Klasa uzupe³nia interfejsy MouseListener oraz MouseMotionListener przez co nadpisuje metody s³u¿¹ce do obs³ugi zdarzeñ. 
+	\item{\bf Population }\newline
+	Klasa Population przechowuje tablicê osobników bior¹cych udzia³ w treningu populacji. 
+	Metoda getNextPopulation odpowiada za wygenerowanie nowej populacji na podstawie wyników poprzedniej - to w niej wykonywane s¹ wszystkie kroki zwi¹zane z algorytmem genetycznym.
+	Oprócz tego klasa posiada konstruktor generuj¹cy now¹ Populacjê na podstawie populacji rodzicielskiej (wspomniane wczeœniej krzy¿owanie statystyczne). Metoda getParents zwraca populacjê rodzicielsk¹ na podstawie aktualnej populacji.
+	\item{\bf Renderer }\newline
+	Renderer jest klas¹ odpowiedzialn¹ za wyœwietlanie elementów gry w oknie. Warstwa ta zosta³a odseparowana, dziêki czemu podczas dalszej rozbudowy aplikacji ³atwo mo¿na zast¹piæ silnik renderuj¹cy na inny, b¹dŸ wprowadziæ u¿ywanie tekstur do programu.
+	\item{\bf RendererSimple }\newline
+	Jest to prosta implementacja silnika renderuj¹cego. G³ównym za³o¿eniem jest tutaj jedynie rysowanie prostok¹tnych obiektów, ró¿ni¹cych siê kolorami (Ka¿da klasa dziedzicz¹ca po WorldObject posiada inny kolor).
+	\item{\bf Resources }\newline
+	Klasa Resources przechowuje wszystkie obiekty œwiata gry. Metoda loadResources(String) interpretuje plik tekstowy przekazany w parametrze jako œcie¿ka na dysku i zamienia opis tekstowy mapy na obiekty w grze. Warto zauwa¿yæ i¿ metoda getMainActor zwraca jeden obiekt Aktora, natomiast w zasobach gry mo¿e byæ ich kilku (kolekcja actors jest list¹). Jest to rozwi¹zanie maj¹ce na celu póŸniejsze rozwiniêcie systemu np. do obs³ugi gry wieloosobowej.
+	\item{\bf ResultData }\newline
+	ResultData jest klas¹ pomocnicz¹ przechowuj¹c¹ dane na temat przejœcia gry ka¿dego osobnika. Przechowuje ona zmienne takie jak wynik funkcji przystosowania (zmienna final\_score), iloœæ zebranych punktów na mapie (score), czas przejœcia (time\_elapsed) oraz stan w jakim przejœcie siê zakoñczy³o (final\_state przyjmuj¹cy wartoœci RESULT\_TIMEOUT, RESULT\_WON b¹dŸ RESULT\_LOST). Oprócz tego posiada ona metodê licz¹c¹ funkcjê przystosowania na podstawie parametrów w ustawieniach algorytmu genetycznego.
+	\item{\bf Terrain }\newline
+	Klasa Terrain jest klas¹ dziedzicz¹c¹ po klasie WorldObject. Odpowiada za statyczny teren. Najczêœciej kolizja z nim powoduje zatrzymanie ruchu, jednak zale¿y to od implementacji logiki gry.
+	\item{\bf Vector }\newline
+	Klasa pomocnicza przechowuj¹ca wspó³rzêdne punktu (typ double).
+	\item{\bf WorldObject }\newline
+	Klasa abstrakcyjna po której dziedzicz¹ wszystkie elementy gry. Podstawow¹ jej zmienn¹ jest po³o¿enie na mapie oraz rozmiar (odpowiednio zmienne ``position'' oraz ``size'').
+	Klasa posiada metodê getRectangle zwracaj¹c¹ obiekt Rectangle dostêpny w standardowej bibliotece, dziêki czemu realizowanie kolizji pomiêdzy dwoma obiektami jest realizowanie poprzez wywo³anie metody intersects(Rectangle). Ka¿dy dziedzicz¹cy po WorldObject obiekt ma do dyspozycji metodê evalCollision która decyduje o czynnoœciach wykonywanych podczas kolizji dwóch obiektów. Obiekty klasy WorldObject posiadaj¹ równie¿ metodê paint(Graphics) która odpowiada za rysowanie obiektu na ekranie (obiekcie Graphics).
+	\end{enumerate}
+
+\end{par}
+
+
